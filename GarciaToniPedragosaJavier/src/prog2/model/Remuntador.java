@@ -57,14 +57,13 @@ public abstract class Remuntador {
         this.susceptibleVisib = susceptibleVisib;
     }
 
-    public String tipus() {
-        return this.getClass().getName();
-    }
+    public abstract String tipus();
 
+    //TODO: actualitzaEstat.
     //public void actualitzaEstat(Meteo meteo);
 
     public String toString() {
-        return "Remuntador :" + nom + ", Tipus: " + tipus() +
+        return "Remuntador: " + nom + ", Tipus: " + tipus() +
                 ", Estat: " + estatToString() + ".";
     }
 }

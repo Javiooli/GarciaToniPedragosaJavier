@@ -6,7 +6,7 @@
 package prog2.vista;
 
 import java.util.Scanner;
-//import prog2.model.EstacioEsqui;
+import prog2.model.EstacioEsqui;
 
 /**
  *
@@ -14,13 +14,13 @@ import java.util.Scanner;
  */
 public class VistaEstacioEsqui {
 
-    /* Atributs */
-    // Add the attributes here
+    private EstacioEsqui estacio;
 
     /* Constructor de la Vista*/
-    public VistaEstacioEsqui(String nomEstacio, int velocitatVentNord, String visibilitatNord,
-            int velocitatVentSud, String visibilitatSud) {
-
+    public VistaEstacioEsqui(String nomEstacio, int velocitatVentNord,
+    String visibilitatNord, int velocitatVentSud, String visibilitatSud) {
+        this.estacio = new EstacioEsqui(nomEstacio, velocitatVentNord, visibilitatNord, velocitatVentSud, visibilitatSud);
+        estacio.inicialitzaDadesVall2000();
     }
 
     /* Métodes */      
@@ -72,7 +72,8 @@ public class VistaEstacioEsqui {
     //   3. Bucle n el cual es tracta la opcio seleccionada per l'usuari
     public void gestioMenu(Scanner sc) {
         // Creación del objeto que representa el menu. El primer argumento del contructor es el nombre del menu
-        Menu<OpcionesMenu> menuVall2000 = new Menu<>("Menu NO IMPLEMENTAT ---> estacio.getNomEstacio()", OpcionesMenu.values());
+        Menu<OpcionesMenu> menuVall2000 = new Menu<>
+        (estacio.getNom(), OpcionesMenu.values());
 
         // Assignar una descripción a cada una de las opciones
         //  - OPCIONAL - Por defecto enseña el nombre de la opción
@@ -88,25 +89,25 @@ public class VistaEstacioEsqui {
 
             switch (opcionMenu) {
                 case M_Opcion_1_ListarPistas:
-                    // Put your code here
+                    estacio.llistarPistes("Tots");
                     break;
                 case M_Opcion_2_ListarPistasAbiertas:
-                    // Put your code here
+                    estacio.llistarPistes("Oberta");
                     break;
                 case M_Opcion_3_ListarPistasCerradas:
-                    // Put your code here
+                    estacio.llistarPistes("Tancada");
                     break;
                 case M_Opcion_4_ListarRemontadores:
-                    // Put your code here
+                    estacio.llistarRemuntadors("Tots");
                     break;
                 case M_Opcion_5_ListarRemontadoresEnServicio:
-                    // Put your code here
+                    estacio.llistarRemuntadors("En servei");
                     break;
                 case M_Opcion_6_ListarRemontadoresFueraServicio:
-                    // Put your code here
+                    estacio.llistarRemuntadors("Fora de servei");
                     break;
                 case M_Opcion_7_CalcularTotalKms:
-                    // Put your code here
+                    estacio.calcularKms();
                     break;
                 case M_Opcion_8_Modificar_Vent:
                     // Put your code here

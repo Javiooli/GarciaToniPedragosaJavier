@@ -6,6 +6,19 @@ public class Pista {
     private float longitud;
     private String estatNeu;
     private String estatPista;
+    private LlistaRemuntadors dependencies;
+
+    Pista(String nom, String color, float longitud,
+            String estatNeu, String estatPista) {
+
+        this.nom = nom;
+        this.color = color;
+        this.longitud = Math.max(0, longitud);
+        this.estatNeu = estatNeu;
+        this.estatPista = estatPista;
+        this.dependencies = new LlistaRemuntadors();
+
+    }
 
     public String getNom() {
         return this.nom;
@@ -36,7 +49,11 @@ public class Pista {
     }
 
     public void setEstatNeu(String estatNeu) {
-        this.estatNeu = estatNeu;
+        if (estatNeu.toLowerCase().equals("pols") ||
+            estatNeu.toLowerCase().equals("primavera") ||
+            estatNeu.toLowerCase().equals("dura"))
+
+            this.estatNeu = estatNeu;
     }
 
     public String getEstatPista() {
@@ -44,8 +61,25 @@ public class Pista {
     }
 
     public void setEstatPista(String estatPista) {
-        this.estatPista = estatPista;
+        if (estatPista.toLowerCase().equals("oberta") ||
+            estatPista.toLowerCase().equals("tancada"))
+
+            this.estatPista = estatPista;
     }
+
+    //TODO: actualitzaEstat()
+    //public void actualitzaEstat();
+
+    public String toString() {
+        return "Pista: " + this.nom + ", Color: " + this.color + ", Longitud: " +
+        longitud + "Km, Estat de la neu: " + estatNeu + ", Estat de la pista: " +
+        estatPista + ", Dependències: " + dependencies.getNoms();
+    }
+
+    public void afegirDependencia(Remuntador rm) {
+        if (rm != null) dependencies.afegirRemuntador(rm);
+    }
+
 
 }
 
