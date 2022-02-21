@@ -29,7 +29,6 @@ public class Pista {
 
     public void setLongitud(float longitud) {
         this.longitud = longitud;
-        //TODO
     }
 
     public String getEstatNeu() {
