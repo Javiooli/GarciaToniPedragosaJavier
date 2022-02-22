@@ -36,7 +36,7 @@ public class EstacioEsqui {
     //para replicar, escoger opcion 3 en el menu, pone Sector Nord: Sector Sud:.
     public void llistarPistes(String estat) {
         StringBuilder msg = new StringBuilder();
-        for (Sector sector : sectors) {
+        for (Sector sector : this.sectors) {
             msg.append("Sector " + sector.getNom() + ":\n");
             msg.append(sector.llistarPistes(estat));
         }
@@ -45,7 +45,7 @@ public class EstacioEsqui {
 
     public void llistarRemuntadors(String estat) {
         StringBuilder msg = new StringBuilder();
-        for (Sector sector : sectors) {
+        for (Sector sector : this.sectors) {
             msg.append("Sector " + sector.getNom() + ":\n");
             msg.append(sector.llistarRemuntadors(estat));
         }
@@ -56,7 +56,7 @@ public class EstacioEsqui {
         float total = 0;
         float obertes = 0;
         StringBuilder msg = new StringBuilder("Longitud de pistes total: ");
-        for (Sector sector : sectors) {
+        for (Sector sector : this.sectors) {
             total += sector.getLlistaPistes().calculaKmsPistes("Tots");
             total = (float)Math.round(total*100f) / 100f;
             obertes += sector.getLlistaPistes().calculaKmsPistes("Oberta");

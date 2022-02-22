@@ -34,7 +34,7 @@ public class LlistaPistes {
         estat = estat.substring(0, 1).toUpperCase() + estat.substring(1);
 
         if (!estat.equals("Oberta") && !estat.equals("Tancada") &&
-            !estat.equals("Tots")) return "Estat introduït no vàlid";
+            !estat.equals("Tots")) return "Estat introduït no vàlid\n";
 
         StringBuilder llistaPistes = new StringBuilder();
 

@@ -89,7 +89,7 @@ public class VistaEstacioEsqui {
 
             switch (opcionMenu) {
                 case M_Opcion_1_ListarPistas:
-                    estacio.llistarPistes("Totes");
+                    estacio.llistarPistes("Tots");
                     break;
                 case M_Opcion_2_ListarPistasAbiertas:
                     estacio.llistarPistes("Oberta");
