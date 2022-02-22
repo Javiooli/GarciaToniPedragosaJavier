@@ -1,5 +1,7 @@
 package prog2.vista;
 
+import prog2.model.*;
+
 /**
  *
  * @author ricardo.marques

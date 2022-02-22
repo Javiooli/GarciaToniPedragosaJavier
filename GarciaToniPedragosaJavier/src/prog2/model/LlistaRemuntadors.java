@@ -36,7 +36,7 @@ public class LlistaRemuntadors {
         estat = estat.substring(0, 1).toUpperCase() + estat.substring(1);
 
         if (!estat.equals("En servei") && !estat.equals("Fora de servei") &&
-            !estat.equals("Tots")) return "Estat introduït no vàlid";
+            !estat.equals("Tots")) return "Estat introduït no vàlid\n";
 
         StringBuilder llistaRemunt = new StringBuilder();
 

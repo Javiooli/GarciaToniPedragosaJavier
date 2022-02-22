@@ -6,7 +6,7 @@
 package prog2.vista;
 
 import java.util.Scanner;
-import prog2.model.EstacioEsqui;
+import prog2.model.*;
 
 /**
  *
@@ -89,7 +89,7 @@ public class VistaEstacioEsqui {
 
             switch (opcionMenu) {
                 case M_Opcion_1_ListarPistas:
-                    estacio.llistarPistes("Tots");
+                    estacio.llistarPistes("Totes");
                     break;
                 case M_Opcion_2_ListarPistasAbiertas:
                     estacio.llistarPistes("Oberta");

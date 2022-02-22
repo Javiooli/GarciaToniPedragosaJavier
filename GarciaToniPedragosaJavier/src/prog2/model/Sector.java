@@ -1,5 +1,7 @@
 package prog2.model;
 
+import prog2.*;
+
 public class Sector {
     
     private String nom;
