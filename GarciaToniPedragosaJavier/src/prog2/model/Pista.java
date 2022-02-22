@@ -1,5 +1,7 @@
 package prog2.model;
 
+import prog2.model.*;
+
 public class Pista {
     private String nom;
     private String color;
