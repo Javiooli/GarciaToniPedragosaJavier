@@ -66,6 +66,12 @@ public class EstacioEsqui {
         System.out.println(msg);
     }
 
+    public void reportMeteo(){
+        for (Sector sector : this.sectors) {
+            sector.reportMeteo();
+        }
+    }
+
 
 
 

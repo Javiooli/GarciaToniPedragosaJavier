@@ -116,7 +116,7 @@ public class VistaEstacioEsqui {
                     // Put your code here
                     break;
                 case M_Opcion_10_Report_Meteo:
-                    // Put your code here
+                    estacio.reportMeteo();
                     break;
             }
 
