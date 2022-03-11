@@ -28,6 +28,7 @@ public class LlistaPistes {
     }
 
     public String llistarPistes(String estat) {
+        int pistesAfegides = 0;
         if (this.llista.isEmpty()) return "No hi ha cap pista a la llista.\n";
 
         estat = estat.toLowerCase();
@@ -42,18 +43,21 @@ public class LlistaPistes {
 
             for (int i = 0; i < this.llista.size(); i++) {
 
-                if (this.llista.get(i).getEstatPista().equals(estat))
+                if (this.llista.get(i).getEstatPista().equals(estat)) {
                     llistaPistes.append(this.llista.get(i).toString() + "\n");
+                    pistesAfegides++;
+                }
             }
 
         } else {
 
             for (int i = 0; i < this.llista.size(); i++) {
                 llistaPistes.append(this.llista.get(i).toString() + "\n");
+                pistesAfegides++;
             }
         }
 
-        return llistaPistes.toString();
+        return (pistesAfegides == 0 ? "No hi ha cap pista a la llista\n" : llistaPistes.toString());
     }
 
     public float calculaKmsPistes(String estat) {
