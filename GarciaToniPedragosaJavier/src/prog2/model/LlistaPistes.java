@@ -57,7 +57,7 @@ public class LlistaPistes {
             }
         }
 
-        return (pistesAfegides == 0 ? "No hi ha cap pista a la llista\n" : llistaPistes.toString());
+        return (pistesAfegides == 0 ? "No hi ha cap pista a la llista\n\n" : llistaPistes.toString());
     }
 
     public float calculaKmsPistes(String estat) {

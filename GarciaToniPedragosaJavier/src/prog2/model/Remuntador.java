@@ -60,7 +60,9 @@ public abstract class Remuntador {
     public abstract String tipus();
 
     //TODO: actualitzaEstat.
-    //public void actualitzaEstat(Meteo meteo);
+    public void actualitzaEstat(Meteo meteo){
+        this.setEstat(meteo.getVelocitatVent()<= this.getLimitVent() & meteo.get() ); 
+    };
 
     public String toString() {
         return "Remuntador: " + nom + ", Tipus: " + tipus() +

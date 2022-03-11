@@ -1,11 +1,14 @@
 package prog2.model;
 
+import java.rmi.StubNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class EstacioEsqui {
     
     private String nom;
     private ArrayList<Sector> sectors;
+    Scanner sc = new Scanner(System.in);
 
     public EstacioEsqui() {
         this.nom = "Sense nom";
@@ -66,10 +69,44 @@ public class EstacioEsqui {
         System.out.println(msg);
     }
 
+    public void modificaVent(){
+        System.out.println("A quin sector vols modificar el vent?");
+        for (Sector sector : this.sectors) {
+            System.out.println(sector.getNom());
+        }
+        String entrada = sc.nextLine().toUpperCase();
+
+        boolean trobat = false;
+        int iterator = 0;
+        do{
+            Sector s = sectors.get(iterator);
+            trobat = (entrada == s.getNom());
+            if (trobat) {
+                System.out.println("quina es la velocitat del vent en aquest sector?");
+                boolean entradaOK = false;
+                float f=0f;
+                do{
+                    String velocitat = sc.nextLine();
+                    try{
+                        f = Float.parseFloat(velocitat);
+                        entradaOK=true;
+                    } catch (NumberFormatException nfe){
+                        System.out.println("Introdueix un valor numeric.");                        
+                    }
+                }while (!entradaOK);
+                s.setVelocitatVent(f);
+            }
+        }while (!trobat);
+    }
+
+
+
+
     public void reportMeteo(){
         for (Sector sector : this.sectors) {
             sector.reportMeteo();
         }
+
     }
 
 

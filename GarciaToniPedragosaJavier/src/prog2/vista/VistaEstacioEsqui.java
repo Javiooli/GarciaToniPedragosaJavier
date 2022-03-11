@@ -110,7 +110,7 @@ public class VistaEstacioEsqui {
                     estacio.calcularKms();
                     break;
                 case M_Opcion_8_Modificar_Vent:
-                    // Put your code here
+                    estacio.modificaVent();
                     break;
                 case M_Opcion_9_Modificar_Visibilitat:
                     // Put your code here
