@@ -79,12 +79,12 @@ public class EstacioEsqui {
 
         boolean trobat = false;
         int iterator = 0;
-        do{
+        do {
             Sector s = sectors.get(iterator);
             System.out.println(s.getNom().toUpperCase() + entrada);
-            trobat = (entrada == s.getNom().toUpperCase());
+            trobat = (entrada.equals(s.getNom().toUpperCase()));
             if (trobat) {
-                System.out.println("quina es la velocitat del vent en aquest sector?");
+                System.out.println("Quina es la velocitat del vent en aquest sector?");
                 boolean entradaOK = false;
                 float f=0f;
                 do{
@@ -94,7 +94,7 @@ public class EstacioEsqui {
                             f = Float.parseFloat(velocitat);
                             entradaOK=true;
                         } catch (NumberFormatException nfe){
-                            System.out.println("Introdueix un valor numeric.");                        
+                            System.out.println("Introdueix un valor numèric.");                        
                         }
                     }
                 }while (!entradaOK);
