@@ -7,7 +7,11 @@ public class LlistaPistes {
     private ArrayList<Pista> llista = new ArrayList<>();
 
     //TODO: actualitzaEstat();
-    //public void actualitzaEstat();
+    public void actualitzaEstat(){
+        for (Pista pista : llista) {
+            pista.actualitzaEstat();
+        }
+    };
 
     public Pista getPista (String nom) {
         if (!this.llista.isEmpty()) {

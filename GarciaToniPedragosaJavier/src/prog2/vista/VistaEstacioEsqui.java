@@ -113,7 +113,7 @@ public class VistaEstacioEsqui {
                     estacio.modificaVent();
                     break;
                 case M_Opcion_9_Modificar_Visibilitat:
-                    // Put your code here
+                    estacio.modificaVisibilitat();
                     break;
                 case M_Opcion_10_Report_Meteo:
                     estacio.reportMeteo();

@@ -74,31 +74,64 @@ public class EstacioEsqui {
         for (Sector sector : this.sectors) {
             System.out.println(sector.getNom());
         }
-        String entrada = sc.nextLine().toUpperCase();
+        String entrada = sc.next().toUpperCase();
+        sc.nextLine();
 
         boolean trobat = false;
         int iterator = 0;
         do{
             Sector s = sectors.get(iterator);
-            trobat = (entrada == s.getNom());
+            System.out.println(s.getNom().toUpperCase() + entrada);
+            trobat = (entrada == s.getNom().toUpperCase());
             if (trobat) {
                 System.out.println("quina es la velocitat del vent en aquest sector?");
                 boolean entradaOK = false;
                 float f=0f;
                 do{
                     String velocitat = sc.nextLine();
-                    try{
-                        f = Float.parseFloat(velocitat);
-                        entradaOK=true;
-                    } catch (NumberFormatException nfe){
-                        System.out.println("Introdueix un valor numeric.");                        
+                    if(velocitat!=""){
+                        try{
+                            f = Float.parseFloat(velocitat);
+                            entradaOK=true;
+                        } catch (NumberFormatException nfe){
+                            System.out.println("Introdueix un valor numeric.");                        
+                        }
                     }
                 }while (!entradaOK);
                 s.setVelocitatVent(f);
             }
-        }while (!trobat);
+            iterator++;
+        }while (!trobat && iterator<sectors.size());
+        if (!trobat)
+            System.out.println("Sector no trobat.");
     }
+    public void modificaVisibilitat(){
+        System.out.println("A quin sector vols modificar la visibilitat?");
+        for (Sector sector : this.sectors) {
+            System.out.println(sector.getNom());
+        }
+        String entrada = sc.nextLine().toUpperCase();
 
+        boolean trobat = false;
+        int iterator = 0;
+        do{
+            Sector s = sectors.get(iterator);
+            trobat = (entrada == s.getNom().toUpperCase());
+            if (trobat) {
+                System.out.println("quina es la visibilitat en aquest sector? (bona/dolenta)");
+                boolean entradaOK = false;
+                do{
+                    String temp = sc.nextLine();
+                    if(temp=="bona"||temp=="dolenta"){
+                        s.setVisibilitat(temp);
+                    }
+                }while (!entradaOK);
+            }
+            iterator++;
+        }while (!trobat && iterator<sectors.size());
+        if (!trobat)
+            System.out.println("Sector no trobat.");
+    }
 
 
 

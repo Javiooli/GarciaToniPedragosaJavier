@@ -1,5 +1,7 @@
 package prog2.model;
 
+import javax.lang.model.util.ElementScanner6;
+
 public abstract class Remuntador {
 
     private String nom;
@@ -61,7 +63,16 @@ public abstract class Remuntador {
 
     //TODO: actualitzaEstat.
     public void actualitzaEstat(Meteo meteo){
-        this.setEstat(meteo.getVelocitatVent()<= this.getLimitVent() & meteo.get() ); 
+        if (meteo.getVelocitatVent()>this.getLimitVent()){
+            this.setEstat(false);
+        }
+        else if (this.getSusceptibleVisib() && meteo.getVisibilitat()=="dolenta") {
+            this.setEstat(false);
+        }
+        else {
+            this.setEstat(true);
+        }; 
+
     };
 
     public String toString() {

@@ -70,7 +70,14 @@ public class Pista {
     }
 
     //TODO: actualitzaEstat()
-    //public void actualitzaEstat();
+    public void actualitzaEstat(){
+        if(dependencies.llistarRemuntadors("En servei")==""){
+            this.setEstatPista("tancada");
+        }
+        else{
+            this.setEstatPista("oberta");
+        }
+    };
 
     public String toString() {
         return "Pista: " + this.nom + ", Color: " + this.color + ", Longitud: " +

@@ -57,6 +57,12 @@ public class LlistaRemuntadors {
         return llistaRemunt.toString();
     }
 
+    public void actualitzaEstat(Meteo meteo){
+        for (Remuntador remunt : llista) {
+            remunt.actualitzaEstat(meteo);
+        }
+    }
+
     public String getNoms() {
         if (this.llista.isEmpty()) return "No hi ha cap remuntador a la llista.\n";
         StringBuilder llistaRemunt = new StringBuilder();

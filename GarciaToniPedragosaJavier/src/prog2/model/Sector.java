@@ -65,11 +65,17 @@ public class Sector {
     }
 
     public boolean setVelocitatVent(float velocitatVent) {
-        return this.meteo.setVelocitatVent(velocitatVent);
+        boolean ok;
+        ok=this.meteo.setVelocitatVent(velocitatVent);
+        this.actualitzaEstat();
+        return ok;
     }
 
     public boolean setVisibilitat(String visibilitat) {
-        return this.meteo.setVisibilitat(visibilitat);
+        boolean ok;
+        ok=this.meteo.setVisibilitat(visibilitat);
+        this.actualitzaEstat();
+        return ok;
     }
 
     public String llistarPistes(String estat) {
@@ -80,7 +86,10 @@ public class Sector {
         return llistaRemuntadors.llistarRemuntadors(estat);
     }
 
-    //public void actualitzaEstat();
+    public void actualitzaEstat(){
+        this.llistaPistes.actualitzaEstat();
+        this.llistaRemuntadors.actualitzaEstat(meteo);
+    };
 
     public float calculaKmsPistes(String estat) {
         return llistaPistes.calculaKmsPistes(estat);
