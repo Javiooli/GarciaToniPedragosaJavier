@@ -87,8 +87,9 @@ public class Sector {
     }
 
     public void actualitzaEstat(){
-        this.llistaPistes.actualitzaEstat();
         this.llistaRemuntadors.actualitzaEstat(meteo);
+        this.llistaPistes.actualitzaEstat();
+        
     };
 
     public float calculaKmsPistes(String estat) {

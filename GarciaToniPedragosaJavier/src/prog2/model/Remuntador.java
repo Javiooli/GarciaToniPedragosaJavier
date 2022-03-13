@@ -66,7 +66,7 @@ public abstract class Remuntador {
         if (meteo.getVelocitatVent()>this.getLimitVent()){
             this.setEstat(false);
         }
-        else if (this.getSusceptibleVisib() && meteo.getVisibilitat()=="dolenta") {
+        else if (this.getSusceptibleVisib() && meteo.getVisibilitat().equals("Dolenta")) {
             this.setEstat(false);
         }
         else {

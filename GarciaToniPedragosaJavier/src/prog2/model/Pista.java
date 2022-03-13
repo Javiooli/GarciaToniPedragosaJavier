@@ -51,9 +51,9 @@ public class Pista {
     }
 
     public void setEstatNeu(String estatNeu) {
-        if (estatNeu.toLowerCase().equals("pols") ||
-            estatNeu.toLowerCase().equals("primavera") ||
-            estatNeu.toLowerCase().equals("dura"))
+        if (estatNeu.toLowerCase().equals("Pols") ||
+            estatNeu.toLowerCase().equals("Primavera") ||
+            estatNeu.toLowerCase().equals("Dura"))
 
             this.estatNeu = estatNeu;
     }
@@ -63,19 +63,17 @@ public class Pista {
     }
 
     public void setEstatPista(String estatPista) {
-        if (estatPista.toLowerCase().equals("oberta") ||
-            estatPista.toLowerCase().equals("tancada"))
-
+        if (estatPista.equals("Oberta") || estatPista.equals("Tancada"))
             this.estatPista = estatPista;
     }
 
     //TODO: actualitzaEstat()
     public void actualitzaEstat(){
-        if(dependencies.llistarRemuntadors("En servei")==""){
-            this.setEstatPista("tancada");
+        if(dependencies.llistarRemuntadors("En servei").equals("")){
+            this.setEstatPista("Tancada");
         }
         else{
-            this.setEstatPista("oberta");
+            this.setEstatPista("Oberta");
         }
     };
 

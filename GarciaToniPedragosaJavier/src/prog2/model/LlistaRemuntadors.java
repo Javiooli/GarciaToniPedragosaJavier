@@ -7,7 +7,6 @@ public class LlistaRemuntadors {
     private ArrayList<Remuntador> llista = new ArrayList<>();
 
     //TODO: Definir actualitzaEstat().
-    //public void actualitzaEstat(Meteo meteo);
     
 
     public void afegirRemuntador (Remuntador rm) {

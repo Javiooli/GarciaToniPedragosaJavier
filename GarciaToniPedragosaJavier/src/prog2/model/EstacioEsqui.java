@@ -81,7 +81,6 @@ public class EstacioEsqui {
         int iterator = 0;
         do {
             Sector s = sectors.get(iterator);
-            System.out.println(s.getNom().toUpperCase() + entrada);
             trobat = (entrada.equals(s.getNom().toUpperCase()));
             if (trobat) {
                 System.out.println("Quina es la velocitat del vent en aquest sector?");
@@ -116,14 +115,18 @@ public class EstacioEsqui {
         int iterator = 0;
         do{
             Sector s = sectors.get(iterator);
-            trobat = (entrada == s.getNom().toUpperCase());
+            trobat = (entrada.equals(s.getNom().toUpperCase()));
             if (trobat) {
                 System.out.println("quina es la visibilitat en aquest sector? (bona/dolenta)");
                 boolean entradaOK = false;
                 do{
-                    String temp = sc.nextLine();
-                    if(temp=="bona"||temp=="dolenta"){
+                    String temp = sc.nextLine().toLowerCase();
+                    if(temp.equals("bona") || temp.equals("dolenta")){
                         s.setVisibilitat(temp);
+                        entradaOK=true;
+                    }
+                    else{
+                        System.out.println("Entrada invalida. Entra 'bona' o 'dolenta'");
                     }
                 }while (!entradaOK);
             }
