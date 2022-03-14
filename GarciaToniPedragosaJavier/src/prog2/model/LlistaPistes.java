@@ -5,32 +5,44 @@ import java.util.ArrayList;
 public class LlistaPistes {
 
     private ArrayList<Pista> llista = new ArrayList<>();
-
-    //TODO: actualitzaEstat();
+    
+    //Updates the state of all the trails inside this list
     public void actualitzaEstat(){
         for (Pista pista : llista) {
             pista.actualitzaEstat();
         }
-    };
+    }
 
-    public Pista getPista (String nom) {
+    /**
+     * @param nom name of the Pista object (trail) we want to get returned
+     * @return Pista object with the same name we entered via parameter
+     */
+    public Pista getPista(String nom) {
         if (!this.llista.isEmpty()) {
-            for (int i = 0; i < this.llista.size(); i++) {
-                if (this.llista.get(i).getNom().toLowerCase().equals(nom.toLowerCase()))
-                    return this.llista.get(i);
+            for (Pista pista : llista) {
+                if (pista.getNom().equalsIgnoreCase(nom))
+                    return pista;
             }
         }
         return null;
     }
 
+    /**
+     * @param p Pista object (trail) we want to add to this list
+     */
     public void afegirPista (Pista p) {
         if (p != null) this.llista.add(p);
     }
 
+    //Empties this list
     public void buidar() {
         this.llista = new ArrayList<>();
     }
 
+    /**
+     * @param estat the state of the trails we want to get listed
+     * @return String with the list of the trails and their info which are in the state entered via parameter
+     */
     public String llistarPistes(String estat) {
         int pistesAfegides = 0;
         if (this.llista.isEmpty()) return "No hi ha cap pista a la llista.\n";
@@ -38,25 +50,25 @@ public class LlistaPistes {
         estat = estat.toLowerCase();
         estat = estat.substring(0, 1).toUpperCase() + estat.substring(1);
 
-        if (!estat.equals("Oberta") && !estat.equals("Tancada") &&
-            !estat.equals("Tots")) return "Estat introduït no vàlid\n";
+        if (!estat.equals("Oberta") && !estat.equals("Tancada") && !estat.equals("Tots"))
+            return "Estat introduït no vàlid\n";
 
         StringBuilder llistaPistes = new StringBuilder();
 
         if (!estat.equals("Tots")) {
 
-            for (int i = 0; i < this.llista.size(); i++) {
+            for (Pista pista : llista) {
 
-                if (this.llista.get(i).getEstatPista().equals(estat)) {
-                    llistaPistes.append(this.llista.get(i).toString() + "\n");
+                if (pista.getEstatPista().equals(estat)) {
+                    llistaPistes.append(pista.toString() + "\n");
                     pistesAfegides++;
                 }
             }
 
         } else {
 
-            for (int i = 0; i < this.llista.size(); i++) {
-                llistaPistes.append(this.llista.get(i).toString() + "\n");
+            for (Pista pista : llista) {
+                llistaPistes.append(pista.toString() + "\n");
                 pistesAfegides++;
             }
         }
@@ -64,28 +76,29 @@ public class LlistaPistes {
         return (pistesAfegides == 0 ? "No hi ha cap pista a la llista\n\n" : llistaPistes.toString());
     }
 
+    /**
+     * @param estat the state of the trails we want to calculate the total length of
+     * @return the total length of the trails in the state we entered via parameter
+     */
     public float calculaKmsPistes(String estat) {
 
-        estat = estat.toLowerCase();
-        estat = estat.substring(0, 1).toUpperCase() + estat.substring(1);
-
-        if (this.llista.isEmpty() || (!estat.equals("Oberta") && !estat.equals("Tancada")
-            && !estat.equals("Tots"))) return -1;
+        if (this.llista.isEmpty() || (!estat.equalsIgnoreCase("Oberta") && !estat.equalsIgnoreCase("Tancada")
+            && !estat.equalsIgnoreCase("Tots"))) return -1;
 
         float kmsPistes = 0;
 
-        if (!estat.equals("Tots")) {
+        if (!estat.equalsIgnoreCase("Tots")) {
 
-            for (int i = 0; i < this.llista.size(); i++) {
+            for (Pista pista : llista) {
 
-                if (this.llista.get(i).getEstatPista().equals(estat))
-                    kmsPistes += this.llista.get(i).getLongitud();
+                if (pista.getEstatPista().equalsIgnoreCase(estat))
+                    kmsPistes += pista.getLongitud();
             }
 
         } else {
 
-            for (int i = 0; i < this.llista.size(); i++) {
-                kmsPistes += this.llista.get(i).getLongitud();
+            for (Pista pista : llista) {
+                kmsPistes += pista.getLongitud();
             }
         }
 

@@ -5,8 +5,6 @@
  */
 package prog2.vista;
 
-import prog2.model.*;
-
 import java.util.Scanner;
 
 /**
@@ -57,8 +55,8 @@ public class Menu<TEnum> {
     public void mostrarMenu() {
         // Mostrem les opcions
         String lines="--------------";
-        for(int i=0;i<getMaxLen();i++) {
-            lines+="-";
+        for(int i=0; i < getMaxLen(); i++) {
+            lines += "-";
         }
         System.out.println(lines);
         System.out.println(_titol.toUpperCase());
@@ -67,7 +65,7 @@ public class Menu<TEnum> {
             
             // Mostrem la posició
             int pos=((Enum)c).ordinal();
-            System.out.print("\t" + (pos+1) + ".- ");
+            System.out.print("\t" + (pos + 1) + ".- ");
             
             // Mostrem la descripció
             if(_descripcions!=null) {
