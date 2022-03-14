@@ -109,7 +109,7 @@ public class Pista {
     }
 
     /**
-     * @return Strin with all the info about this trail
+     * @return String with all the info about this trail
      */
     public String toString() {
         return "\tPista: " + this.nom + ", Color: " + this.color + ", Longitud: " +
