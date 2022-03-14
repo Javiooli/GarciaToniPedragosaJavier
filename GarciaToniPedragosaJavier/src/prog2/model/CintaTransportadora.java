@@ -10,5 +10,4 @@ public class CintaTransportadora extends Remuntador {
     public String tipus() {
         return "Cinta Transportadora";
     }
-    
 }

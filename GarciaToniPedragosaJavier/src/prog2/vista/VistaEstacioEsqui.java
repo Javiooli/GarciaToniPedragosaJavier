@@ -6,6 +6,7 @@
 package prog2.vista;
 
 import java.util.Scanner;
+
 import prog2.model.*;
 
 /**
@@ -62,7 +63,7 @@ public class VistaEstacioEsqui {
         "Modificar la velocitat del vent", // Opcio 8
         "Modificar la visibilitat", // Opcio 9
         "Mostrar les condicions meteorologiques actuals", // Opcio 10
-        "Sortir del gestor de l'estació" // Opcion 12
+        "Sortir del gestor de l'estació" // Opcio 12
     };
 
     // Funcio que gestiona el menu principal de la aplicacio

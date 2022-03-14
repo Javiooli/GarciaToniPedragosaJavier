@@ -8,7 +8,7 @@ public class Teleferic extends Remuntador {
 
     @Override
     public String tipus() {
-        return "Teleferic";
+        return "Telefèric";
     }
     
 }

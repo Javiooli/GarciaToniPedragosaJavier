@@ -8,7 +8,7 @@ public class Teleesqui extends Remuntador {
 
     @Override
     public String tipus() {
-        return "Teleesqui";
+        return "Teleesquí";
     }
     
 }
