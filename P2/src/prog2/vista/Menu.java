@@ -32,9 +32,9 @@ public class Menu<TEnum> {
      * @param titol Títol del menú
      * @param llistaOpcions Enumeració amb les opcions
      */
-    public Menu(String titol,TEnum[] llistaOpcions) {
-        _titol=titol;
-        _llistaOpcions=llistaOpcions;
+    public Menu(String titol, TEnum[] llistaOpcions) {
+        _titol = titol;
+        _llistaOpcions = llistaOpcions;
     }
 
     /**
@@ -83,22 +83,22 @@ public class Menu<TEnum> {
      * @return Opció seleccionada.
      */
     public TEnum getOpcio(Scanner sc) {
-        TEnum opcio=null;
+        TEnum opcio = null;
 
         // Demanem una opció assegurant que sigui correcta
-        int opcioInt=-1;
+        int opcioInt = -1;
         do {
             System.out.print("Entra una opcio >> ");
-            opcioInt=sc.nextInt();
+            opcioInt = sc.nextInt();
             sc.nextLine();
 
-            if(opcioInt>0 && opcioInt<=_llistaOpcions.length) {
+            if(opcioInt > 0 && opcioInt <= _llistaOpcions.length) {
                 // Passem de l'enter a una opcio i la retornem
                 opcio=_llistaOpcions[opcioInt-1];
             } else {
                 System.err.println("La opció seleccionada no és correcta. Selecciona una opció entre 1 i " + (_llistaOpcions.length));
             }
-        } while(opcio==null);
+        } while(opcio == null);
 
         return opcio;
     }

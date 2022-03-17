@@ -3,8 +3,7 @@
  * Programació 2
  * Curs 2021-2022
  */
-
-package prog2.model;
+package prog2.model.abstracts;
 
 import prog2.vista.ExcepcioClub;
 
