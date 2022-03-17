@@ -63,6 +63,7 @@ public class VistaClubUB {
 
             switch (opcionMenu) {
                 case M_Opcion_1_DonarDalta:
+                    club.afegirSoci(sc);
                     break;
                 case M_Opcion_2_MostrarLlista:
                     break;

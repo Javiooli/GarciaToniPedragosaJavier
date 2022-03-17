@@ -12,14 +12,24 @@ public class LlistaSocis {
         this.socis = new ArrayList<Soci>(mida);
     }
 
-    public void afegirSoci(Soci soci) {
+    public void comprovarDNI(Soci soci) throws ExcepcioClub {
+        for (Soci s : socis) {
+            if (s.getDNI().equals(soci.getDNI())) throw new ExcepcioClub("Ja existeix un soci amb el mateix DNI.");
+        }
+    }
+
+    public void afegirSoci(Soci soci) throws ExcepcioClub {
         try {
             soci.comprova();
+            comprovarDNI(soci);
         } catch (ExcepcioClub e) {
-            System.out.println();
+            System.err.println(e.what());
         }
-        for (Soci s : socis) {
+        //try {
+            socis.add(soci);
+        //} catch (Exception e) {
+        //    System.err.println("No s'ha pogut afegir el soci.");
+        //}
 
-        }
     }
 }
