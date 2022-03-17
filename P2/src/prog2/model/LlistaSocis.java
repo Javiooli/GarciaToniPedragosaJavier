@@ -22,14 +22,10 @@ public class LlistaSocis {
         try {
             soci.comprova();
             comprovarDNI(soci);
+            socis.add(soci);
+            System.out.println("Soci afegit:\n" + soci.toString());
         } catch (ExcepcioClub e) {
             System.err.println(e.what());
         }
-        //try {
-            socis.add(soci);
-        //} catch (Exception e) {
-        //    System.err.println("No s'ha pogut afegir el soci.");
-        //}
-
     }
 }

@@ -25,7 +25,7 @@ public class SociEstandar extends Soci {
 
     @Override
     public void comprova() throws ExcepcioClub {
-        if (!this.asseguranca.getTipus().equals("Bàsica") || !this.asseguranca.getTipus().equals("Completa"))
+        if (!this.asseguranca.getTipus().equals("Bàsica") && !this.asseguranca.getTipus().equals("Completa"))
             throw new ExcepcioClub("Tipus d'assegurança invàlida.");
     }
 }

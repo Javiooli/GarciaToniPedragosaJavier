@@ -46,6 +46,7 @@ public abstract class Soci implements InSoci {
      */
     @Override
     public void setDNI(String dni) {
+        this._dni = dni;
     }
 
     @Override

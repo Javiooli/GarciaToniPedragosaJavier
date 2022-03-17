@@ -7,7 +7,7 @@ import prog2.model.LlistaSocis;
 import prog2.model.socis.*;
 
 public class ClubUB implements Serializable {
-    private static String[] TIPUS_MEMBRES = {"Estàndar", "Federat", "Júnior"};
+    private static String[] TIPUS_MEMBRES = {"Afegir soci f", "Júnior"}; //TODO
     private String _nom;
     private int _maxMembres;
     private LlistaSocis _llistaSocis;
@@ -28,7 +28,7 @@ public class ClubUB implements Serializable {
         int tipus = -1;
         String nom, dni;
 
-        System.out.println("Tipus de soci: ");
+        //TODO: Implementar esta seleccion utilizando una instancia de la clase Menu
         for (int i = 0; i < TIPUS_MEMBRES.length; i++) {
             System.out.println((i + 1) + ". " + TIPUS_MEMBRES[i]);
         }
@@ -48,8 +48,7 @@ public class ClubUB implements Serializable {
         correcte = false;
 
         System.out.println("Nom del soci: ");
-        nom = sc.next();
-        sc.nextLine();
+        nom = sc.nextLine();
 
         System.out.println("DNI del soci: ");
         dni = sc.next();
