@@ -18,9 +18,7 @@ public class VistaClubUB {
         this.club = new ClubUB(nomClub, maxMembres);
     }
 
-    String[] titols = {"Menu principal", "Donar d'alta un nou soci"};
-
-    private static enum OpcionsPrincipal {
+    private static enum Opcions {
         M_Opcion_1_DonarDalta,
         M_Opcion_2_MostrarLlista,
         M_Opcion_3_MostrarLlistaFederats,
@@ -36,7 +34,7 @@ public class VistaClubUB {
         M_Opcion_13_Sortir
     };
 
-    String[] descripcions_principal = {"Donar d'alta un nou soci", "Mostrar llista de socis", "Mostrar llista de socis federats",
+    private static String[] descripcions = {"Donar d'alta un nou soci", "Mostrar llista de socis", "Mostrar llista de socis federats",
     "Mostrar llista de socis estàndard", "Mostrar llista de socis junior", "Eliminar soci", "Verificar socis", "Mostrar total factura",
     "Modificar nom soci", "Modificar tipus assegurança soci", "Guardar llista", "Recuperar llista", "Sortir"};
 
@@ -50,16 +48,16 @@ public class VistaClubUB {
     }
 
     public void gestioMenu(Scanner sc) {
-        Menu menu_principal = new Menu<>("Menu Principal", OpcionsPrincipal.values());
-        menu_principal.setDescripcions(descripcions_principal);
+        Menu menu_principal = new Menu<>("Menu Principal", Opcions.values());
+        menu_principal.setDescripcions(descripcions);
 
         // Variable (de tipo enumerado igual a las opciones del menu) que contiene la opcion escogida
-        OpcionsPrincipal opcionMenu;
+        Opcions opcionMenu;
 
         // Lançar el bucle principal de la aplicación
         do {
             menu_principal.mostrarMenu();
-            opcionMenu = (OpcionsPrincipal) menu_principal.getOpcio(sc);
+            opcionMenu = (Opcions) menu_principal.getOpcio(sc);
 
             switch (opcionMenu) {
                 case M_Opcion_1_DonarDalta:
@@ -91,6 +89,6 @@ public class VistaClubUB {
                     break;
             }
 
-        } while (opcionMenu != OpcionsPrincipal.M_Opcion_13_Sortir);
+        } while (opcionMenu != Opcions.M_Opcion_13_Sortir);
     }
 }

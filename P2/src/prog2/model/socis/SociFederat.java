@@ -10,12 +10,14 @@ import prog2.model.atributs.Federacio;
 import prog2.vista.ExcepcioClub;
 
 public class SociFederat extends Soci {
-    public SociFederat(String nom, String dni) {
+    private Federacio federacio;
+
+    public SociFederat(String nom, String dni, Federacio federacio) {
         super(nom, dni);
-        //TODO Auto-generated constructor stub
+        this.federacio = federacio;
+        
     }
 
-    private Federacio federacio;
 
     @Override
     public String toString() {
@@ -25,7 +27,8 @@ public class SociFederat extends Soci {
 
     @Override
     public void comprova() throws ExcepcioClub {
-        if (this.federacio.getPreu() > 100)
+        super.comprova();
+        if (this.federacio == null || this.federacio.getPreu() < 100)
             throw new ExcepcioClub("Federació no vàlida.");
     }
 }

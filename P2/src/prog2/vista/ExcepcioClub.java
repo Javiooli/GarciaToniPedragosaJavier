@@ -14,7 +14,7 @@ public class ExcepcioClub extends Throwable {
         this.missatge_error = "Error desconegut.";
     }
     public ExcepcioClub(String missatge) {
-        this.missatge_error = missatge_error;
+        this.missatge_error = missatge;
     }
 
     public String what() {

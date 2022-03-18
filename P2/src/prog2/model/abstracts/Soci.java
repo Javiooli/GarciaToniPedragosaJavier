@@ -17,7 +17,7 @@ public abstract class Soci implements InSoci {
 
     public Soci(String nom, String dni) {
         setNom(nom);
-        setDNI(dni);
+        this._dni = dni;
     }
 
     @Override
@@ -35,18 +35,18 @@ public abstract class Soci implements InSoci {
         return this._nom;
     }
 
-
-    /**
-     * TODO: Proteger el DNI utilizando el algoritmo que hicimos en algorísmica (en el comprovar()):
-     * char[] lletres = {'T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'};
-        dni = dni.toUpperCase();
-        char lletraNIF = dni.charAt(dni.length() - 1);
-        int cadenaNIF = Integer.parseInt(dni.substring(0, dni.length() - 2));
-        if (!lletraNIF == lletres[cadenaNIF%23]) throw new ExcepcioClub("DNI invàlid.");
-     */
     @Override
     public void setDNI(String dni) {
+        String ogDNI = "Undefined";
+        if (this._dni != null)
+            ogDNI = this._dni;
         this._dni = dni;
+        try {
+            comprovarDNI();
+        } catch (ExcepcioClub e) {
+            System.out.println(e.what());
+            this._dni = ogDNI;
+        }
     }
 
     @Override
@@ -66,13 +66,21 @@ public abstract class Soci implements InSoci {
 
     @Override
     public void comprova() throws ExcepcioClub {
-        
+        comprovarDNI();
     }
 
     //TODO
     public String toString() {
         String soci = "Nom: " + _nom + ", DNI: " + _dni;
         return soci;
+    }
+
+    public void comprovarDNI() throws ExcepcioClub {
+        char[] lletres = {'T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'};
+        this._dni = this._dni.toUpperCase();
+        char lletraNIF = this._dni.charAt(this._dni.length() - 1);
+        int cadenaNIF = Integer.parseInt(this._dni.substring(0, this._dni.length() - 1));
+        if (lletraNIF != lletres[cadenaNIF%23]) throw new ExcepcioClub("DNI invàlid.");
     }
     
 }
