@@ -25,4 +25,24 @@ public class LlistaSocis {
         System.out.println("Soci afegit:\n" + soci.toString());
 
     }
+
+    public String printLlistaSocis(String tipus){
+        String Llista = "Socis: "+"\n";
+        for (Soci s : socis) {
+            if (tipus.equalsIgnoreCase("tots") || s.tipus().equalsIgnoreCase(tipus))
+            llista = llista + s.toString() + "\n";
+        }
+        return llista;
+    }
+
+    public boolean eliminaSoci(String dni){
+        boolean eliminacioOK = false;
+        for(Soci s: socis){
+            if(s.getDNI().equalsIgnoreCase(dni)){
+                socis.remove(s);
+                eliminacioOK = true;
+            }
+        }
+        return eliminacioOK;
+    }
 }

@@ -18,11 +18,14 @@ public class SociFederat extends Soci {
         
     }
 
+    public String tipus(){
+        return "federat";
+    }
 
     @Override
     public String toString() {
         String soci = super.toString();
-        return soci + ", Federació: " + federacio.getNom();
+        return soci + ", Federació: " + federacio.getNom() + ", Preu: " + federacio.getPreu();
     }
 
     @Override

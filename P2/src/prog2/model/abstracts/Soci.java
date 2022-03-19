@@ -75,6 +75,8 @@ public abstract class Soci implements InSoci {
         return soci;
     }
 
+    public abstract String tipus();
+
     public void comprovarDNI() throws ExcepcioClub {
         char[] lletres = {'T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'};
         this._dni = this._dni.toUpperCase();

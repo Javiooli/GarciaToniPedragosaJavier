@@ -9,7 +9,7 @@ import prog2.model.atributs.Federacio;
 import prog2.model.socis.*;
 
 public class ClubUB implements Serializable {
-    private static String[] TIPUS_MEMBRES = {"Afegir soci f", "Júnior"}; //TODO
+    private static String[] TIPUS_MEMBRES = {"federat", "estandar", "junior"}; //TODO
     private String _nom;
     private int _maxMembres;
     private LlistaSocis _llistaSocis;
@@ -97,7 +97,6 @@ public class ClubUB implements Serializable {
 
     private String entrarDNI(Scanner sc) {
         String dni = "";
-
         dni = sc.nextLine();
 
         return dni;
@@ -143,9 +142,20 @@ public class ClubUB implements Serializable {
                 System.out.println("Entrada no vàlida, introdueix un nombre positiu.");
             }
         } while (!correcte);
-
         return new Federacio(nom, preu);
     }
 
+    public void PrintLlistaSocis(String tipus){
+        return _llistaSocis.PrintLlistaSocis(tipus);
+        }
+
+    public void eliminaSoci(Scanner sc){
+        System.out.println("Entra el DNI del soci que vols eliminar");
+        String dni = entrarDNI(sc);
+        if(_llistaSocis.eliminaSoci(dni))
+            System.out.println("Soci amb DNI: " + dni + " eliminat amb èxit.");
+        else
+            System.out.println("No s'ha trobat el soci a eliminar. Comprova que hagis introduït el DNI correctament.");
+    }
 
 }

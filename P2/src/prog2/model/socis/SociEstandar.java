@@ -23,6 +23,10 @@ public class SociEstandar extends Soci {
         return soci + ", Assegurança: " + asseguranca.getTipus();
     }
 
+    public String tipus(){
+        return "estandar";
+    }
+
     @Override
     public void comprova() throws ExcepcioClub {
         if (!this.asseguranca.getTipus().equals("Bàsica") && !this.asseguranca.getTipus().equals("Completa"))

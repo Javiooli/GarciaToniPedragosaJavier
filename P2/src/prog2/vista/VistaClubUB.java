@@ -64,14 +64,19 @@ public class VistaClubUB {
                     club.afegirSoci(sc);
                     break;
                 case M_Opcion_2_MostrarLlista:
+                    club.PrintLlistaSocis("tots");
                     break;
                 case M_Opcion_3_MostrarLlistaFederats:
+                    club.PrintLlistaSocis("federat");
                     break;
                 case M_Opcion_4_MostrarLlistaEstandard:
+                    club.PrintLlistaSocis("estandar");
                     break;
                 case M_Opcion_5_MostrarLlistaJunior:
+                    club.PrintLlistaSocis("junior");
                     break;
                 case M_Opcion_6_EliminarSoci:
+                    club.eliminaSoci(sc);
                     break;
                 case M_Opcion_7_VerificarSocis:
                     break;
