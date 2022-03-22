@@ -5,8 +5,9 @@
  */
 package prog2.model.socis;
 
-import prog2.model.abstracts.Soci;
+import prog2.model.socis.SociEstandar;
 
+<<<<<<< Updated upstream
 public class SociJunior extends Soci {
     private int _diaNaixement;
     private int _mesNaixement;
@@ -15,6 +16,11 @@ public class SociJunior extends Soci {
 
     public SociJunior(String nom, String dni) {
         super(nom, dni);
+=======
+public class SociJunior extends SociEstandar {
+    public SociJunior(String nom, String dni, String tipusAsseguranca) {
+        super(nom, dni, tipusAsseguranca);
+>>>>>>> Stashed changes
         //TODO Auto-generated constructor stub
     }
 
