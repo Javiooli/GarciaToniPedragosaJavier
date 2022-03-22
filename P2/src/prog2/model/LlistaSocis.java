@@ -27,7 +27,7 @@ public class LlistaSocis {
     }
 
     public String printLlistaSocis(String tipus){
-        String Llista = "Socis: "+"\n";
+        String llista = "Socis: "+"\n";
         for (Soci s : socis) {
             if (tipus.equalsIgnoreCase("tots") || s.tipus().equalsIgnoreCase(tipus))
             llista = llista + s.toString() + "\n";

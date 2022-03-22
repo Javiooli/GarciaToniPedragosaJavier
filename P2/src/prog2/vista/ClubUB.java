@@ -85,7 +85,7 @@ public class ClubUB implements Serializable {
                     break;
 
                 case 3:
-                    SociJunior sociJunior = new SociJunior(nom, dni);
+                    SociJunior sociJunior = new SociJunior(nom, dni, selecAsseguranca(sc));
                     sociJunior.comprova();
                     _llistaSocis.afegirSoci(sociJunior);
                     break;
@@ -146,8 +146,8 @@ public class ClubUB implements Serializable {
     }
 
     public void PrintLlistaSocis(String tipus){
-        return _llistaSocis.PrintLlistaSocis(tipus);
-        }
+        System.out.println(_llistaSocis.printLlistaSocis(tipus));
+    }
 
     public void eliminaSoci(Scanner sc){
         System.out.println("Entra el DNI del soci que vols eliminar");
