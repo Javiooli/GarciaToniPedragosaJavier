@@ -13,13 +13,22 @@ public class SociJunior extends SociEstandar {
     private int _anyNaixement;
 
 
-    public SociJunior(String nom, String dni, String tipusAsseguranca) {
+    public SociJunior(String nom, String dni, String tipusAsseguranca, int[] data) {
         super(nom, dni, tipusAsseguranca);
-        //TODO Auto-generated constructor stub
+        this._diaNaixement = data[0];
+        this._mesNaixement = data[1];
+        this._anyNaixement = data[2];
     }
 
     public String tipus(){
         return "junior";
+    }
+
+    @Override
+    public String toString() {
+        String soci = super.toString();
+        soci += ", Data de naixement: " + _diaNaixement + "/" + _mesNaixement + "/" + _anyNaixement;
+        return soci;
     }
 
 

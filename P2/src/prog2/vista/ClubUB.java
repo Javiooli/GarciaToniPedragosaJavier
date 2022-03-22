@@ -85,7 +85,7 @@ public class ClubUB implements Serializable {
                     break;
 
                 case 3:
-                    SociJunior sociJunior = new SociJunior(nom, dni, selecAsseguranca(sc));
+                    SociJunior sociJunior = new SociJunior(nom, dni, selecAsseguranca(sc), seleccionaDataNaixement(sc));
                     sociJunior.comprova();
                     _llistaSocis.afegirSoci(sociJunior);
                     break;
@@ -145,17 +145,58 @@ public class ClubUB implements Serializable {
         return new Federacio(nom, preu);
     }
 
-    public void PrintLlistaSocis(String tipus){
+    public void printLlistaSocis(String tipus){
         System.out.println(_llistaSocis.printLlistaSocis(tipus));
     }
 
     public void eliminaSoci(Scanner sc){
-        System.out.println("Entra el DNI del soci que vols eliminar");
+        System.out.println("DNI del soci que vols eliminar: ");
         String dni = entrarDNI(sc);
         if(_llistaSocis.eliminaSoci(dni))
             System.out.println("Soci amb DNI: " + dni + " eliminat amb èxit.");
         else
             System.out.println("No s'ha trobat el soci a eliminar. Comprova que hagis introduït el DNI correctament.");
+    }
+
+    public int[] seleccionaDataNaixement(Scanner sc) {
+        int[] data = new int[3];
+        boolean correcte = false;
+        do {
+            try {
+                System.out.println("Any de naixement del nou soci: ");
+                data[2] = sc.nextInt();
+                if (data[2] > 1900 && data[2] < 2022) correcte = true;
+                else System.out.println("Introdueix un nombre entre 1900 i 2022.");
+            } catch (Exception e) {
+                System.out.println("Introdueix un nombre entre 1900 i 2022.");
+            }
+        } while (!correcte);
+        correcte = false;
+
+        do {
+            try {
+                System.out.println("Mes de naixement del nou soci: ");
+                data[1] = sc.nextInt();
+                if (data[1] > 0 && data[1] < 13) correcte = true;
+                else System.out.println("Introdueix un nombre entre 1 i 12.");
+            } catch (Exception e) {
+                System.out.println("Introdueix un nombre entre 1 i 12.");
+            }
+        } while (!correcte);
+        correcte = false;
+
+        do {
+            try {
+                System.out.println("Dia de naixement del nou soci: ");
+                data[0] = sc.nextInt();
+                if (data[0] > 0 && data[0] < 32) correcte = true;
+                else System.out.println("Introdueix un nombre entre 1 i 31.");
+            } catch (Exception e) {
+                System.out.println("Introdueix un nombre entre 1 i 31.");
+            }
+        } while (!correcte);
+
+        return data;
     }
 
 }

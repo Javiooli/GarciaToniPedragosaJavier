@@ -39,10 +39,12 @@ public class LlistaSocis {
         boolean eliminacioOK = false;
         for(Soci s: socis){
             if(s.getDNI().equalsIgnoreCase(dni)){
-                socis.remove(s);
                 eliminacioOK = true;
+                socis.remove(s);
+                break;
             }
         }
+    
         return eliminacioOK;
     }
 }
