@@ -11,13 +11,9 @@ public class ExcepcioClub extends Throwable {
     private String missatge_error;
 
     public ExcepcioClub() {
-        this.missatge_error = "Error desconegut.";
+        super();
     }
     public ExcepcioClub(String missatge) {
-        this.missatge_error = missatge;
-    }
-
-    public String what() {
-        return this.missatge_error;
+        super(missatge);
     }
 }
