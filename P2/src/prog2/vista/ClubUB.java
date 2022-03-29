@@ -26,6 +26,9 @@ public class ClubUB implements Serializable {
         M_Opcion_4_Tornar
     };
 
+
+    //TODO: pasar prints y scanners a VistaClubUB
+
     private static String[] descripcions = {"Afegir soci federat", "Afegir soci estàndard", "Afegir soci junior", "Menú anterior"};
 
     public ClubUB(String nom, int maxMembres) {
@@ -146,16 +149,24 @@ public class ClubUB implements Serializable {
     }
 
     public void printLlistaSocis(String tipus){
-        System.out.println(_llistaSocis.printLlistaSocis(tipus));
+        System.out.println(_llistaSocis.toString(tipus));
     }
 
-    public void eliminaSoci(Scanner sc){
-        System.out.println("DNI del soci que vols eliminar: ");
-        String dni = entrarDNI(sc);
-        if(_llistaSocis.eliminaSoci(dni))
-            System.out.println("Soci amb DNI: " + dni + " eliminat amb èxit.");
-        else
-            System.out.println("No s'ha trobat el soci a eliminar. Comprova que hagis introduït el DNI correctament.");
+    public boolean eliminaSoci(string DNI){
+        return _llistaSocis.eliminaSoci(dni);
+    }
+    public int calculQuota(int numExc, string DNI){
+        //TODO: calcular cuota pq IDK
+        Soci s = _llistaSocis.buscarSoci(DNI);
+        
+    }
+
+    public void guardarLlista(){
+        File fitxer = new File(“clubUB.dat”);
+        FileOutputStream fout= new FileOutputStream(fitxer);
+        string data = _llistaSocis.toString();
+        fout.write(data);
+        fout.close();
     }
 
     public int[] seleccionaDataNaixement(Scanner sc) {

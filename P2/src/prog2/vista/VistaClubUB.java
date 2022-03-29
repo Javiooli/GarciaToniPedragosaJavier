@@ -76,17 +76,33 @@ public class VistaClubUB {
                     club.printLlistaSocis("junior");
                     break;
                 case M_Opcion_6_EliminarSoci:
-                    club.eliminaSoci(sc);
+                    System.out.println("Entra el DNI del soci que vols eliminar.");
+                    string DNI = sc.nextLine;
+                    if(club.eliminaSoci(DNI))
+                        System.out.println("Soci amb dni "+ DNI + " eliminat amb èxit.");
+                    else
+                        System.out.println("Soci no trobat, DNI incorrecte o no registrat.");
                     break;
                 case M_Opcion_7_VerificarSocis:
                     break;
                 case M_Opcion_8_MostrarTotalFactura:
+                    System.out.println("Entra el DNI del soci.");
+                    string DNI = sc.nextLine;
+                    int num=0;
+                    do{
+                        system.out.println("Entra el nombre d'excursions realitzades aquest mes.").
+                        int num =sc.nextInt;
+                        if (num>=0)
+                            system.out.println()club.calculQuota(num, DNI);
+                    }while (num<0);
                     break;
                 case M_Opcion_9_ModificarNom:
                     break;
                 case M_Opcion_10_ModificarAsseguranca:
                     break;
                 case M_Opcion_11_GuardarLlista:
+                    system.out.println("Guardant la llista de socis actual al fitxer ClubUB.dat ...");
+                    club.guardarLlista();
                     break;
                 case M_Opcion_12_RecuperarLlista:
                     break;

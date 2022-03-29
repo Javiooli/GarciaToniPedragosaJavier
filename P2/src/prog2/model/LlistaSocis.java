@@ -26,7 +26,7 @@ public class LlistaSocis {
 
     }
 
-    public String printLlistaSocis(String tipus){
+    public String toString(String tipus){
         String llista = "Socis: "+"\n";
         for (Soci s : socis) {
             if (tipus.equalsIgnoreCase("tots") || s.tipus().equalsIgnoreCase(tipus))
@@ -47,4 +47,13 @@ public class LlistaSocis {
     
         return eliminacioOK;
     }
+
+    public Soci buscarSoci (string DNI){
+        for (Soci s: socis){
+            if (DNI==s.getDNI()){
+                return s;
+            }
+        }
+    }
+
 }
