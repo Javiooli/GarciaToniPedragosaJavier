@@ -102,7 +102,7 @@ public class VistaClubUB {
                 case M_Opcion_10_ModificarAsseguranca:
                     break;
                 case M_Opcion_11_GuardarLlista:
-                    system.out.println("Guardant la llista de socis actual al fitxer ClubUB.dat ...");
+                    System.out.println("Guardant la llista de socis actual al fitxer ClubUB.dat ...");
                     club.guardarLlista();
                     break;
                 case M_Opcion_12_RecuperarLlista:
