@@ -1,12 +1,9 @@
-package prog2.vista;
+package prog2.model;
 
 import java.io.Serializable;
 import java.util.Scanner;
 
-import prog2.model.LlistaSocis;
-import prog2.model.abstracts.Soci;
-import prog2.model.atributs.Federacio;
-import prog2.model.socis.*;
+import prog2.vista.*;
 
 public class ClubUB implements Serializable {
     private static String[] TIPUS_MEMBRES = {"federat", "estandar", "junior"}; //TODO
