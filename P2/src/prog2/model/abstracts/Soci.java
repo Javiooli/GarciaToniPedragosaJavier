@@ -44,7 +44,7 @@ public abstract class Soci implements InSoci {
         try {
             comprovarDNI();
         } catch (ExcepcioClub e) {
-            System.out.println(e.what());
+            System.out.println(e.getMessage());
             this._dni = ogDNI;
         }
     }

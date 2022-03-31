@@ -17,7 +17,7 @@ public interface InSoci {
     public String getNom();
     public void setDNI(String dni);
     public String getDNI();
-    
+        
     /**
      * Calcular la quota mensual del soci
      * @param quotaBase quota mensual base del club.

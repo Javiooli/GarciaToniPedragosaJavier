@@ -1,9 +1,12 @@
 package prog2.model;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.Scanner;
 
 import prog2.vista.*;
+import prog2.model.abstracts.*;
+import prog2.model.atributs.*;
+import prog2.model.socis.*;
 
 public class ClubUB implements Serializable {
     private static String[] TIPUS_MEMBRES = {"federat", "estandar", "junior"}; //TODO
@@ -91,7 +94,7 @@ public class ClubUB implements Serializable {
                     break;
             }
         } catch (ExcepcioClub e) {
-            System.out.println(e.what());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -149,21 +152,25 @@ public class ClubUB implements Serializable {
         System.out.println(_llistaSocis.toString(tipus));
     }
 
-    public boolean eliminaSoci(string DNI){
-        return _llistaSocis.eliminaSoci(dni);
+    public boolean eliminaSoci(String DNI){
+        return _llistaSocis.eliminaSoci(DNI);
     }
-    public int calculQuota(int numExc, string DNI){
+    public int calculQuota(int numExc, String DNI){
         //TODO: calcular cuota pq IDK
         Soci s = _llistaSocis.buscarSoci(DNI);
+        return -1;
         
     }
 
     public void guardarLlista(){
-        File fitxer = new File(“clubUB.dat”);
+        File fitxer = new File("clubUB.dat");
+        //TODO guardar en fichero
+        /*
         FileOutputStream fout= new FileOutputStream(fitxer);
-        string data = _llistaSocis.toString();
-        fout.write(data);
+        String data = _llistaSocis.toString();
+        //fout.(data);
         fout.close();
+        */
     }
 
     public int[] seleccionaDataNaixement(Scanner sc) {

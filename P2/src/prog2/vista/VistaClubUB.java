@@ -6,6 +6,7 @@
 package prog2.vista;
 
 import java.util.Scanner;
+import prog2.model.*;
 
 /**
  * 
@@ -77,7 +78,7 @@ public class VistaClubUB {
                     break;
                 case M_Opcion_6_EliminarSoci:
                     System.out.println("Entra el DNI del soci que vols eliminar.");
-                    string DNI = sc.nextLine;
+                    String DNI = sc.nextLine();
                     if(club.eliminaSoci(DNI))
                         System.out.println("Soci amb dni "+ DNI + " eliminat amb èxit.");
                     else
@@ -87,13 +88,13 @@ public class VistaClubUB {
                     break;
                 case M_Opcion_8_MostrarTotalFactura:
                     System.out.println("Entra el DNI del soci.");
-                    string DNI = sc.nextLine;
+                    DNI = sc.nextLine();
                     int num=0;
                     do{
-                        system.out.println("Entra el nombre d'excursions realitzades aquest mes.").
-                        int num =sc.nextInt;
+                        System.out.println("Entra el nombre d'excursions realitzades aquest mes.");
+                        num = sc.nextInt();
                         if (num>=0)
-                            system.out.println()club.calculQuota(num, DNI);
+                            System.out.println(club.calculQuota(num, DNI));
                     }while (num<0);
                     break;
                 case M_Opcion_9_ModificarNom:

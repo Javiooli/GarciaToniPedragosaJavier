@@ -48,12 +48,14 @@ public class LlistaSocis {
         return eliminacioOK;
     }
 
-    public Soci buscarSoci (string DNI){
+    public Soci buscarSoci (String DNI){
         for (Soci s: socis){
             if (DNI==s.getDNI()){
                 return s;
             }
         }
+        //TODO
+        return null;
     }
 
 }
