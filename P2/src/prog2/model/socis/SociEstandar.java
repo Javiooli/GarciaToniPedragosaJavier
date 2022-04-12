@@ -5,11 +5,12 @@
  */
 package prog2.model.socis;
 
+import prog2.model.abstracts.InAssegurat;
 import prog2.model.abstracts.Soci;
 import prog2.model.atributs.Asseguranca;
 import prog2.vista.ExcepcioClub;
 
-public class SociEstandar extends Soci {
+public class SociEstandar extends Soci implements InAssegurat{
     private Asseguranca asseguranca;
 
     public SociEstandar(String nom, String dni, String tipusAsseguranca) {
@@ -31,5 +32,14 @@ public class SociEstandar extends Soci {
     public void comprova() throws ExcepcioClub {
         if (!this.asseguranca.getTipus().equals("Bàsica") && !this.asseguranca.getTipus().equals("Completa"))
             throw new ExcepcioClub("Tipus d'assegurança invàlida.");
+    }
+
+    public String getTipusAssegurança() throws ExcepcioClub{
+        return asseguranca.getTipus();
+    }
+
+    public void setTipusAssegurança(String tipus) throws ExcepcioClub{
+        asseguranca = new Asseguranca(tipus);
+        comprova();
     }
 }

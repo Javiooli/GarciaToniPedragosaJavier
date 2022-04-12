@@ -35,27 +35,26 @@ public class LlistaSocis {
         return llista;
     }
 
-    public boolean eliminaSoci(String dni){
-        boolean eliminacioOK = false;
+    public void eliminaSoci(String dni) throws ExcepcioClub{
+        boolean trobat = false;
         for(Soci s: socis){
             if(s.getDNI().equalsIgnoreCase(dni)){
-                eliminacioOK = true;
                 socis.remove(s);
+                trobat = true;
                 break;
             }
         }
-    
-        return eliminacioOK;
+        if(!trobat)
+        throw new ExcepcioClub("Soci no trobat.");
     }
 
-    public Soci buscarSoci (String DNI){
+    public Soci buscarSoci (String DNI) throws ExcepcioClub{
         for (Soci s: socis){
             if (DNI==s.getDNI()){
                 return s;
             }
         }
-        //TODO
-        return null;
+        throw new ExcepcioClub("Soci no trobat");
     }
 
 }

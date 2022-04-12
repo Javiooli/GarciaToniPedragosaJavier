@@ -5,9 +5,7 @@
  */
 package prog2.model.socis;
 
-import prog2.model.socis.SociEstandar;
-
-public class SociJunior extends SociEstandar {
+public class SociJunior extends SociEstandar{
     private int _diaNaixement;
     private int _mesNaixement;
     private int _anyNaixement;

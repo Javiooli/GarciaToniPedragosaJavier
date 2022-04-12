@@ -33,24 +33,26 @@ public class ClubUB implements Serializable {
         return this._llistaSocis;
     }
 
-    public void crearSoci(Scanner sc, int tipus, String dni, String nom) throws ExcepcioClub {
+    public void crearSoci(Scanner sc, int tipus, String dni, String nom, int assegurança,
+                     float preuFed, String nomFed, int[] data) throws ExcepcioClub {
 
         try {
             switch (tipus) {
                 case 1:
-                    SociFederat sociFederat = new SociFederat(nom, dni, selecFederacio(sc));
+                    Federacio fed = new Federacio(nomFed, preuFed);
+                    SociFederat sociFederat = new SociFederat(nom, dni, fed);
                     sociFederat.comprova();
                     _llistaSocis.afegirSoci(sociFederat);
                     break;
 
                 case 2:
-                    SociEstandar sociEstandar = new SociEstandar(nom, dni, selecAsseguranca(sc));
+                    SociEstandar sociEstandar = new SociEstandar(nom, dni, Integer.toString(assegurança));
                     sociEstandar.comprova();
                     _llistaSocis.afegirSoci(sociEstandar);
                     break;
 
                 case 3:
-                    SociJunior sociJunior = new SociJunior(nom, dni, selecAsseguranca(sc), seleccionaDataNaixement(sc));
+                    SociJunior sociJunior = new SociJunior(nom, dni, Integer.toString(assegurança), data);
                     sociJunior.comprova();
                     _llistaSocis.afegirSoci(sociJunior);
                     break;
@@ -59,67 +61,52 @@ public class ClubUB implements Serializable {
             throw e;
         }
     }
-    //TODO: pasar esto a clubUB
-    private String selecAsseguranca(Scanner sc) {
-        boolean correcte = false;
-        int tipus = -1;
-        String[] assegurances = {"Bàsica", "Completa"};
-
-        System.out.println("Selecciona tipus d'assegurança:");
-
-        for (int i = 0; i < assegurances.length; i++) {
-            System.out.println((i + 1) + ". " + assegurances[i]);
-        }
-        do {
-            try {
-                tipus = sc.nextInt();
-                if (tipus < 1 || tipus > assegurances.length) throw new IllegalArgumentException();
-                correcte = true;
-            } catch (Exception e) {
-                System.err.println("Opció no vàlida, introdueix un nombre d'entre les opcions de la llista.");
-            } finally {
-                sc.nextLine();
-            }
-        } while (!correcte);
-
-        return assegurances[tipus - 1];
-    }
-    //TODO: pasar esto a clubUB
-    private Federacio selecFederacio(Scanner sc) {
-        String nom;
-        float preu = 0;
-        boolean correcte = false;
-        System.out.println("Nom de la federacio:");
-        nom = sc.nextLine();
-        do {
-            try {
-                System.out.println("Preu de la federacio:");
-                preu = sc.nextFloat();
-                correcte = true;
-            } catch (Exception e) {
-                System.out.println("Entrada no vàlida, introdueix un nombre positiu.");
-            }
-        } while (!correcte);
-        return new Federacio(nom, preu);
-    }
 
     public void printLlistaSocis(String tipus){
         System.out.println(_llistaSocis.toString(tipus));
     }
 
-    public boolean eliminaSoci(String DNI){
-        return _llistaSocis.eliminaSoci(DNI);
+    public void eliminaSoci(String DNI) throws ExcepcioClub{
+        try{
+            _llistaSocis.eliminaSoci(DNI);
+        }
+        catch (ExcepcioClub e){
+            throw e;
+        }
     }
-    public int calculQuota(int numExc, String DNI){
+    public int calculQuota(int numExc, String DNI) throws ExcepcioClub{
         //TODO: calcular cuota pq IDK
-        Soci s = _llistaSocis.buscarSoci(DNI);
-        return -1;
+        try{
+            Soci s = _llistaSocis.buscarSoci(DNI);
+            return -1;
+        }
+        catch (ExcepcioClub e){
+            throw e;
+        }
         
     }
 
+    public void canviaNom(String DNI,String nouNom) throws ExcepcioClub{
+        Soci s = _llistaSocis.buscarSoci(DNI);
+        s.setNom(nouNom);
+    }
+
+    public String getTipusAssegurança(String DNI) throws ExcepcioClub{
+        Soci s = _llistaSocis.buscarSoci(DNI);
+        try{
+            SociEstandar so = (SociEstandar) s;
+            return so.getTipusAssegurança();
+        }
+        catch(Exception e){
+            throw new ExcepcioClub("El soci trobat no té assegurança (és federat).");
+        }
+    }
+
+    public void setTipusAssegurança(String tipus) throws ExcepcioClub{
+        
+    }
     public void guardarLlista(){
         File fitxer = new File("clubUB.dat");
-        //TODO guardar en fichero
         try{ 
             FileOutputStream fout = new FileOutputStream(fitxer);
             ObjectOutputStream oos = new ObjectOutputStream(fout);
@@ -144,47 +131,6 @@ public class ClubUB implements Serializable {
         catch(Exception e){
             System.out.println(e.getMessage());
         }
-    }
-
-    public int[] seleccionaDataNaixement(Scanner sc) {
-        int[] data = new int[3];
-        boolean correcte = false;
-        do {
-            try {
-                System.out.println("Any de naixement del nou soci: ");
-                data[2] = sc.nextInt();
-                if (data[2] > 1900 && data[2] < 2022) correcte = true;
-                else System.out.println("Introdueix un nombre entre 1900 i 2022.");
-            } catch (Exception e) {
-                System.out.println("Introdueix un nombre entre 1900 i 2022.");
-            }
-        } while (!correcte);
-        correcte = false;
-
-        do {
-            try {
-                System.out.println("Mes de naixement del nou soci: ");
-                data[1] = sc.nextInt();
-                if (data[1] > 0 && data[1] < 13) correcte = true;
-                else System.out.println("Introdueix un nombre entre 1 i 12.");
-            } catch (Exception e) {
-                System.out.println("Introdueix un nombre entre 1 i 12.");
-            }
-        } while (!correcte);
-        correcte = false;
-
-        do {
-            try {
-                System.out.println("Dia de naixement del nou soci: ");
-                data[0] = sc.nextInt();
-                if (data[0] > 0 && data[0] < 32) correcte = true;
-                else System.out.println("Introdueix un nombre entre 1 i 31.");
-            } catch (Exception e) {
-                System.out.println("Introdueix un nombre entre 1 i 31.");
-            }
-        } while (!correcte);
-
-        return data;
     }
 
 }
