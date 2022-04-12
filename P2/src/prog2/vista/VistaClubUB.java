@@ -71,6 +71,7 @@ public class VistaClubUB {
         boolean correcte = false;
         do {
             try {
+                sc.nextLine();
                 System.out.println("Preu de la federacio:");
                 preuFed = sc.nextFloat();
                 if (preuFed>0)
@@ -115,6 +116,7 @@ public class VistaClubUB {
             try{
                 preu = sc.nextFloat();
                 if(preu<=0) System.out.println("Introdueix un valor numèric major que 0.");
+                sc.nextLine();
             }
             catch(Exception e){
                 sc.nextLine();
@@ -133,6 +135,7 @@ public class VistaClubUB {
         boolean correcte = false;
         do {
             try {
+                sc.nextLine();
                 System.out.println("Any de naixement del nou soci: ");
                 data[2] = sc.nextInt();
                 if (data[2] > 1900 && data[2] < 2022) correcte = true;
@@ -145,6 +148,7 @@ public class VistaClubUB {
 
         do {
             try {
+                sc.nextLine();
                 System.out.println("Mes de naixement del nou soci: ");
                 data[1] = sc.nextInt();
                 if (data[1] > 0 && data[1] < 13) correcte = true;
@@ -157,6 +161,7 @@ public class VistaClubUB {
 
         do {
             try {
+                sc.nextLine();
                 System.out.println("Dia de naixement del nou soci: ");
                 data[0] = sc.nextInt();
                 if (data[0] > 0 && data[0] < 32) correcte = true;
