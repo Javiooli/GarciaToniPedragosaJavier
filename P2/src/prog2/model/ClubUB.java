@@ -43,14 +43,16 @@ public class ClubUB implements Serializable {
                 break;
 
             case 2:
-                SociEstandar sociEstandar = new SociEstandar(nom, dni, tipusAsseguranca, preuAssegurança);
+                Asseguranca as = new Asseguranca(tipusAsseguranca, preuAssegurança);
+                SociEstandar sociEstandar = new SociEstandar(nom, dni, as);
                 sociEstandar.comprova();
                 _llistaSocis.addSoci(sociEstandar);
                 System.out.println("Soci afegit: " + sociEstandar.toString());
                 break;
 
             case 3:
-                SociJunior sociJunior = new SociJunior(nom, dni, tipusAsseguranca, preuAssegurança, data);
+                as = new Asseguranca(tipusAsseguranca, preuAssegurança);
+                SociJunior sociJunior = new SociJunior(nom, dni, as, data);
                 sociJunior.comprova();
                 _llistaSocis.addSoci(sociJunior);
                 System.out.println("Soci afegit: " + sociJunior.toString());

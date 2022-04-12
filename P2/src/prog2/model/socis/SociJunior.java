@@ -4,6 +4,7 @@
  * Curs 2021-2022
  */
 package prog2.model.socis;
+import prog2.model.atributs.Asseguranca;
 import prog2.vista.ExcepcioClub;
 
 public class SociJunior extends SociEstandar{
@@ -12,8 +13,8 @@ public class SociJunior extends SociEstandar{
     private int _anyNaixement;
 
 
-    public SociJunior(String nom, String dni, String tipusAsseguranca, float preuAssegurança, int[] data) {
-        super(nom, dni, tipusAsseguranca, preuAssegurança);
+    public SociJunior(String nom, String dni, Asseguranca as, int[] data) {
+        super(nom, dni, as);
         this._diaNaixement = data[0];
         this._mesNaixement = data[1];
         this._anyNaixement = data[2];
