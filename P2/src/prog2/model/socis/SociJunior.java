@@ -27,7 +27,8 @@ public class SociJunior extends SociEstandar {
     @Override
     public String toString() {
         String soci = super.toString();
-        soci += ", Data de naixement: " + _diaNaixement + "/" + _mesNaixement + "/" + _anyNaixement;
+        soci += ", Data de naixement: " + (_diaNaixement % 10 == _diaNaixement ? "0" + _diaNaixement : _diaNaixement) + "/" +
+            (_mesNaixement % 10 == _mesNaixement ? "0" + _mesNaixement : _mesNaixement) + "/" + _anyNaixement;
         return soci;
     }
 

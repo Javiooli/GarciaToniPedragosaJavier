@@ -3,7 +3,6 @@ package prog2.model;
 import java.io.*;
 import java.util.Scanner;
 
-import javafx.scene.control.TableRow;
 import prog2.vista.*;
 import prog2.model.abstracts.*;
 import prog2.model.atributs.*;
