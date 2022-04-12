@@ -6,7 +6,6 @@
 package prog2.vista;
 
 import java.util.Scanner;
-import java.util.Locale.Category;
 
 import prog2.model.ClubUB;
 
