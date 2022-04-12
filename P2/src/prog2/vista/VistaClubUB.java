@@ -6,7 +6,6 @@
 package prog2.vista;
 
 import java.util.Scanner;
-import java.util.Locale.Category;
 
 import prog2.model.ClubUB;
 
@@ -71,7 +70,6 @@ public class VistaClubUB {
         boolean correcte = false;
         do {
             try {
-                sc.nextLine();
                 System.out.println("Preu de la federacio:");
                 preuFed = sc.nextFloat();
                 if (preuFed>0)
@@ -106,7 +104,7 @@ public class VistaClubUB {
                 sc.nextLine();
             }
         } while (!OK);
-        return assegurances[asegurança-1];
+        return assegurances[asegurança - 1];
     }
 
     private float demanaPreuAssegurança(Scanner sc) throws ExcepcioClub{
@@ -115,18 +113,16 @@ public class VistaClubUB {
         do{
             try{
                 preu = sc.nextFloat();
-                if(preu<=0) System.out.println("Introdueix un valor numèric major que 0.");
-                sc.nextLine();
+                if (preu <= 0) System.out.println("Introdueix un valor numèric major que 0.");
             }
             catch(Exception e){
-                sc.nextLine();
-                preu=-1;
+                preu = -1;
                 if (ExcepcioClub.class.isInstance(e))
-                  System.out.println(e.getMessage());
+                    System.out.println(e.getMessage());
                 else
                     System.out.println("Introdueix un valor numèric.");
             }
-        }while(preu==-1);
+        }while (preu == -1);
         return preu;
     }
 

@@ -34,7 +34,7 @@ public class SociFederat extends Soci{
 
     @Override
     public float calculaQuota(float quotaBase) throws ExcepcioClub {
-        return (quotaBase - (quotaBase * ClubUB.DESCOMPTE_EXCURSIONS_FEDERATS/100));
+        return (quotaBase - (quotaBase * ClubUB.DESCOMPTE_QUOTA_FEDERATS/100));
     }
 
     @Override

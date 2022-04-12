@@ -9,13 +9,12 @@ import prog2.model.atributs.*;
 import prog2.model.socis.*;
 
 public class ClubUB implements Serializable {
-    private static String[] TIPUS_MEMBRES = {"federat", "estandar", "junior"};
     private String _nom;
     private int _maxMembres;
     private LlistaSocis _llistaSocis;
 
-    public static float PREU_EXCURSIO_BASE = 20;
-    public static float QUOTA_MENSUAL = 25;
+    public static float PREU_EXCURSIO_BASE = 25.00f;
+    public static float QUOTA_MENSUAL = 30.00f;
     public static float DESCOMPTE_EXCURSIONS_FEDERATS = 20;
     public static float DESCOMPTE_QUOTA_FEDERATS = 30;
 

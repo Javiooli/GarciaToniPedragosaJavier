@@ -21,7 +21,7 @@ public class SociEstandar extends Soci implements InAssegurat{
     @Override
     public String toString() {
         String soci = super.toString();
-        return soci + ", Assegurança: " + asseguranca.getTipus();
+        return soci + ", Assegurança: " + asseguranca.getTipus() + ", " + asseguranca.getPreu() + " Euros";
     }
 
     @Override

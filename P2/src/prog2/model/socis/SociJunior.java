@@ -20,10 +20,6 @@ public class SociJunior extends SociEstandar{
         this._anyNaixement = data[2];
     }
 
-    public String tipus(){
-        return "junior";
-    }
-
     @Override
     public String toString() {
         String soci = super.toString();
