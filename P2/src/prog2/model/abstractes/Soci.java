@@ -66,10 +66,14 @@ public abstract class Soci implements InSoci {
 
     private void comprovarDNI() throws ExcepcioClub {
         char[] lletres = {'T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'};
-        this._dni = this._dni.toUpperCase();
-        char lletraNIF = this._dni.charAt(this._dni.length() - 1);
-        int cadenaNIF = Integer.parseInt(this._dni.substring(0, this._dni.length() - 1));
-        if (lletraNIF != lletres[cadenaNIF%23]) throw new ExcepcioClub("DNI invàlid.");
+        try {
+            this._dni = this._dni.toUpperCase();
+            char lletraNIF = this._dni.charAt(this._dni.length() - 1);
+            int cadenaNIF = Integer.parseInt(this._dni.substring(0, this._dni.length() - 1));
+            if (lletraNIF != lletres[cadenaNIF%23]) throw new ExcepcioClub("DNI invàlid.");
+        } catch (Exception e) {
+            throw new ExcepcioClub("DNI invàlid");
+        }
     }
     
 }

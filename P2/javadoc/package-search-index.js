@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"prog2.model"},{"l":"prog2.model.abstractes"},{"l":"prog2.model.atributs"},{"l":"prog2.model.socis"},{"l":"prog2.vista"}]
