@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Scanner;
 
 import prog2.vista.*;
-import prog2.model.abstracts.*;
+import prog2.model.abstractes.*;
 import prog2.model.atributs.*;
 import prog2.model.socis.*;
 
@@ -31,35 +31,36 @@ public class ClubUB implements Serializable {
     }
 
     public void crearSoci(Scanner sc, int tipus, String dni, String nom, String tipusAsseguranca, float preuAssegurança,
-                     float preuFed, String nomFed, int[] data) throws ExcepcioClub {
+                            float preuFed, String nomFed, int[] data) throws ExcepcioClub {
 
-        try {
             switch (tipus) {
-                case 1:
-                    Federacio fed = new Federacio(nomFed, preuFed);
-                    SociFederat sociFederat = new SociFederat(nom, dni, fed);
-                    sociFederat.comprova();
-                    _llistaSocis.addSoci(sociFederat);
-                    System.out.println("Soci afegit: " + sociFederat.toString());
-                    break;
+            case 1:
+                Federacio fed = new Federacio(nomFed, preuFed);
+                SociFederat sociFederat = new SociFederat(nom, dni, fed);
+                sociFederat.comprova();
+                _llistaSocis.addSoci(sociFederat);
+                System.out.println("Soci afegit: " + sociFederat.toString());
+                break;
 
-                case 2:
-                    SociEstandar sociEstandar = new SociEstandar(nom, dni, tipusAsseguranca, preuAssegurança);
-                    sociEstandar.comprova();
-                    _llistaSocis.addSoci(sociEstandar);
-                    System.out.println("Soci afegit: " + sociEstandar.toString());
-                    break;
+            case 2:
+                SociEstandar sociEstandar = new SociEstandar(nom, dni, tipusAsseguranca, preuAssegurança);
+                sociEstandar.comprova();
+                _llistaSocis.addSoci(sociEstandar);
+                System.out.println("Soci afegit: " + sociEstandar.toString());
+                break;
 
-                case 3:
-                    SociJunior sociJunior = new SociJunior(nom, dni, tipusAsseguranca, preuAssegurança, data);
-                    sociJunior.comprova();
-                    _llistaSocis.addSoci(sociJunior);
-                    System.out.println("Soci afegit: " + sociJunior.toString());
-                    break;
+            case 3:
+                SociJunior sociJunior = new SociJunior(nom, dni, tipusAsseguranca, preuAssegurança, data);
+                sociJunior.comprova();
+                _llistaSocis.addSoci(sociJunior);
+                System.out.println("Soci afegit: " + sociJunior.toString());
+                break;
             }
-        } catch (ExcepcioClub e) {
-            throw e;
-        }
+
+    }
+
+    public void comprova() throws ExcepcioClub{
+        _llistaSocis.verificarSocis();
     }
 
     public void printLlistaSocis(String tipus){
@@ -67,33 +68,23 @@ public class ClubUB implements Serializable {
     }
 
     public void eliminaSoci(String DNI) throws ExcepcioClub{
-        try{
-            Soci s = _llistaSocis.buscarSoci(DNI);
-            _llistaSocis.removeSoci(s);
-        }
-        catch (ExcepcioClub e){
-            throw e;
-        }
+        Soci s = _llistaSocis.getSoci(DNI);
+        _llistaSocis.removeSoci(s);
     }
 
-    public int calculQuota(int numExc, String DNI) throws ExcepcioClub{
-        //TODO: calcular cuota pq IDK
-        try{
-            Soci s = _llistaSocis.buscarSoci(DNI);
-            return -1;
-        }
-        catch (ExcepcioClub e){
-            throw e;
-        }    
+    public float calculQuota(int numExc, String DNI) throws ExcepcioClub{
+        Soci s = _llistaSocis.getSoci(DNI);
+        return (s.calculaQuota(QUOTA_MENSUAL) + numExc*s.calculaPreuExcursio(PREU_EXCURSIO_BASE));
+ 
     }
 
     public void canviaNom(String DNI,String nouNom) throws ExcepcioClub{
-        Soci s = _llistaSocis.buscarSoci(DNI);
+        Soci s = _llistaSocis.getSoci(DNI);
         s.setNom(nouNom);
     }
 
     public String getTipusAssegurança(String DNI) throws ExcepcioClub{
-        Soci s = _llistaSocis.buscarSoci(DNI);
+        Soci s = _llistaSocis.getSoci(DNI);
         try{
             SociEstandar so = (SociEstandar) s;
             return so.getTipusAssegurança();
@@ -104,7 +95,7 @@ public class ClubUB implements Serializable {
     }
 
     public void setTipusAssegurança(String dni, String tipus, float preu) throws ExcepcioClub{        
-        Soci s = _llistaSocis.buscarSoci(dni);
+        Soci s = _llistaSocis.getSoci(dni);
         try{
             SociEstandar so = (SociEstandar) s;
             so.setTipusAssegurança(tipus, preu);

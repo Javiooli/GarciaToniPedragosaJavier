@@ -1,4 +1,4 @@
-package prog2.model.abstracts;
+package prog2.model.abstractes;
 
 import prog2.vista.ExcepcioClub;
 

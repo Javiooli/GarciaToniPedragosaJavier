@@ -4,6 +4,7 @@
  * Curs 2021-2022
  */
 package prog2.model.socis;
+import prog2.vista.ExcepcioClub;
 
 public class SociJunior extends SociEstandar{
     private int _diaNaixement;
@@ -30,6 +31,10 @@ public class SociJunior extends SociEstandar{
         return soci;
     }
 
+    @Override
+    public float calculaPreuExcursio(float preuExcursioBase) throws ExcepcioClub {
+        return 0;
+    }
 
 
 }

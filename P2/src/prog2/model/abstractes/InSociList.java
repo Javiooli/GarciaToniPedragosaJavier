@@ -3,7 +3,9 @@
  * Programació 2
  * Curs 2021-2022
  */
-package prog2.model.abstracts;
+package prog2.model.abstractes;
+
+import java.io.Serializable;
 
 import prog2.vista.ExcepcioClub;
 
@@ -11,7 +13,7 @@ import prog2.vista.ExcepcioClub;
  * Interfície InSociList
  * @author laura
  */
-public interface InSociList {
+public interface InSociList extends Serializable{
     
     /**
      * Donar el número d'elemnts que hi ha actualment emmagatzemants a la llista.

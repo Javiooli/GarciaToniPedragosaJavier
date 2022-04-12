@@ -3,7 +3,7 @@
  * Programació 2
  * Curs 2021-2022
  */
-package prog2.model.abstracts;
+package prog2.model.abstractes;
 
 import java.io.Serializable;
 

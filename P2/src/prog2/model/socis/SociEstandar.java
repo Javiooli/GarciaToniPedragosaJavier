@@ -5,8 +5,8 @@
  */
 package prog2.model.socis;
 
-import prog2.model.abstracts.InAssegurat;
-import prog2.model.abstracts.Soci;
+import prog2.model.abstractes.InAssegurat;
+import prog2.model.abstractes.Soci;
 import prog2.model.atributs.Asseguranca;
 import prog2.vista.ExcepcioClub;
 
@@ -24,10 +24,6 @@ public class SociEstandar extends Soci implements InAssegurat{
         return soci + ", Assegurança: " + asseguranca.getTipus();
     }
 
-    public String tipus(){
-        return "estandar";
-    }
-
     @Override
     public void comprova() throws ExcepcioClub {
         if (!this.asseguranca.getTipus().equals("Bàsica") && !this.asseguranca.getTipus().equals("Completa"))
@@ -41,5 +37,15 @@ public class SociEstandar extends Soci implements InAssegurat{
     public void setTipusAssegurança(String tipus, float preu) throws ExcepcioClub{
         asseguranca = new Asseguranca(tipus, preu);
         comprova();
+    }
+
+    @Override
+    public float calculaQuota(float quotaBase) throws ExcepcioClub {
+        return quotaBase;
+    }
+
+    @Override
+    public float calculaPreuExcursio(float preuExcursioBase) throws ExcepcioClub {
+        return (preuExcursioBase + asseguranca.getPreu());
     }
 }

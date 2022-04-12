@@ -6,6 +6,8 @@
 package prog2.vista;
 
 import java.util.Scanner;
+import java.util.Locale.Category;
+
 import prog2.model.ClubUB;
 
 /**
@@ -64,14 +66,17 @@ public class VistaClubUB {
         return dni;
     }
 
-    private float demanaPreuFed(Scanner sc){
+    private float demanaPreuFed(Scanner sc) throws ExcepcioClub{
         float preuFed = 0;
         boolean correcte = false;
         do {
             try {
                 System.out.println("Preu de la federacio:");
                 preuFed = sc.nextFloat();
-                correcte = true;
+                if (preuFed>0)
+                    correcte = true;
+                else 
+                    System.out.println("Entrada no vàlida, introdueix un nombre positiu.");
             } catch (Exception e) {
                 System.out.println("Entrada no vàlida, introdueix un nombre positiu.");
             }
@@ -109,7 +114,7 @@ public class VistaClubUB {
         do{
             try{
                 preu = sc.nextFloat();
-                if(preu<=0) throw new ExcepcioClub("El preu introduit no és correcte, ha de ser un valor numèric i superior a 0.");
+                if(preu<=0) System.out.println("Introdueix un valor numèric major que 0.");
             }
             catch(Exception e){
                 sc.nextLine();
@@ -202,6 +207,10 @@ public class VistaClubUB {
     }
 
     public void gestioMenu(Scanner sc) {
+        System.out.println("Vols buscar si existeix una llista amb dades dels socis i carregar-la? (Y/N)");
+        if (sc.nextLine().equalsIgnoreCase("Y")){
+            club.carregarLlista();
+        }
         Menu menu_principal = new Menu<>("Menu Principal", Opcions.values());
         menu_principal.setDescripcions(descripcions);
 
@@ -263,6 +272,13 @@ public class VistaClubUB {
                     }
                     break;
                 case M_Opcion_7_VerificarSocis:
+                    try{
+                        club.comprova();
+                        System.out.println("Tota la informació dels socis és correcta.");
+                    }
+                    catch(ExcepcioClub e){
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case M_Opcion_8_MostrarTotalFactura:
                     System.out.println("Entra el DNI del soci.");

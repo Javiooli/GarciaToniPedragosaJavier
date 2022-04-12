@@ -3,7 +3,7 @@
  * Programació 2
  * Curs 2021-2022
  */
-package prog2.model.abstracts;
+package prog2.model.abstractes;
 
 import prog2.vista.ExcepcioClub;
 
@@ -55,27 +55,14 @@ public abstract class Soci implements InSoci {
     }
 
     @Override
-    public float calculaQuota(float quotaBase) throws ExcepcioClub {
-        return quotaBase;
-    }
-
-    @Override
-    public float calculaPreuExcursio(float preuExcursioBase) throws ExcepcioClub {
-        return preuExcursioBase;
-    }
-
-    @Override
     public void comprova() throws ExcepcioClub {
         comprovarDNI();
     }
-
-    //TODO
+    
     public String toString() {
         String soci = "Nom: " + _nom + ", DNI: " + _dni;
         return soci;
     }
-
-    public abstract String tipus();
 
     private void comprovarDNI() throws ExcepcioClub {
         char[] lletres = {'T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'};
