@@ -9,9 +9,12 @@ import prog2.vista.ExcepcioClub;
 
 public class LlistaSocis implements InSociList {
     private ArrayList<Soci> socis;
+    private int _size;
+    private int _maxSize;
 
     public LlistaSocis(int mida) {
         this.socis = new ArrayList<Soci>(mida);
+        this._maxSize=mida;
     }
 
     public void comprovarRepDNI(Soci soci) throws ExcepcioClub {
@@ -58,8 +61,7 @@ public class LlistaSocis implements InSociList {
 
     @Override
     public int getSize() {
-        // TODO Auto-generated method stub
-        return 0;
+        return _size;
     }
 
     @Override
@@ -68,19 +70,28 @@ public class LlistaSocis implements InSociList {
         soci.comprova();
         comprovarRepDNI(soci);
         socis.add(soci);
-        
+        _size++;
     }
 
     @Override
     public void removeSoci(Soci soci) throws ExcepcioClub {
-        // TODO Auto-generated method stub
-        
+        try{
+            socis.remove(soci);
+            _size--;
+        }
+        catch(Exception e){
+            throw new ExcepcioClub("No s'ha pogut eliminar el soci.");
+        }
     }
 
     @Override
     public Soci getAt(int position) throws ExcepcioClub {
-        // TODO Auto-generated method stub
-        return null;
+        try{
+            return socis.get(position);
+        }
+        catch(Exception e){
+            throw new ExcepcioClub("No s'ha pogut trobar un soci a la possicio designada");
+        }
     }
 
     @Override
@@ -96,26 +107,29 @@ public class LlistaSocis implements InSociList {
 
     @Override
     public void clear() throws ExcepcioClub {
-        // TODO Auto-generated method stub
-        
+        try{
+            socis.clear();
+        }
+        catch(Exception e){
+            throw new ExcepcioClub("No s'ha pogut esborrar la llista.");
+        }
     }
 
     @Override
     public boolean isFull() throws ExcepcioClub {
-        // TODO Auto-generated method stub
-        return false;
+        return _size==_maxSize;
     }
 
     @Override
     public boolean isEmpty() throws ExcepcioClub {
-        // TODO Auto-generated method stub
-        return false;
+        return _size==0;
     }
 
     @Override
     public void verificarSocis() throws ExcepcioClub {
-        // TODO Auto-generated method stub
-        
+        for (Soci s: socis){
+        s.comprova();
+        }    
     }
 
 }

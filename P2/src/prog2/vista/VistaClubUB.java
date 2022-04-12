@@ -300,13 +300,13 @@ public class VistaClubUB {
                         String tipus = club.getTipusAssegurança(DNI);
                         if (tipus.equals("Bàsica")){
                             System.out.println("El soci amb DNI " + DNI + " té una assegurança bàsica. Vols canviar-la a completa? (Y/N)");
-                            if (sc.nextLine().equals("Y")){
+                            if (sc.nextLine().equalsIgnoreCase("Y")){
                                 club.setTipusAssegurança(DNI, "Completa", demanaPreuAssegurança(sc));
                             }
                         }
                         if (tipus.equals("Completa")){
                             System.out.println("El soci amb DNI " + DNI + " té una assegurança completa. Vols canviar-la a bàsica? (Y/N)");
-                            if (sc.nextLine().equals("Y")){
+                            if (sc.nextLine().equalsIgnoreCase("Y")){
                                 club.setTipusAssegurança(DNI, "Bàsica", demanaPreuAssegurança(sc));
                         }                            
                         }

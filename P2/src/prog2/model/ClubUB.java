@@ -39,21 +39,21 @@ public class ClubUB implements Serializable {
                     Federacio fed = new Federacio(nomFed, preuFed);
                     SociFederat sociFederat = new SociFederat(nom, dni, fed);
                     sociFederat.comprova();
-                    _llistaSocis.afegirSoci(sociFederat);
+                    _llistaSocis.addSoci(sociFederat);
                     System.out.println("Soci afegit: " + sociFederat.toString());
                     break;
 
                 case 2:
                     SociEstandar sociEstandar = new SociEstandar(nom, dni, tipusAsseguranca, preuAssegurança);
                     sociEstandar.comprova();
-                    _llistaSocis.afegirSoci(sociEstandar);
+                    _llistaSocis.addSoci(sociEstandar);
                     System.out.println("Soci afegit: " + sociEstandar.toString());
                     break;
 
                 case 3:
                     SociJunior sociJunior = new SociJunior(nom, dni, tipusAsseguranca, preuAssegurança, data);
                     sociJunior.comprova();
-                    _llistaSocis.afegirSoci(sociJunior);
+                    _llistaSocis.addSoci(sociJunior);
                     System.out.println("Soci afegit: " + sociJunior.toString());
                     break;
             }
@@ -68,7 +68,8 @@ public class ClubUB implements Serializable {
 
     public void eliminaSoci(String DNI) throws ExcepcioClub{
         try{
-            _llistaSocis.eliminaSoci(DNI);
+            Soci s = _llistaSocis.buscarSoci(DNI);
+            _llistaSocis.removeSoci(s);
         }
         catch (ExcepcioClub e){
             throw e;
