@@ -9,7 +9,7 @@ import prog2.model.abstracts.Soci;
 import prog2.model.atributs.Federacio;
 import prog2.vista.ExcepcioClub;
 
-public class SociFederat extends Soci {
+public class SociFederat extends Soci{
     private Federacio federacio;
 
     public SociFederat(String nom, String dni, Federacio federacio) {

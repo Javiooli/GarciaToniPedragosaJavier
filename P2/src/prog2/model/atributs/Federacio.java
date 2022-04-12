@@ -1,6 +1,8 @@
 package prog2.model.atributs;
 
-public class Federacio {
+import java.io.Serializable;
+
+public class Federacio implements Serializable{
     private float _preu;
     private String _nom;
 

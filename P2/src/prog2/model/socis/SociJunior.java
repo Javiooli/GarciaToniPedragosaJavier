@@ -11,8 +11,8 @@ public class SociJunior extends SociEstandar{
     private int _anyNaixement;
 
 
-    public SociJunior(String nom, String dni, String tipusAsseguranca, int[] data) {
-        super(nom, dni, tipusAsseguranca);
+    public SociJunior(String nom, String dni, String tipusAsseguranca, float preuAssegurança, int[] data) {
+        super(nom, dni, tipusAsseguranca, preuAssegurança);
         this._diaNaixement = data[0];
         this._mesNaixement = data[1];
         this._anyNaixement = data[2];

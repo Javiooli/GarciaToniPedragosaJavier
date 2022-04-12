@@ -5,13 +5,15 @@
  */
 package prog2.model.abstracts;
 
+import java.io.Serializable;
+
 import prog2.vista.ExcepcioClub;
 
 /**
  * Interfície InSoci
  * @author laura
  */
-public interface InSoci {
+public interface InSoci extends Serializable{
     
     public void setNom(String nom);
     public String getNom();

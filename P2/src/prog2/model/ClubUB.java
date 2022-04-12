@@ -9,7 +9,7 @@ import prog2.model.atributs.*;
 import prog2.model.socis.*;
 
 public class ClubUB implements Serializable {
-    private static String[] TIPUS_MEMBRES = {"federat", "estandar", "junior"}; //TODO
+    private static String[] TIPUS_MEMBRES = {"federat", "estandar", "junior"};
     private String _nom;
     private int _maxMembres;
     private LlistaSocis _llistaSocis;
@@ -18,9 +18,6 @@ public class ClubUB implements Serializable {
     public static float QUOTA_MENSUAL = 25;
     public static float DESCOMPTE_EXCURSIONS_FEDERATS = 20;
     public static float DESCOMPTE_QUOTA_FEDERATS = 30;
-
-
-    //TODO: pasar prints y scanners a VistaClubUB
 
     public ClubUB(String nom, int maxMembres) {
         _nom = nom;
@@ -33,7 +30,7 @@ public class ClubUB implements Serializable {
         return this._llistaSocis;
     }
 
-    public void crearSoci(Scanner sc, int tipus, String dni, String nom, int assegurança,
+    public void crearSoci(Scanner sc, int tipus, String dni, String nom, String tipusAsseguranca, float preuAssegurança,
                      float preuFed, String nomFed, int[] data) throws ExcepcioClub {
 
         try {
@@ -43,18 +40,21 @@ public class ClubUB implements Serializable {
                     SociFederat sociFederat = new SociFederat(nom, dni, fed);
                     sociFederat.comprova();
                     _llistaSocis.afegirSoci(sociFederat);
+                    System.out.println("Soci afegit: " + sociFederat.toString());
                     break;
 
                 case 2:
-                    SociEstandar sociEstandar = new SociEstandar(nom, dni, Integer.toString(assegurança));
+                    SociEstandar sociEstandar = new SociEstandar(nom, dni, tipusAsseguranca, preuAssegurança);
                     sociEstandar.comprova();
                     _llistaSocis.afegirSoci(sociEstandar);
+                    System.out.println("Soci afegit: " + sociEstandar.toString());
                     break;
 
                 case 3:
-                    SociJunior sociJunior = new SociJunior(nom, dni, Integer.toString(assegurança), data);
+                    SociJunior sociJunior = new SociJunior(nom, dni, tipusAsseguranca, preuAssegurança, data);
                     sociJunior.comprova();
                     _llistaSocis.afegirSoci(sociJunior);
+                    System.out.println("Soci afegit: " + sociJunior.toString());
                     break;
             }
         } catch (ExcepcioClub e) {
@@ -74,6 +74,7 @@ public class ClubUB implements Serializable {
             throw e;
         }
     }
+
     public int calculQuota(int numExc, String DNI) throws ExcepcioClub{
         //TODO: calcular cuota pq IDK
         try{
@@ -82,8 +83,7 @@ public class ClubUB implements Serializable {
         }
         catch (ExcepcioClub e){
             throw e;
-        }
-        
+        }    
     }
 
     public void canviaNom(String DNI,String nouNom) throws ExcepcioClub{
@@ -102,22 +102,29 @@ public class ClubUB implements Serializable {
         }
     }
 
-    public void setTipusAssegurança(String tipus) throws ExcepcioClub{
-        
+    public void setTipusAssegurança(String dni, String tipus, float preu) throws ExcepcioClub{        
+        Soci s = _llistaSocis.buscarSoci(dni);
+        try{
+            SociEstandar so = (SociEstandar) s;
+            so.setTipusAssegurança(tipus, preu);
+        }
+        catch(Exception e){
+            throw new ExcepcioClub("El soci trobat no té assegurança (és federat).");
+        }
     }
     public void guardarLlista(){
         File fitxer = new File("clubUB.dat");
+        fitxer.delete();
         try{ 
             FileOutputStream fout = new FileOutputStream(fitxer);
             ObjectOutputStream oos = new ObjectOutputStream(fout);
             oos.writeObject(_llistaSocis);
+            oos.close();
             fout.close();
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-        }
-        
-        
+        }   
     }
 
     public void carregarLlista(){
@@ -132,5 +139,4 @@ public class ClubUB implements Serializable {
             System.out.println(e.getMessage());
         }
     }
-
 }

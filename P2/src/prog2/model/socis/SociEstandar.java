@@ -13,9 +13,9 @@ import prog2.vista.ExcepcioClub;
 public class SociEstandar extends Soci implements InAssegurat{
     private Asseguranca asseguranca;
 
-    public SociEstandar(String nom, String dni, String tipusAsseguranca) {
+    public SociEstandar(String nom, String dni, String tipusAsseguranca, float preuAssegurança) {
         super(nom, dni);
-        asseguranca = new Asseguranca(tipusAsseguranca);
+        asseguranca = new Asseguranca(tipusAsseguranca, preuAssegurança);
     }
 
     @Override
@@ -38,8 +38,8 @@ public class SociEstandar extends Soci implements InAssegurat{
         return asseguranca.getTipus();
     }
 
-    public void setTipusAssegurança(String tipus) throws ExcepcioClub{
-        asseguranca = new Asseguranca(tipus);
+    public void setTipusAssegurança(String tipus, float preu) throws ExcepcioClub{
+        asseguranca = new Asseguranca(tipus, preu);
         comprova();
     }
 }
