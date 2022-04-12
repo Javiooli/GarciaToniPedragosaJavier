@@ -78,6 +78,8 @@ public class VistaClubUB {
                     System.out.println("Entrada no vàlida, introdueix un nombre positiu.");
             } catch (Exception e) {
                 System.out.println("Entrada no vàlida, introdueix un nombre positiu.");
+            } finally {
+                sc.nextLine();
             }
         } while (!correcte);
         return preuFed;
@@ -121,6 +123,8 @@ public class VistaClubUB {
                     System.out.println(e.getMessage());
                 else
                     System.out.println("Introdueix un valor numèric.");
+            } finally {
+                sc.nextLine();
             }
         }while (preu == -1);
         return preu;
@@ -131,39 +135,42 @@ public class VistaClubUB {
         boolean correcte = false;
         do {
             try {
-                sc.nextLine();
                 System.out.println("Any de naixement del nou soci: ");
                 data[2] = sc.nextInt();
                 if (data[2] > 1900 && data[2] < 2022) correcte = true;
                 else System.out.println("Introdueix un nombre entre 1900 i 2022.");
             } catch (Exception e) {
                 System.out.println("Introdueix un nombre entre 1900 i 2022.");
+            } finally {
+                sc.nextLine();
             }
         } while (!correcte);
         correcte = false;
 
         do {
             try {
-                sc.nextLine();
                 System.out.println("Mes de naixement del nou soci: ");
                 data[1] = sc.nextInt();
                 if (data[1] > 0 && data[1] < 13) correcte = true;
                 else System.out.println("Introdueix un nombre entre 1 i 12.");
             } catch (Exception e) {
                 System.out.println("Introdueix un nombre entre 1 i 12.");
+            } finally {
+                sc.nextLine();
             }
         } while (!correcte);
         correcte = false;
 
         do {
             try {
-                sc.nextLine();
                 System.out.println("Dia de naixement del nou soci: ");
                 data[0] = sc.nextInt();
                 if (data[0] > 0 && data[0] < 32) correcte = true;
                 else System.out.println("Introdueix un nombre entre 1 i 31.");
             } catch (Exception e) {
                 System.out.println("Introdueix un nombre entre 1 i 31.");
+            } finally {
+                sc.nextLine();
             }
         } while (!correcte);
 
@@ -204,6 +211,8 @@ public class VistaClubUB {
             }
         } catch (ExcepcioClub e) {
             System.out.println(e.getMessage());
+        } finally {
+            sc.nextLine();
         }
     }
 
