@@ -45,7 +45,7 @@ public class VistaClubUB {
     
     private static String[] descripcions = {"Donar d'alta un nou soci", "Mostrar llista de socis", "Mostrar llista de socis federats",
     "Mostrar llista de socis estàndard", "Mostrar llista de socis junior", "Eliminar soci", "Verificar socis", "Mostrar total factura",
-    "Modificar nom soci", "Modificar tipus assegurança soci", "Guardar llista", "Recuperar llista", "Sortir"};
+    "Modificar nom soci", "Modificar tipus asseguranca soci", "Guardar llista", "Recuperar llista", "Sortir"};
 
     private static String[] descripcions_afegir = {"Afegir soci federat", "Afegir soci estàndard", "Afegir soci junior", "Menú anterior"};
 
@@ -58,6 +58,11 @@ public class VistaClubUB {
         gestioMenu(sc);
     }
 
+    
+    /** 
+     * @param sc
+     * @return String
+     */
     private String entrarDNI(Scanner sc) {
         String dni = "";
         dni = sc.nextLine();
@@ -65,6 +70,12 @@ public class VistaClubUB {
         return dni;
     }
 
+    
+    /** 
+     * @param sc
+     * @return float
+     * @throws ExcepcioClub
+     */
     private float demanaPreuFed(Scanner sc) throws ExcepcioClub{
         float preuFed = 0;
         boolean correcte = false;
@@ -85,20 +96,25 @@ public class VistaClubUB {
         return preuFed;
     }
 
-    private String demanaTipusAssegurança(Scanner sc){
+    
+    /** 
+     * @param sc
+     * @return String
+     */
+    private String demanaTipusAsseguranca(Scanner sc){
         boolean OK = false;
-        int asegurança = -1;
+        int aseguranca = -1;
         String[] assegurances = {"Bàsica", "Completa"};
 
-        System.out.println("Selecciona tipus d'assegurança:");
+        System.out.println("Selecciona tipus d'asseguranca:");
 
         for (int i = 0; i < assegurances.length; i++) {
             System.out.println((i + 1) + ". " + assegurances[i]);
         }
         do {
             try {
-                asegurança = sc.nextInt();
-                if (asegurança < 1 || asegurança > assegurances.length) throw new IllegalArgumentException();
+                aseguranca = sc.nextInt();
+                if (aseguranca < 1 || aseguranca > assegurances.length) throw new IllegalArgumentException();
                 OK = true;
             } catch (Exception e) {
                 System.err.println("Opció no vàlida, introdueix un nombre d'entre les opcions de la llista.");
@@ -106,12 +122,18 @@ public class VistaClubUB {
                 sc.nextLine();
             }
         } while (!OK);
-        return assegurances[asegurança - 1];
+        return assegurances[aseguranca - 1];
     }
 
-    private float demanaPreuAssegurança(Scanner sc) throws ExcepcioClub{
+    
+    /** 
+     * @param sc
+     * @return float
+     * @throws ExcepcioClub
+     */
+    private float demanaPreuAsseguranca(Scanner sc) throws ExcepcioClub{
         float preu = -1;
-        System.out.println("Introdueix el preu de la assegurança:");
+        System.out.println("Introdueix el preu de la asseguranca:");
         do{
             try{
                 preu = sc.nextFloat();
@@ -130,6 +152,11 @@ public class VistaClubUB {
         return preu;
     }
 
+    
+    /** 
+     * @param sc
+     * @return int[]
+     */
     public int[] demanaDataNaixement(Scanner sc) {
         int[] data = new int[3];
         boolean correcte = false;
@@ -177,13 +204,18 @@ public class VistaClubUB {
         return data;
     }
 
+    
+    /** 
+     * @param sc
+     * @param tipus
+     */
     private void crearSoci(Scanner sc, int tipus) {
         String nom, dni;
         System.out.println("Nom del nou soci:");
         nom = sc.nextLine();
         System.out.println("DNI del nou soci:");
         dni = entrarDNI(sc);
-        String asegurança = "";
+        String aseguranca = "";
         String nomFed ="";
         float preu=0;
         int[] data = {0,0,0};
@@ -193,20 +225,20 @@ public class VistaClubUB {
                     System.out.println("Nom de la federacio:");
                     nomFed = sc.nextLine();
                     preu = demanaPreuFed(sc);
-                    club.crearSoci(sc, tipus, dni, nom, asegurança, 0, preu, nomFed,data);
+                    club.crearSoci(sc, tipus, dni, nom, aseguranca, 0, preu, nomFed,data);
                 break;
 
                 case 2:
-                    asegurança = demanaTipusAssegurança(sc);
-                    preu = demanaPreuAssegurança(sc);
-                    club.crearSoci(sc, tipus, dni, nom, asegurança, preu, 0, nomFed,data);
+                    aseguranca = demanaTipusAsseguranca(sc);
+                    preu = demanaPreuAsseguranca(sc);
+                    club.crearSoci(sc, tipus, dni, nom, aseguranca, preu, 0, nomFed,data);
                 break;
 
                 case 3:
-                    asegurança = demanaTipusAssegurança(sc);                    
-                    preu = demanaPreuAssegurança(sc);
+                    aseguranca = demanaTipusAsseguranca(sc);                    
+                    preu = demanaPreuAsseguranca(sc);
                     data = demanaDataNaixement(sc);
-                    club.crearSoci(sc, tipus, dni, nom, asegurança, preu, 0, nomFed, data);
+                    club.crearSoci(sc, tipus, dni, nom, aseguranca, preu, 0, nomFed, data);
                 break;
             }
         } catch (ExcepcioClub e) {
@@ -216,6 +248,10 @@ public class VistaClubUB {
         }
     }
 
+    
+    /** 
+     * @param sc
+     */
     public void gestioMenu(Scanner sc) {
         System.out.println("Vols buscar si existeix una llista amb dades dels socis i carregar-la? (Y/N)");
         if (sc.nextLine().equalsIgnoreCase("Y")){
@@ -227,7 +263,7 @@ public class VistaClubUB {
         // Variable (de tipo enumerado igual a las opciones del menu) que contiene la opcion escogida
         Opcions opcionMenu;
 
-        // Lançar el bucle principal de la aplicación
+        // Lancar el bucle principal de la aplicación
         do {
             menu_principal.mostrarMenu();
             opcionMenu = (Opcions) menu_principal.getOpcio(sc);
@@ -320,20 +356,20 @@ public class VistaClubUB {
                     }
                     break;
                 case M_Opcion_10_ModificarAsseguranca:
-                    System.out.println("Entra el DNI del soci a qui vols canviar l'assegurança");
+                    System.out.println("Entra el DNI del soci a qui vols canviar l'asseguranca");
                     DNI = sc.nextLine();
                     try{
-                        String tipus = club.getTipusAssegurança(DNI);
+                        String tipus = club.getTipusAsseguranca(DNI);
                         if (tipus.equals("Bàsica")){
-                            System.out.println("El soci amb DNI " + DNI + " té una assegurança bàsica. Vols canviar-la a completa? (Y/N)");
+                            System.out.println("El soci amb DNI " + DNI + " té una asseguranca bàsica. Vols canviar-la a completa? (Y/N)");
                             if (sc.nextLine().equalsIgnoreCase("Y")){
-                                club.setTipusAssegurança(DNI, "Completa", demanaPreuAssegurança(sc));
+                                club.setTipusAsseguranca(DNI, "Completa", demanaPreuAsseguranca(sc));
                             }
                         }
                         if (tipus.equals("Completa")){
-                            System.out.println("El soci amb DNI " + DNI + " té una assegurança completa. Vols canviar-la a bàsica? (Y/N)");
+                            System.out.println("El soci amb DNI " + DNI + " té una asseguranca completa. Vols canviar-la a bàsica? (Y/N)");
                             if (sc.nextLine().equalsIgnoreCase("Y")){
-                                club.setTipusAssegurança(DNI, "Bàsica", demanaPreuAssegurança(sc));
+                                club.setTipusAsseguranca(DNI, "Bàsica", demanaPreuAsseguranca(sc));
                         }                            
                         }
                     }

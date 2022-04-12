@@ -40,7 +40,7 @@ public interface InSoci extends Serializable{
          
     /**
      * Comprova si les dades del soci són correctes o no
-     * @throws ExcepcioClub Si hi ha algún error en les dades es llança una excepció 
+     * @throws ExcepcioClub Si hi ha algún error en les dades es llanca una excepció 
      */ 
     public void comprova() throws ExcepcioClub;
 

@@ -18,32 +18,63 @@ public class SociEstandar extends Soci implements InAssegurat{
         asseguranca = as;
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString() {
         String soci = super.toString();
-        return soci + ", Assegurança: " + asseguranca.getTipus() + ", " + asseguranca.getPreu() + " Euros";
+        return soci + ", Asseguranca: " + asseguranca.getTipus() + ", " + asseguranca.getPreu() + " Euros";
     }
 
+    
+    /** 
+     * @throws ExcepcioClub
+     */
     @Override
     public void comprova() throws ExcepcioClub {
         if (!this.asseguranca.getTipus().equals("Bàsica") && !this.asseguranca.getTipus().equals("Completa"))
-            throw new ExcepcioClub("Tipus d'assegurança invàlida.");
+            throw new ExcepcioClub("Tipus d'asseguranca invàlida.");
     }
 
-    public String getTipusAssegurança() throws ExcepcioClub{
+    
+    /** 
+     * @return String
+     * @throws ExcepcioClub
+     */
+    public String getTipusAsseguranca() throws ExcepcioClub{
         return asseguranca.getTipus();
     }
 
-    public void setTipusAssegurança(String tipus, float preu) throws ExcepcioClub{
+    
+    /** 
+     * @param tipus
+     * @param preu
+     * @throws ExcepcioClub
+     */
+    public void setTipusAsseguranca(String tipus, float preu) throws ExcepcioClub{
         asseguranca = new Asseguranca(tipus, preu);
         comprova();
     }
 
+    
+    /** 
+     * @param quotaBase
+     * @return float
+     * @throws ExcepcioClub
+     */
     @Override
     public float calculaQuota(float quotaBase) throws ExcepcioClub {
         return quotaBase;
     }
 
+    
+    /** 
+     * @param preuExcursioBase
+     * @return float
+     * @throws ExcepcioClub
+     */
     @Override
     public float calculaPreuExcursio(float preuExcursioBase) throws ExcepcioClub {
         return (preuExcursioBase + asseguranca.getPreu());

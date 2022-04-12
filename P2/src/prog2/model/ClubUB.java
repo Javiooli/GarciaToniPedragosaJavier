@@ -25,11 +25,28 @@ public class ClubUB implements Serializable {
     }
 
 
+    
+    /** 
+     * @return LlistaSocis
+     */
     public LlistaSocis getLlistaSocis() {
         return this._llistaSocis;
     }
 
-    public void crearSoci(Scanner sc, int tipus, String dni, String nom, String tipusAsseguranca, float preuAssegurança,
+    
+    /** 
+     * @param sc
+     * @param tipus
+     * @param dni
+     * @param nom
+     * @param tipusAsseguranca
+     * @param preuAsseguranca
+     * @param preuFed
+     * @param nomFed
+     * @param data
+     * @throws ExcepcioClub
+     */
+    public void crearSoci(Scanner sc, int tipus, String dni, String nom, String tipusAsseguranca, float preuAsseguranca,
                             float preuFed, String nomFed, int[] data) throws ExcepcioClub {
 
             switch (tipus) {
@@ -42,7 +59,7 @@ public class ClubUB implements Serializable {
                 break;
 
             case 2:
-                Asseguranca as = new Asseguranca(tipusAsseguranca, preuAssegurança);
+                Asseguranca as = new Asseguranca(tipusAsseguranca, preuAsseguranca);
                 SociEstandar sociEstandar = new SociEstandar(nom, dni, as);
                 sociEstandar.comprova();
                 _llistaSocis.addSoci(sociEstandar);
@@ -50,7 +67,7 @@ public class ClubUB implements Serializable {
                 break;
 
             case 3:
-                as = new Asseguranca(tipusAsseguranca, preuAssegurança);
+                as = new Asseguranca(tipusAsseguranca, preuAsseguranca);
                 SociJunior sociJunior = new SociJunior(nom, dni, as, data);
                 sociJunior.comprova();
                 _llistaSocis.addSoci(sociJunior);
@@ -60,49 +77,88 @@ public class ClubUB implements Serializable {
 
     }
 
+    
+    /** 
+     * @throws ExcepcioClub
+     */
     public void comprova() throws ExcepcioClub{
         _llistaSocis.verificarSocis();
     }
 
+    
+    /** 
+     * @param tipus
+     */
     public void printLlistaSocis(String tipus){
         System.out.println(_llistaSocis.toString(tipus));
     }
 
+    
+    /** 
+     * @param DNI
+     * @throws ExcepcioClub
+     */
     public void eliminaSoci(String DNI) throws ExcepcioClub{
         Soci s = _llistaSocis.getSoci(DNI);
         _llistaSocis.removeSoci(s);
     }
 
+    
+    /** 
+     * @param numExc
+     * @param DNI
+     * @return float
+     * @throws ExcepcioClub
+     */
     public float calculQuota(int numExc, String DNI) throws ExcepcioClub{
         Soci s = _llistaSocis.getSoci(DNI);
         return (s.calculaQuota(QUOTA_MENSUAL) + numExc*s.calculaPreuExcursio(PREU_EXCURSIO_BASE));
  
     }
 
+    
+    /** 
+     * @param DNI
+     * @param nouNom
+     * @throws ExcepcioClub
+     */
     public void canviaNom(String DNI,String nouNom) throws ExcepcioClub{
         Soci s = _llistaSocis.getSoci(DNI);
         s.setNom(nouNom);
     }
 
-    public String getTipusAssegurança(String DNI) throws ExcepcioClub{
+    
+    /** 
+     * @param DNI
+     * @return String
+     * @throws ExcepcioClub
+     */
+    public String getTipusAsseguranca(String DNI) throws ExcepcioClub{
         Soci s = _llistaSocis.getSoci(DNI);
         try{
             SociEstandar so = (SociEstandar) s;
-            return so.getTipusAssegurança();
+            return so.getTipusAsseguranca();
         }
         catch(Exception e){
-            throw new ExcepcioClub("El soci trobat no té assegurança (és federat).");
+            throw new ExcepcioClub("El soci trobat no té asseguranca (és federat).");
         }
     }
 
-    public void setTipusAssegurança(String dni, String tipus, float preu) throws ExcepcioClub{        
+    
+    /** 
+     * @param dni
+     * @param tipus
+     * @param preu
+     * @throws ExcepcioClub
+     */
+    public void setTipusAsseguranca(String dni, String tipus, float preu) throws ExcepcioClub{        
         Soci s = _llistaSocis.getSoci(dni);
         try{
             SociEstandar so = (SociEstandar) s;
-            so.setTipusAssegurança(tipus, preu);
+            so.setTipusAsseguranca(tipus, preu);
         }
         catch(Exception e){
-            throw new ExcepcioClub("El soci trobat no té assegurança (és federat).");
+            throw new ExcepcioClub("El soci trobat no té asseguranca (és federat).");
         }
     }
     public void guardarLlista(){

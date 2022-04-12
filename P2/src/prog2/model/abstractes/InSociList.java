@@ -74,7 +74,7 @@ public interface InSociList extends Serializable{
     
     /**
      * Comprovar si les dades dels socis de la llista són correctes.
-     * @throws prog2.vista.ExcepcioClub Si hi ha algún error en les dades es llança una excepció 
+     * @throws prog2.vista.ExcepcioClub Si hi ha algún error en les dades es llanca una excepció 
      */
     public void verificarSocis() throws ExcepcioClub;
      
