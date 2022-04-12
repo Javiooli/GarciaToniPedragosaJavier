@@ -3,6 +3,7 @@ package prog2.model;
 import java.io.*;
 import java.util.Scanner;
 
+import javafx.scene.control.TableRow;
 import prog2.vista.*;
 import prog2.model.abstracts.*;
 import prog2.model.atributs.*;
@@ -19,17 +20,8 @@ public class ClubUB implements Serializable {
     public static float DESCOMPTE_EXCURSIONS_FEDERATS = 20;
     public static float DESCOMPTE_QUOTA_FEDERATS = 30;
 
-    private static enum Opcions {
-        M_Opcion_1_AfegirFederat,
-        M_Opcion_2_AfegirEstandar,
-        M_Opcion_3_AfegirJunior,
-        M_Opcion_4_Tornar
-    };
-
 
     //TODO: pasar prints y scanners a VistaClubUB
-
-    private static String[] descripcions = {"Afegir soci federat", "Afegir soci estàndard", "Afegir soci junior", "Menú anterior"};
 
     public ClubUB(String nom, int maxMembres) {
         _nom = nom;
@@ -37,42 +29,13 @@ public class ClubUB implements Serializable {
         _llistaSocis = new LlistaSocis(_maxMembres);
     }
 
-    public void afegirSoci(Scanner sc) {
-        
-        Menu menu_afegir = new Menu<>("Donar d'alta un nou soci", Opcions.values());
-        menu_afegir.setDescripcions(descripcions);
-
-        Opcions opcioMenu;
-
-        menu_afegir.mostrarMenu();
-        opcioMenu = (Opcions) menu_afegir.getOpcio(sc);
-
-        switch (opcioMenu) {
-            case M_Opcion_1_AfegirFederat:
-                crearSoci(sc, 1);
-                break;
-            case M_Opcion_2_AfegirEstandar:
-                crearSoci(sc, 2);
-                break;
-            case M_Opcion_3_AfegirJunior:
-                crearSoci(sc, 3);
-                break;
-            case M_Opcion_4_Tornar:
-                break;
-        }
-
-    }
 
     public LlistaSocis getLlistaSocis() {
         return this._llistaSocis;
     }
 
-    private void crearSoci(Scanner sc, int tipus) {
-        String nom, dni;
-        System.out.println("Nom del nou soci:");
-        nom = sc.nextLine();
-        System.out.println("DNI del nou soci:");
-        dni = entrarDNI(sc);
+    public void crearSoci(Scanner sc, int tipus, String dni, String nom) throws ExcepcioClub {
+
         try {
             switch (tipus) {
                 case 1:
@@ -94,17 +57,10 @@ public class ClubUB implements Serializable {
                     break;
             }
         } catch (ExcepcioClub e) {
-            System.out.println(e.getMessage());
+            throw e;
         }
     }
-
-    private String entrarDNI(Scanner sc) {
-        String dni = "";
-        dni = sc.nextLine();
-
-        return dni;
-    }
-
+    //TODO: pasar esto a clubUB
     private String selecAsseguranca(Scanner sc) {
         boolean correcte = false;
         int tipus = -1;
@@ -129,7 +85,7 @@ public class ClubUB implements Serializable {
 
         return assegurances[tipus - 1];
     }
-
+    //TODO: pasar esto a clubUB
     private Federacio selecFederacio(Scanner sc) {
         String nom;
         float preu = 0;
@@ -165,12 +121,30 @@ public class ClubUB implements Serializable {
     public void guardarLlista(){
         File fitxer = new File("clubUB.dat");
         //TODO guardar en fichero
-        /*
-        FileOutputStream fout= new FileOutputStream(fitxer);
-        String data = _llistaSocis.toString();
-        //fout.(data);
-        fout.close();
-        */
+        try{ 
+            FileOutputStream fout = new FileOutputStream(fitxer);
+            ObjectOutputStream oos = new ObjectOutputStream(fout);
+            oos.writeObject(_llistaSocis);
+            fout.close();
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        
+        
+    }
+
+    public void carregarLlista(){
+        File fitxer = new File("clubUB.dat");
+        try{
+            FileInputStream fin = new FileInputStream(fitxer);
+            ObjectInputStream ois = new ObjectInputStream(fin);
+            _llistaSocis = (LlistaSocis) ois.readObject();
+            fin.close();
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public int[] seleccionaDataNaixement(Scanner sc) {

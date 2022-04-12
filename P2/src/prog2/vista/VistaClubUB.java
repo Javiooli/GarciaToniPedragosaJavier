@@ -6,7 +6,7 @@
 package prog2.vista;
 
 import java.util.Scanner;
-import prog2.model.*;
+import prog2.model.ClubUB;
 
 /**
  * 
@@ -35,9 +35,18 @@ public class VistaClubUB {
         M_Opcion_13_Sortir
     };
 
+    private static enum Opcions_afegir {
+        M_Opcion_1_AfegirFederat,
+        M_Opcion_2_AfegirEstandar,
+        M_Opcion_3_AfegirJunior,
+        M_Opcion_4_Tornar
+    };
+    
     private static String[] descripcions = {"Donar d'alta un nou soci", "Mostrar llista de socis", "Mostrar llista de socis federats",
     "Mostrar llista de socis estàndard", "Mostrar llista de socis junior", "Eliminar soci", "Verificar socis", "Mostrar total factura",
     "Modificar nom soci", "Modificar tipus assegurança soci", "Guardar llista", "Recuperar llista", "Sortir"};
+
+    private static String[] descripcions_afegir = {"Afegir soci federat", "Afegir soci estàndard", "Afegir soci junior", "Menú anterior"};
 
     public void gestioClubUB() {
 
@@ -46,6 +55,27 @@ public class VistaClubUB {
 
         // Llamar a la funcion que gestiona el menu
         gestioMenu(sc);
+    }
+
+    private String entrarDNI(Scanner sc) {
+        String dni = "";
+        dni = sc.nextLine();
+
+        return dni;
+    }
+
+    private void crearSoci(Scanner sc, int tipus) {
+        String nom, dni;
+        System.out.println("Nom del nou soci:");
+        nom = sc.nextLine();
+        System.out.println("DNI del nou soci:");
+        dni = entrarDNI(sc);
+        try {
+            //TODO: falta pasar asegurança o federacio ¿¿otro switch??
+            club.crearSoci(sc, tipus, dni, nom);
+        } catch (ExcepcioClub e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void gestioMenu(Scanner sc) {
@@ -62,7 +92,29 @@ public class VistaClubUB {
 
             switch (opcionMenu) {
                 case M_Opcion_1_DonarDalta:
-                    club.afegirSoci(sc);
+                    
+                    Menu menu_afegir = new Menu<>("Donar d'alta un nou soci", Opcions_afegir.values());
+                    menu_afegir.setDescripcions(descripcions_afegir);
+
+                    Opcions_afegir opcionMenu_afegir;
+
+                    menu_afegir.mostrarMenu();
+                    opcionMenu_afegir = (Opcions_afegir) menu_afegir.getOpcio(sc);
+
+                    switch (opcionMenu_afegir) {
+                        case M_Opcion_1_AfegirFederat:
+                            crearSoci(sc, 1);
+                            break;
+                        case M_Opcion_2_AfegirEstandar:
+                            crearSoci(sc, 2);
+                            break;
+                        case M_Opcion_3_AfegirJunior:
+                            crearSoci(sc, 3);
+                            break;
+                        case M_Opcion_4_Tornar:
+                            break;
+                    }
+
                     break;
                 case M_Opcion_2_MostrarLlista:
                     club.printLlistaSocis("tots");
@@ -106,6 +158,11 @@ public class VistaClubUB {
                     club.guardarLlista();
                     break;
                 case M_Opcion_12_RecuperarLlista:
+                System.out.println("Vols recuperar la llista guardada? Aixo substituirà la llista actual del programa (Y/N).");
+                String temp = sc.nextLine();
+                if (temp.equals("Y")){
+                    club.carregarLlista();
+                }
                     break;
                 case M_Opcion_13_Sortir:
                     break;
