@@ -1,19 +1,20 @@
-package main.java.prog2.model;
+package prog2.model;
 
 public class Article {
     
     private String id;
     private String nom;
     private float preu;
-    private boolean urgent;
     private float temps;
+    private boolean admetUrgent;
 
     public Article() {}
-    public article(String nom, float preu, boolean urgent, float temps) {
+    public Article(String id, String nom, float preu, float temps, boolean admetUrgent) {
+        this.id = id;
         this.nom = nom;
         this.preu = preu;
-        this.urgent = urgent;
         this.temps = temps;
+        this.admetUrgent = admetUrgent;
     }
 
     //Getters and Setters
@@ -42,11 +43,11 @@ public class Article {
     }
 
     public boolean isUrgent() {
-        return this.urgent;
+        return this.admetUrgent;
     }
 
     public void setUrgent(boolean urgent) {
-        this.urgent = urgent;
+        this.admetUrgent = urgent;
     }
 
     public float getTemps() {
@@ -59,7 +60,7 @@ public class Article {
 
     public String toString() {
         return "ID=" + id + ", Nom=" + nom + ", Preu=" + preu +
-            ", Temps fins enviament=" + temps + ", Enviament Urgent=" + urgent;
+            ", Temps fins enviament=" + temps + ", Enviament Urgent=" + admetUrgent;
     }
 
 }

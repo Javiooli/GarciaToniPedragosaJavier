@@ -1,4 +1,4 @@
-package main.java.prog2.model.abstracts;
+package prog2.model.abstracts;
 
 public abstract class Client {
     

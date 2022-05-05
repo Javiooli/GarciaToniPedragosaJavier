@@ -1,4 +1,7 @@
-package main.java.prog2.model;
+package prog2.model;
+
+import prog2.model.abstracts.Client;
+import prog2.model.abstracts.Comanda;
 
 public class ComandaUrgent extends Comanda {
     
@@ -10,11 +13,12 @@ public class ComandaUrgent extends Comanda {
     public String tipusComanda() {
         return "Urgent";
     }
+    
     public boolean comandaEnviada() {
-        return this.enviat;
+        return isEnviat();
     }
     public boolean comandaRebuda() {
-        return this.rebuda;
+        return isRebuda();
     }
     //TODO
     public float preuEnviament() {

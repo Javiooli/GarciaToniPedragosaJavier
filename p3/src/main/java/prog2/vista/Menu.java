@@ -50,11 +50,15 @@ public class Menu<TEnum> {
     public void mostrarMenu() {
         // Mostrem les opcions
         String lines="--------------";
-        for(int i=0;i<getMaxLen();i++) {
+        for(int i=0;i<getMaxLen()*1.5;i++) {
             lines+="-";
         }
+        String tab="       ";
+        for(int i=0;i<getMaxLen()/2;i++) {
+            tab+=" ";
+        }
         System.out.println(lines);
-        System.out.println(_titol.toUpperCase());
+        System.out.println(tab + _titol);
         System.out.println(lines);
         for(TEnum c : _llistaOpcions){
             

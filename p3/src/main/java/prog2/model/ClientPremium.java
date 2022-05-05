@@ -1,4 +1,6 @@
-package main.java.prog2.model;
+package prog2.model;
+
+import prog2.model.abstracts.Client;
 
 public class ClientPremium extends Client {
     

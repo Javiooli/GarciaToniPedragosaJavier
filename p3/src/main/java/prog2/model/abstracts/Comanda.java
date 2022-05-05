@@ -1,8 +1,9 @@
-package main.java.prog2.model.abstracts;
+package prog2.model.abstracts;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
-import main.java.prog2.model.Article;
+import prog2.model.Article;
 
 public abstract class Comanda {
     private Article article;
@@ -13,6 +14,7 @@ public abstract class Comanda {
     private boolean rebuda;
 
     
+    
     public Comanda() {}
     public Comanda(Article article, Client client, int quantitat) {
         this.article = article;
@@ -22,7 +24,7 @@ public abstract class Comanda {
         this.enviat = false;
         this.rebuda = false;
     }
-
+    
     //Getters and setters
     public Article getArticle() {
         return this.article;
@@ -55,7 +57,23 @@ public abstract class Comanda {
     public void setData(Date data) {
         this.data = data;
     }
+    
+    public boolean isEnviat() {
+        return this.enviat;
+    }
 
+    public void setEnviat(boolean enviat) {
+        this.enviat = enviat;
+    }
+
+    public boolean isRebuda() {
+        return this.rebuda;
+    }
+
+    public void setRebuda(boolean rebuda) {
+        this.rebuda = rebuda;
+    }
+    
     public abstract String tipusComanda();
     public abstract boolean comandaEnviada();
     public abstract boolean comandaRebuda();

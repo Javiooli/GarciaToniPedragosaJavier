@@ -1,4 +1,7 @@
-package main.java.prog2.model;
+package prog2.model;
+
+import prog2.model.abstracts.Client;
+import prog2.model.abstracts.Comanda;
 
 public class ComandaNormal extends Comanda {
     
@@ -11,10 +14,10 @@ public class ComandaNormal extends Comanda {
         return "Normal";
     }
     public boolean comandaEnviada() {
-        return this.enviat;
+        return isEnviat();
     }
     public boolean comandaRebuda() {
-        return this.rebuda;
+        return isRebuda();
     }
     //TODO
     public float preuEnviament() {

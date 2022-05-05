@@ -1,5 +1,8 @@
-package main.java.prog2.model;
+package prog2.model;
+
+import java.io.Serializable;
 import prog2.model.abstracts.Llista;
+import prog2.vista.MercatException;
 
 public class LlistaArticles extends Llista<Article> implements Serializable {
     

@@ -11,6 +11,10 @@ public class Llista<T> implements Serializable {
             llista = new ArrayList<>();
       }
 
+      public Llista(Llista<T> original) {
+            llista = original.getArrayList();
+      }
+
       public int getSize() {
             return llista.size();
       }
@@ -21,7 +25,11 @@ public class Llista<T> implements Serializable {
       }
 
       public void esborrar(T t) {
-            llista.remove(t);
+            ArrayList<T> llistaNova = new ArrayList<T>();
+            for (T obj : llista) {
+                  if (!t.equals(obj)) llistaNova.add(obj);
+            }
+            this.llista = llistaNova;
       }
 
       public T getAt(int position) {
