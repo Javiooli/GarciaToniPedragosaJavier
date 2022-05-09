@@ -69,8 +69,93 @@ public class MercatUB {
         do {
             menuMain.mostrarMenu();
             opcioMain = (enumMain) menuMain.getOpcio(sc);
-
+            
+            switch (opcioMain){
+                case M_Opcio_1_GestioArticles:
+                    menuArticles.mostrarMenu();
+                    opcioArticles = (enumArticles) menuArticles.getOpcio(sc);
+                    switch(opcioArticles){
+                        case M_Opcio_1_AfegirArticle:
+                            afegirArticle(sc);
+                            break;
+                        case M_Opcio_2_VisualitzarArticle:
+                            visualitzarArticle(sc);
+                            break;
+                        default: break;
+                    }
+                    break;
+                case M_Opcio_2_GestioClients:
+                    menuClients.mostrarMenu();
+                    opcioClients = (enumClients) menuClients.getOpcio(sc);
+                    switch(opcioClients){
+                        case M_Opcio_1_AfegirClient:
+                            afegirClient(sc);
+                            break;
+                        case M_Opcio_2_VisualitzarClients:
+                            visualitzarClient(sc);
+                            break;
+                        default: break;
+                    }
+                    break;
+                case M_Opcio_3_GestioComandes:
+                    menuComandes.mostrarMenu();
+                    opcioComandes = (enumComandes) menuComandes.getOpcio(sc);
+                    switch(opcioComandes){
+                        case M_Opcio_1_AfegirComanda:
+                            afegirComanda(sc);
+                            break;
+                        case M_Opcio_2_EsborrarComanda:
+                            esborrarComanda(sc);
+                            break;
+                        case M_Opcio_3_VisualitzarComandes:
+                            visualitzarComanda(sc);
+                            break;
+                        case M_Opcio_4_VisualitzarUrgents:
+                            visualitzarUrgents(sc);
+                            break;
+                        default: break;
+                    }
+                    break;
+                case M_Opcio_4_GuardarDades:
+                    guardarDades();
+                    break;
+                case M_Opcio_5_CarregaDades:
+                    carregarDades();
+                    break;
+            }
+            
         } while (opcioMain != enumMain.M_Opcio_6_Sortir);
+    }
+    
+    void afegirArticle (Scanner sc){
+        
+    }
+    void visualitzarArticle (Scanner sc){
+        
+    }
+    void afegirClient(Scanner sc){
+        
+    }
+    void visualitzarClient(Scanner sc){
+        
+    }
+    void afegirComanda(Scanner sc){
+        
+    }
+    void esborrarComanda(Scanner sc){
+        
+    }
+    void visualitzarComanda(Scanner sc){
+        
+    }
+    void visualitzarUrgents(Scanner sc){
+        
+    }
+    void guardarDades(){
+        
+    }
+    void carregarDades(){
+        
     }
 
 }
