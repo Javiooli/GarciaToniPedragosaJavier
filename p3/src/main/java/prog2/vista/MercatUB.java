@@ -3,8 +3,11 @@ package prog2.vista;
 import java.util.Scanner;
 
 import prog2.vista.Menu;
+import prog2.adaptador.*;
 
 public class MercatUB {
+    
+    Adaptador ad = new Adaptador();
 
     private static enum enumMain {
         M_Opcio_1_GestioArticles,
@@ -128,7 +131,29 @@ public class MercatUB {
     }
     
     void afegirArticle (Scanner sc){
+        System.out.println("Entra l'identificador de l'article: ");
+        String id = sc.nextLine();
+        System.out.println("Entra el nom de l'article: ");
+        String nom = sc.nextLine();
+        String temp ="h.";
+        float preu = -1;
+        do{
+        if (temp.equals("h."))
+            System.out.println("Entra el preu de l'article: ");
+        else
+            System.out.println("Entra un preu numèric superior a 0.");
+        temp = sc.nextLine();
+        try{
+            preu = Integer.parseInt(temp);
+        }
+        catch(Exception e){
+        }
+        } while(preu<0);
+        do{
+            System.out.println("Entra si el article");
+        }
         
+        ad.afegirArticle();
     }
     void visualitzarArticle (Scanner sc){
         
