@@ -1,5 +1,7 @@
 package prog2.model;
 
+import prog2.vista.MercatException;
+
 public class Article {
     
     private String id;
@@ -9,7 +11,9 @@ public class Article {
     private boolean admetUrgent;
 
     public Article() {}
-    public Article(String id, String nom, float preu, float temps, boolean admetUrgent) {
+    public Article(String id, String nom, float preu, float temps, boolean admetUrgent) throws MercatException {
+        if (preu<0 || temps<0 )
+            throw new MercatException("Els valors de preu i temps han de ser positius.");
         this.id = id;
         this.nom = nom;
         this.preu = preu;

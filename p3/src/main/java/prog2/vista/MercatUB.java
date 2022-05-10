@@ -135,31 +135,69 @@ public class MercatUB {
         String id = sc.nextLine();
         System.out.println("Entra el nom de l'article: ");
         String nom = sc.nextLine();
-        String temp ="h.";
+        String temp ="h.5ñ9";
         float preu = -1;
+        boolean ok=false;
         do{
-        if (temp.equals("h."))
             System.out.println("Entra el preu de l'article: ");
-        else
-            System.out.println("Entra un preu numèric superior a 0.");
-        temp = sc.nextLine();
-        try{
-            preu = Integer.parseInt(temp);
-        }
-        catch(Exception e){
-        }
-        } while(preu<0);
+            temp = sc.nextLine();
+            try{
+                preu = Float.parseFloat(temp);
+                ok=true;
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        } while(!ok);        
+        ok=false;
+        int temps = 0;
         do{
-            System.out.println("Entra si el article");
+            System.out.println("Entra el temps fins l'enviament de l'article: ");
+            temp = sc.nextLine();
+            try{
+            temps = Integer.parseInt(temp);
+            ok=true;
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }while(!ok);
+        do{
+            System.out.println("Entra si el article admet enviament urgent: (Y/N)");
+            temp = sc.nextLine();
+            
+        }while(!temp.equalsIgnoreCase("Y") && !temp.equalsIgnoreCase("N"));
+        boolean urgent = temp.equalsIgnoreCase("Y")? true: false;
+        try{
+        ad.afegirArticle(id,nom, preu, temps, urgent);
         }
-        
-        ad.afegirArticle();
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
     void visualitzarArticle (Scanner sc){
         
     }
     void afegirClient(Scanner sc){
-        
+        System.out.println("Entra l'adreça de correu electronic: ");
+        String correu = sc.nextLine();
+        System.out.println("Entra el nom del client: ");
+        String nom = sc.nextLine();
+        System.out.println("Entra l'adreça del client: ");
+        String adreca = sc.nextLine();   
+        String temp;
+        do{
+            System.out.println("Es client Premium? (Y/N)");
+            temp = sc.nextLine();
+            
+        }while(!temp.equalsIgnoreCase("Y") && !temp.equalsIgnoreCase("N"));
+        boolean premium = temp.equalsIgnoreCase("Y")? true: false;
+        try{
+        ad.afegirClient(correu, nom, adreca, premium);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
     void visualitzarClient(Scanner sc){
         

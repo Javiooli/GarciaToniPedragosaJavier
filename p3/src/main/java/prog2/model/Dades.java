@@ -28,6 +28,7 @@ public class Dades implements InDades {
 
     @Override
     public ArrayList<Article> recuperaArticles() {
+        
         return articles.getArrayList();
     }
 

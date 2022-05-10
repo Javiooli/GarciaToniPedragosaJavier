@@ -12,6 +12,12 @@ public class Adaptador {
     public void afegirArticle(String id, String nom, float preu, int temps, boolean urgent) throws MercatException{
         dades.afegirArticle(id, nom, preu, temps, urgent);
     }
+    public void afegirClient(String correu, String nom, String adreca, boolean premium) throws MercatException {
+        dades.afegirClient(correu, nom, adreca, premium);
+    }
+    public void afegirComanda (int articlePos, int clientPos, int qty, boolean urgent) throws MercatException{
+        dades.afegirComanda(articlePos, clientPos, qty, urgent);
+    }
 
     public void guardaDades(String camiDesti) throws MercatException {
         
