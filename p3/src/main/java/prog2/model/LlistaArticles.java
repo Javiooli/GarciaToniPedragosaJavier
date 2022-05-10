@@ -13,4 +13,14 @@ public class LlistaArticles extends Llista<Article> implements Serializable {
         }
         llista.add(article);
     }
+    @Override
+    public String toString(){
+        String result = "";
+        int index = 1;
+        for (Article article : llista) {
+            result = result + index +". "+ article.toString() +"\n";
+            index++;
+        }
+        return result;
+    }
 }

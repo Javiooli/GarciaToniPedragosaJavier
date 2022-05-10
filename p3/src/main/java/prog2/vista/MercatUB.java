@@ -175,9 +175,11 @@ public class MercatUB {
             System.out.println(e.getMessage());
         }
     }
+
     void visualitzarArticle (Scanner sc){
         
     }
+
     void afegirClient(Scanner sc){
         System.out.println("Entra l'adreça de correu electronic: ");
         String correu = sc.nextLine();
@@ -199,24 +201,69 @@ public class MercatUB {
             System.out.println(e.getMessage());
         }
     }
+
     void visualitzarClient(Scanner sc){
         
     }
+
     void afegirComanda(Scanner sc){
-        
+        try{
+            System.out.println(ad.printLlistaArticles());
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        System.out.println("Entra l'index del article de la comanda: ");
+        String temp;
+        temp=sc.nextLine();
+        int articlePos;
+        boolean ok=false;
+        do{
+            try{
+                articlePos=Integer.parseInt(temp);
+                ok=true;
+            }
+            catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        } while(!ok);
+        try{
+            System.out.println(ad.printLlistaClients());
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        System.out.println("Entra l'index del client que fa comanda: ");
+        temp=sc.nextLine();
+        int clientPos;
+        ok=false;
+        do{
+            try{
+                clientPos=Integer.parseInt(temp);
+                ok=true;
+            }
+            catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        } while(!ok);
     }
+
     void esborrarComanda(Scanner sc){
         
     }
+
     void visualitzarComanda(Scanner sc){
         
     }
+
     void visualitzarUrgents(Scanner sc){
         
     }
+
     void guardarDades(){
         
     }
+
     void carregarDades(){
         
     }

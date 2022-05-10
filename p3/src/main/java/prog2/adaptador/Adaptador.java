@@ -25,5 +25,11 @@ public class Adaptador {
     public void carregaDades(String camiOrigen) throws MercatException {
 
     }
+    public String printLlistaArticles() throws MercatException{
+        return dades.printLlistaArticles();
+    }
+    public String printLlistaClients() throws MercatException{
+        return dades.printLlistaClients();
+    }
 
 }

@@ -2,6 +2,8 @@ package prog2.model;
 
 import java.util.ArrayList;
 
+import javax.lang.model.type.ArrayType;
+
 import prog2.model.abstracts.Client;
 import prog2.model.abstracts.Comanda;
 import prog2.model.abstracts.interfaces.InDades;
@@ -65,6 +67,17 @@ public class Dades implements InDades {
             if (c.tipusComanda().equalsIgnoreCase("Urgent")) comandesUrgents.add(c);
         }
         return comandesUrgents;
+    }
+    public String printLlistaArticles() throws MercatException{
+        if (articles.isEmpty())
+            throw new MercatException("La llista d'articles està buida.");
+        return articles.toString();
+    }
+
+    public String printLlistaClients() throws MercatException{
+        if (clients.isEmpty())
+            throw new MercatException("La llista d'articles està buida.");
+        return clients.toString();
     }
     
 }
