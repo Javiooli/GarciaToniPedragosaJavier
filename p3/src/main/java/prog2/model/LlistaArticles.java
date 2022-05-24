@@ -13,8 +13,8 @@ public class LlistaArticles extends Llista<Article> implements Serializable {
         }
         llista.add(article);
     }
-    @Override
-    public String toString(){
+    
+    public String toStringWIndex(){
         String result = "";
         int index = 1;
         for (Article article : llista) {

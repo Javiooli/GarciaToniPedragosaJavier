@@ -25,11 +25,17 @@ public class Adaptador {
     public void carregaDades(String camiOrigen) throws MercatException {
 
     }
-    public String printLlistaArticles() throws MercatException{
-        return dades.printLlistaArticles();
+    public String printLlistaArticles(boolean index) throws MercatException{
+        return dades.printLlistaArticles(index);
     }
-    public String printLlistaClients() throws MercatException{
-        return dades.printLlistaClients();
+    public String printLlistaClients(boolean index) throws MercatException{
+        return dades.printLlistaClients(index);
+    }
+    public String printLlistaComandes(boolean index,boolean urgent) throws MercatException{
+        return dades.printLlistaComandes(index, urgent);
+    }
+    public void esborrarComanda(int index) throws MercatException{
+        dades.esborrarComanda(index);
     }
 
 }

@@ -68,16 +68,27 @@ public class Dades implements InDades {
         }
         return comandesUrgents;
     }
-    public String printLlistaArticles() throws MercatException{
+    public String printLlistaArticles(boolean index) throws MercatException{
         if (articles.isEmpty())
             throw new MercatException("La llista d'articles està buida.");
-        return articles.toString();
+        if (index)  return articles.toStringWIndex();
+        else return articles.toString();
     }
 
-    public String printLlistaClients() throws MercatException{
+    public String printLlistaClients(boolean index) throws MercatException{
         if (clients.isEmpty())
             throw new MercatException("La llista d'articles està buida.");
-        return clients.toString();
+        if (index) return clients.toStringWIndex();
+        else return clients.toString();
+    }
+    public String printLlistaComandes(boolean index, boolean urgent) throws MercatException{
+        if (comandes.isEmpty())
+            throw new MercatException("La llista de comandes està buida.");
+        if (urgent) return comandes.printUrgents();
+        else{
+            if (index) return comandes.toStringWIndex();
+            else return comandes.toString();
+        }
     }
     
 }

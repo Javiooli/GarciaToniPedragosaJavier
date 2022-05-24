@@ -1,6 +1,7 @@
 package prog2.vista;
 
 import java.util.Scanner;
+import java.util.concurrent.CountDownLatch;
 
 import prog2.vista.Menu;
 import prog2.adaptador.*;
@@ -177,7 +178,10 @@ public class MercatUB {
     }
 
     void visualitzarArticle (Scanner sc){
-        
+        try {ad.printLlistaArticles(false);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     void afegirClient(Scanner sc){
@@ -203,61 +207,123 @@ public class MercatUB {
     }
 
     void visualitzarClient(Scanner sc){
-        
+        try{
+            ad.printLlistaClients(false);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     void afegirComanda(Scanner sc){
+        boolean articles = false;
+        int articlePos = 0;
+        int clientPos = 0;
+        int qty = 0;
         try{
-            System.out.println(ad.printLlistaArticles());
+            System.out.println(ad.printLlistaArticles(true));
+            articles = true;
         }
         catch(Exception e){
             System.out.println(e.getMessage());
         }
-        System.out.println("Entra l'index del article de la comanda: ");
-        String temp;
-        temp=sc.nextLine();
-        int articlePos;
-        boolean ok=false;
-        do{
+        if (articles){
+            System.out.println("Entra l'index del article de la comanda: ");
+            String temp;
+            boolean ok=false;
+            do{
+                temp=sc.nextLine();
+                try{
+                    articlePos=Integer.parseInt(temp);
+                    ok=true;
+                }
+                catch (Exception e){
+                    System.out.println(e.getMessage());
+                }
+            } while(!ok);
+            
+            boolean clients = false;
             try{
-                articlePos=Integer.parseInt(temp);
-                ok=true;
+                System.out.println(ad.printLlistaClients(true));
+                clients = true;
             }
-            catch (Exception e){
+            catch(Exception e){
                 System.out.println(e.getMessage());
             }
-        } while(!ok);
-        try{
-            System.out.println(ad.printLlistaClients());
-        }
-        catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        System.out.println("Entra l'index del client que fa comanda: ");
-        temp=sc.nextLine();
-        int clientPos;
-        ok=false;
-        do{
-            try{
-                clientPos=Integer.parseInt(temp);
-                ok=true;
+            if (clients){
+                System.out.println("Entra l'index del client que fa comanda: ");
+                ok=false;
+                do{
+                    temp=sc.nextLine();
+                    try{
+                        clientPos=Integer.parseInt(temp);
+                        ok=true;
+                    }
+                    catch (Exception e){
+                        System.out.println(e.getMessage());
+                    }
+                } while(!ok);
+                System.out.println("Entra la quantitat d'articles de la comanda:");
+                ok=false;
+                do{
+                    temp=sc.nextLine();
+                    try{
+                        qty=Integer.parseInt(temp);
+                        ok=true;
+                    }
+                    catch (Exception e){
+                        System.out.println(e.getMessage());
+                    }
+                } while(!ok);
+                System.out.println("¿És una comanda urgent? (y/n)");
+                ok=false;
+                do{
+                    temp = sc.nextLine();
+                    if (temp.equalsIgnoreCase("y")){
+                        try {ad.afegirComanda(articlePos, clientPos, qty, true);}
+                        catch (Exception e) {System.out.println(e.getMessage());}
+                        ok=true;
+                    }
+                    else if (temp.equalsIgnoreCase("n")){
+                        try {ad.afegirComanda(articlePos, clientPos, qty, false);}
+                        catch (Exception e){ System.out.println(e.getMessage());}
+                        ok=true; 
+                    }
+                    else System.out.println("Entra 'y' si és un comanda urgent o 'n' si no ho és:");
+                }while(!ok);
             }
-            catch (Exception e){
-                System.out.println(e.getMessage());
-            }
-        } while(!ok);
+            else System.out.println("Introdueix com a mínim un client abans de fer una comanda.");
+        }
+        else System.out.println("Introdueix com a mínim un atricle abans de fer una comanda.");
     }
 
     void esborrarComanda(Scanner sc){
-        
+        try{
+            ad.printLlistaComandes(true, false);
+            System.out.println("Entra l'índex de la comanda que vols esborrar.");
+            String temp = sc.nextLine();
+            int index = Integer.parseInt(temp);
+            ad.esborrarComanda(index);
+            System.out.println("La comanda ha sigut esborrada amb èxit.");
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }    
     }
 
     void visualitzarComanda(Scanner sc){
-        
+        try{    
+            ad.printLlistaComandes(false, false);
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     void visualitzarUrgents(Scanner sc){
-        
+        try{    
+            ad.printLlistaComandes(false, true);
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }        
     }
 
     void guardarDades(){

@@ -13,4 +13,14 @@ public class LlistaClients extends Llista<Client> implements Serializable {
         }
         llista.add(client);
     }
+
+    public String toStringWIndex(){
+        String result = "";
+        int index = 1;
+        for (Client client : llista) {
+            result = result + index +". "+ client.toString() +"\n";
+            index++;
+        }
+        return result;
+    }
 }

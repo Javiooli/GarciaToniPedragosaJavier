@@ -14,4 +14,21 @@ public class LlistaComandes extends Llista<Comanda> implements Serializable {
             
         llista.add(comanda);
     }
+    
+    public String toStringWIndex(){
+        String result = "";
+        int index = 1;
+        for (Comanda comanda : llista) {
+            result = result + index +". "+ comanda.toString() +"\n";
+            index++;
+        }
+        return result;
+    }
+    public String printUrgents(){
+        String result = "";
+        for (Comanda com: llista){
+            if (ComandaUrgent.class.isInstance(com)) result = result + com.toString();
+        }
+        return result;
+    }
 }
