@@ -63,8 +63,8 @@ public class Article {
     }
 
     public String toString() {
-        return "ID=" + id + ", Nom=" + nom + ", Preu=" + preu +
-            ", Temps fins enviament=" + temps + ", Enviament Urgent=" + admetUrgent;
+        return "ID = " + id + ", Nom = " + nom + ", Preu = " + preu +
+            ", Temps fins enviament = " + temps + " minuts, Enviament Urgent = " + admetUrgent;
     }
 
 }

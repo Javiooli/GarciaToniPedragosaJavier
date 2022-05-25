@@ -6,12 +6,12 @@ import java.util.*;
 import prog2.model.Article;
 
 public abstract class Comanda {
-    private Article article;
-    private Client client;
-    private int quantitat;
-    private Date data;
-    private boolean enviat;
-    private boolean rebuda;
+    protected Article article;
+    protected Client client;
+    protected int quantitat;
+    protected Date data;
+    protected boolean enviat;
+    protected boolean rebuda;
 
     
     
@@ -58,22 +58,6 @@ public abstract class Comanda {
         this.data = data;
     }
     
-    public boolean isEnviat() {
-        return this.enviat;
-    }
-
-    public void setEnviat(boolean enviat) {
-        this.enviat = enviat;
-    }
-
-    public boolean isRebuda() {
-        return this.rebuda;
-    }
-
-    public void setRebuda(boolean rebuda) {
-        this.rebuda = rebuda;
-    }
-    
     public abstract String tipusComanda();
     public abstract boolean comandaEnviada();
     public abstract boolean comandaRebuda();
@@ -86,9 +70,9 @@ public abstract class Comanda {
     public String toString() {
         SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
 
-        return "Tipus=" + tipusComanda() + ", Article=" + article.getNom() + ", Client=" +
-            client.getNom() + ", Quantitat=" + quantitat + ", Data de creacio=" +
-            formatter.format(data) + ", Enviat=" + enviat + ", Rebuda=" + rebuda + ", Preu Articles="
-            + calcPreu() + ", Preu Enviament=" + preuEnviament();
+        return "Tipus = " + tipusComanda() + ", Article = " + article.getNom() + ", Client = " +
+            client.getNom() + ", Quantitat = " + quantitat + ", Data de creacio = " +
+            formatter.format(data) + ", Enviat = " + comandaEnviada() + ", Rebuda = " + comandaRebuda() + ", Preu Articles = "
+            + calcPreu() + ", Preu Enviament = " + preuEnviament();
     }
 }

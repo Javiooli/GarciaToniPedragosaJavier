@@ -2,6 +2,7 @@ package prog2.model;
 
 import prog2.model.abstracts.Client;
 import prog2.model.abstracts.Comanda;
+import java.util.Date;
 
 public class ComandaUrgent extends Comanda {
     
@@ -15,14 +16,21 @@ public class ComandaUrgent extends Comanda {
     }
     
     public boolean comandaEnviada() {
-        return isEnviat();
+        Date now = new Date();
+        long tempsTotalEnviament = (long)article.getTemps()*60*1000/2; 
+        if (tempsTotalEnviament <= now.getTime()-this.data.getTime()) this.enviat = true;
+        return this.enviat;
     }
     public boolean comandaRebuda() {
-        return isRebuda();
+        Date now = new Date();
+        long tempsTotalRecepcio = (long)article.getTemps()*60*1000 + 1000*60*60*24; //temps fins enviament en minuts a milisegons + 1 dia en milisegons.
+        if (tempsTotalRecepcio <= now.getTime() - this.data.getTime()) this.rebuda = true;
+        return this.rebuda;
     }
-    //TODO
+
     public float preuEnviament() {
-        return -1;
+        if (this.client.tipusClient().equalsIgnoreCase("premium")) return calcPreu() + 4 - (this.client.descompteEnv()/100)*4;
+        else return calcPreu() + 4;
     }
 
 }

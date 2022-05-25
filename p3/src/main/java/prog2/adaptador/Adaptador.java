@@ -2,6 +2,7 @@ package prog2.adaptador;
 
 import prog2.vista.MercatException;
 import prog2.model.Dades;
+import java.io.*;
 
 public class Adaptador {
     Dades dades;
@@ -20,10 +21,30 @@ public class Adaptador {
     }
 
     public void guardaDades(String camiDesti) throws MercatException {
-        
+        File fitxer = new File(camiDesti);
+        fitxer.delete();
+        try{ 
+            FileOutputStream fout = new FileOutputStream(fitxer);
+            ObjectOutputStream oos = new ObjectOutputStream(fout);
+            oos.writeObject(dades);
+            oos.close();
+            fout.close();
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }       
     }
     public void carregaDades(String camiOrigen) throws MercatException {
-
+        File fitxer = new File(camiOrigen);
+        try{
+            FileInputStream fin = new FileInputStream(fitxer);
+            ObjectInputStream ois = new ObjectInputStream(fin);
+            dades = (Dades) ois.readObject();
+            fin.close();
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
     public String printLlistaArticles(boolean index) throws MercatException{
         return dades.printLlistaArticles(index);

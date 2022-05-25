@@ -31,4 +31,12 @@ public class LlistaComandes extends Llista<Comanda> implements Serializable {
         }
         return result;
     }
+
+    public String toString(){
+        String result = "";
+        for (Comanda comanda : llista) {
+            result = result + comanda.toString() +"\n";
+        }
+        return result;
+    }
 }

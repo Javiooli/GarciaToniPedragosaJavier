@@ -121,10 +121,18 @@ public class MercatUB {
                     }
                     break;
                 case M_Opcio_4_GuardarDades:
-                    guardarDades();
+                System.out.println("Escriu l'adreça de l'arxiu al que vols guardar les dades:");
+                String temp = sc.nextLine();
+                System.out.println("Guardant la llista de socis actual al fitxer ...");
+                guardarDades(temp);
                     break;
+                    
                 case M_Opcio_5_CarregaDades:
-                    carregarDades();
+                System.out.println("Escriu l'adreça de l'arxiu del que vols recuperar les dades:");
+                temp = sc.nextLine();
+                if (temp.equalsIgnoreCase("Y")){
+                    carregarDades(temp);
+                }
                     break;
             }
             
@@ -153,7 +161,7 @@ public class MercatUB {
         ok=false;
         int temps = 0;
         do{
-            System.out.println("Entra el temps fins l'enviament de l'article: ");
+            System.out.println("Entra el temps fins l'enviament de l'article (en minuts): ");
             temp = sc.nextLine();
             try{
             temps = Integer.parseInt(temp);
@@ -171,6 +179,7 @@ public class MercatUB {
         boolean urgent = temp.equalsIgnoreCase("Y")? true: false;
         try{
         ad.afegirArticle(id,nom, preu, temps, urgent);
+        System.out.println("Article amb identificador " + id + " afegit amb èxit");
         }
         catch (Exception e){
             System.out.println(e.getMessage());
@@ -178,7 +187,8 @@ public class MercatUB {
     }
 
     void visualitzarArticle (Scanner sc){
-        try {ad.printLlistaArticles(false);
+        try {
+            System.out.println(ad.printLlistaArticles(false));
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -208,7 +218,7 @@ public class MercatUB {
 
     void visualitzarClient(Scanner sc){
         try{
-            ad.printLlistaClients(false);
+            System.out.println(ad.printLlistaClients(false));
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -279,12 +289,14 @@ public class MercatUB {
                 do{
                     temp = sc.nextLine();
                     if (temp.equalsIgnoreCase("y")){
-                        try {ad.afegirComanda(articlePos, clientPos, qty, true);}
+                        try {ad.afegirComanda(articlePos, clientPos, qty, true);
+                                System.out.println("Comanda afegida amb èxit.");}
                         catch (Exception e) {System.out.println(e.getMessage());}
                         ok=true;
                     }
                     else if (temp.equalsIgnoreCase("n")){
-                        try {ad.afegirComanda(articlePos, clientPos, qty, false);}
+                        try {ad.afegirComanda(articlePos, clientPos, qty, false);
+                            System.out.println("Comanda afegida amb èxit.");}
                         catch (Exception e){ System.out.println(e.getMessage());}
                         ok=true; 
                     }
@@ -311,27 +323,29 @@ public class MercatUB {
     }
 
     void visualitzarComanda(Scanner sc){
-        try{    
-            ad.printLlistaComandes(false, false);
+        try{ 
+            System.out.println(ad.printLlistaComandes(false, false));
         } catch(Exception e){
             System.out.println(e.getMessage());
         }
     }
 
     void visualitzarUrgents(Scanner sc){
-        try{    
-            ad.printLlistaComandes(false, true);
+        try{
+            System.out.println(ad.printLlistaComandes(false, true));
         } catch(Exception e){
             System.out.println(e.getMessage());
         }        
     }
 
-    void guardarDades(){
-        
+    void guardarDades(String camiDesti){
+        try{ad.guardaDades(camiDesti);}
+        catch (Exception e) {System.out.println(e.getMessage());}
     }
 
-    void carregarDades(){
-        
+    void carregarDades(String camiOrigen){
+        try{ad.carregaDades(camiOrigen);}
+        catch (Exception e){System.out.println(e.getMessage());}
     }
 
 }

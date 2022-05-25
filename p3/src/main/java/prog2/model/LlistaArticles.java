@@ -23,4 +23,12 @@ public class LlistaArticles extends Llista<Article> implements Serializable {
         }
         return result;
     }
+
+    public String toString(){
+        String result = "";
+        for (Article article : llista) {
+            result = result + article.toString() +"\n";
+        }
+        return result;
+    }
 }

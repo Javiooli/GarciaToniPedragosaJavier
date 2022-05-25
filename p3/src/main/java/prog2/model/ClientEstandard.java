@@ -9,6 +9,6 @@ public class ClientEstandard extends Client {
     }
 
     public String tipusClient() {return "Estandard";}
-    public float calcMensual() {return -1;} //TODO
-    public float descompteEnv() {return -1;} //TODO
+    public float calcMensual() {return 0;}
+    public float descompteEnv() {return 0;}
 }

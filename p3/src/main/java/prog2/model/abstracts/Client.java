@@ -44,8 +44,8 @@ public abstract class Client {
     public abstract float descompteEnv();
 
     public String toString() {
-        return "Tipus=" + tipusClient() + ", Email=" + email +
-            ", Nom=" + nom + ", Adreça=" + adreca + ", Descompte Enviament="
-            + descompteEnv() + ", Mensualitat=" + calcMensual();
+        return "Tipus = " + tipusClient() + ", Email = " + email +
+            ", Nom = " + nom + ", Adreça = " + adreca + ", Descompte Enviament = "
+            + descompteEnv() + ", Mensualitat = " + calcMensual();
     }
 }

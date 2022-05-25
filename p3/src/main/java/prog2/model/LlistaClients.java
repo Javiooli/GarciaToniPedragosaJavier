@@ -23,4 +23,12 @@ public class LlistaClients extends Llista<Client> implements Serializable {
         }
         return result;
     }
+
+    public String toString(){
+        String result = "";
+        for (Client client : llista) {
+            result = result + client.toString() +"\n";
+        }
+        return result;
+    }
 }
