@@ -1,9 +1,7 @@
 package prog2.vista;
 
+import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.concurrent.CountDownLatch;
-
-import prog2.vista.Menu;
 import prog2.adaptador.*;
 
 public class MercatUB {
@@ -188,7 +186,7 @@ public class MercatUB {
 
     void visualitzarArticle (Scanner sc){
         try {
-            System.out.println(ad.printLlistaArticles(false));
+            printArrayList(ad.printLlistaArticles(),false);
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -218,7 +216,7 @@ public class MercatUB {
 
     void visualitzarClient(Scanner sc){
         try{
-            System.out.println(ad.printLlistaClients(false));
+            printArrayList(ad.printLlistaClients(),false);
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -230,7 +228,7 @@ public class MercatUB {
         int clientPos = 0;
         int qty = 0;
         try{
-            System.out.println(ad.printLlistaArticles(true));
+            printArrayList(ad.printLlistaArticles(),true);
             articles = true;
         }
         catch(Exception e){
@@ -253,7 +251,7 @@ public class MercatUB {
             
             boolean clients = false;
             try{
-                System.out.println(ad.printLlistaClients(true));
+                printArrayList(ad.printLlistaClients(), true);
                 clients = true;
             }
             catch(Exception e){
@@ -310,7 +308,7 @@ public class MercatUB {
 
     void esborrarComanda(Scanner sc){
         try{
-            ad.printLlistaComandes(true, false);
+            printArrayList(ad.printLlistaComandes(false), true);
             System.out.println("Entra l'índex de la comanda que vols esborrar.");
             String temp = sc.nextLine();
             int index = Integer.parseInt(temp);
@@ -324,7 +322,7 @@ public class MercatUB {
 
     void visualitzarComanda(Scanner sc){
         try{ 
-            System.out.println(ad.printLlistaComandes(false, false));
+            printArrayList(ad.printLlistaComandes(false), false);;
         } catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -332,7 +330,7 @@ public class MercatUB {
 
     void visualitzarUrgents(Scanner sc){
         try{
-            System.out.println(ad.printLlistaComandes(false, true));
+            printArrayList(ad.printLlistaComandes(true), false);;
         } catch(Exception e){
             System.out.println(e.getMessage());
         }        
@@ -346,6 +344,14 @@ public class MercatUB {
     void carregarDades(String camiOrigen){
         try{ad.carregaDades(camiOrigen);}
         catch (Exception e){System.out.println(e.getMessage());}
+    }
+
+    void printArrayList(ArrayList<String> llista, boolean index){
+        int ind = 0;
+        for (String s: llista){
+            if (index) System.out.println(ind + ". " + s);
+            else System.out.println(s);
+        }
     }
 
 }
