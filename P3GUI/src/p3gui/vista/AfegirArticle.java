@@ -171,11 +171,24 @@ public class AfegirArticle extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
         parent.setVisible(true);
-        
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAcceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptarActionPerformed
-        // TODO add your handling code here:        
+        // TODO add your handling code here:    
+        try{
+            ad.afegirArticle(txtId.getText(), txtNom.getText(), Float.parseFloat(txtPreu.getText()), 
+                    Integer.parseInt(txtTemps.getText()), checkIsUrgent.isSelected());
+            btnAcceptar.setEnabled(false);
+            txtId.setText("");
+            txtNom.setText("");
+            txtPreu.setText("");
+            txtTemps.setText("");
+            checkIsUrgent.setSelected(false);
+            this.setVisible(false);
+            parent.setVisible(true);
+        }catch (Exception e){
+            
+        }
     }//GEN-LAST:event_btnAcceptarActionPerformed
 
     private void txtIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyPressed

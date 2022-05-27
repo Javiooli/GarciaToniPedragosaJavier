@@ -1,5 +1,7 @@
 package p3gui.vista;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultListModel;
 import prog2.adaptador.Adaptador;
@@ -50,6 +52,16 @@ public class AfegirComanda extends javax.swing.JFrame {
                 formFocusGained(evt);
             }
         });
+        addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                formPropertyChange(evt);
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         txtQtty.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -81,6 +93,11 @@ public class AfegirComanda extends javax.swing.JFrame {
         });
 
         cbClient.setSelectedIndex(-1);
+        cbClient.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cbClientFocusGained(evt);
+            }
+        });
         cbClient.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 cbClientMouseReleased(evt);
@@ -92,6 +109,11 @@ public class AfegirComanda extends javax.swing.JFrame {
             }
         });
 
+        cbArticle.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cbArticleFocusGained(evt);
+            }
+        });
         cbArticle.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 cbArticleMouseReleased(evt);
@@ -167,52 +189,59 @@ public class AfegirComanda extends javax.swing.JFrame {
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
         // TODO add your handling code here:        
-        // Relleno el cbArticles con los valores de la lista de Articles.
-        DefaultListModel<String> llista = new DefaultListModel<>();
-        try{
-            for (String Val : ad.printLlistaArticles()){
-                llista.addElement(Val);
-            }
-        }catch (Exception e){
-            
-        }
-        cbArticle.setModel((ComboBoxModel<String>) llista);
-        cbArticle.setSelectedIndex(-1);
-        
-        llista.clear();
-        
-        //Relleno el cbClients con los valores de la lista Clients.
-        try{
-            for (String Val : ad.printLlistaClients()){
-                llista.addElement(Val);
-            }
-        }catch (Exception e){
-            
-        }
-        cbClient.setModel((ComboBoxModel<String>) llista);
-        cbClient.setSelectedIndex(-1);
     }//GEN-LAST:event_formFocusGained
 
     private void cbClientMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbClientMouseReleased
         // TODO add your handling code here:
         allFilled = cbClient.getSelectedIndex() != -1 && cbArticle.getSelectedIndex() != -1
-                && txtQtty.getText().equals("");
+                && !txtQtty.getText().equals("");
         btnAfegir.setEnabled(allFilled);
     }//GEN-LAST:event_cbClientMouseReleased
 
     private void cbArticleMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbArticleMouseReleased
         // TODO add your handling code here:
         allFilled = cbClient.getSelectedIndex() != -1 && cbArticle.getSelectedIndex() != -1
-                && txtQtty.getText().equals("");
+                && !txtQtty.getText().equals("");
         btnAfegir.setEnabled(allFilled);
     }//GEN-LAST:event_cbArticleMouseReleased
 
     private void txtQttyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQttyKeyReleased
         // TODO add your handling code here:
         allFilled = cbClient.getSelectedIndex() != -1 && cbArticle.getSelectedIndex() != -1
-                && txtQtty.getText().equals("");
+                && !txtQtty.getText().equals("");
         btnAfegir.setEnabled(allFilled);
     }//GEN-LAST:event_txtQttyKeyReleased
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowActivated
+
+    private void formPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_formPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formPropertyChange
+
+    private void cbArticleFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbArticleFocusGained
+        // TODO add your handling code here:
+        // Relleno el cbArticles con los valores de la lista de Articles.
+        try{
+            for (String Val : ad.printLlistaArticles()){
+                cbArticle.addItem(Val);
+            }
+        }catch (Exception r){
+        }        
+    }//GEN-LAST:event_cbArticleFocusGained
+
+    private void cbClientFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbClientFocusGained
+        // TODO add your handling code here:
+        //Relleno el cbClients con los valores de la lista Clients.
+        try{
+            for (String Val : ad.printLlistaClients()){
+                cbClient.addItem(Val);
+            }
+        }catch (Exception r){
+            
+        }
+    }//GEN-LAST:event_cbClientFocusGained
 
     /**
      * @param args the command line arguments
@@ -267,5 +296,4 @@ public class AfegirComanda extends javax.swing.JFrame {
         this.setVisible(true);
         aThis.setVisible(false);
     }
-
 }
