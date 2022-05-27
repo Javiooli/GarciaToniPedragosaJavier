@@ -5,7 +5,9 @@ package p3gui.vista;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.io.File;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 import javax.swing.ListModel;
 import prog2.adaptador.Adaptador;
 
@@ -15,12 +17,17 @@ import prog2.adaptador.Adaptador;
  */
 public class AppMercatUB extends javax.swing.JFrame {
 
-        Adaptador ad = new Adaptador();
+    public Adaptador ad = new Adaptador();  
+    AfegirArticle afArticle;
+    AfegirClient afClient;
+    GestioComandes gesCom;
+    
     /**
      * Creates new form AppMercatUB
      */
     public AppMercatUB() {
         initComponents();
+        
     }
 
     /**
@@ -32,6 +39,7 @@ public class AppMercatUB extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         btnAfegirClient = new javax.swing.JButton();
         btnAfegirArticle = new javax.swing.JButton();
         btnGestioComandes = new javax.swing.JButton();
@@ -39,8 +47,14 @@ public class AppMercatUB extends javax.swing.JFrame {
         listLlistar = new javax.swing.JList<>();
         btnLlistarClients = new javax.swing.JButton();
         btnLlistarArticles = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuArxiu = new javax.swing.JMenu();
+        MenuItemGuardar = new javax.swing.JMenuItem();
+        MenuItemCarregar = new javax.swing.JMenuItem();
+        MenuAjuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("App Mercat UB");
 
         btnAfegirClient.setText("Afegir Client");
         btnAfegirClient.setName("btnAfegirClient"); // NOI18N
@@ -53,9 +67,19 @@ public class AppMercatUB extends javax.swing.JFrame {
         btnAfegirArticle.setText("Afegir Article");
         btnAfegirArticle.setToolTipText("");
         btnAfegirArticle.setName("btnAfegirArticle"); // NOI18N
+        btnAfegirArticle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAfegirArticleActionPerformed(evt);
+            }
+        });
 
         btnGestioComandes.setText("Gestió comandes");
         btnGestioComandes.setName("btn_gestioComandes"); // NOI18N
+        btnGestioComandes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGestioComandesActionPerformed(evt);
+            }
+        });
 
         listLlistar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         listLlistar.setName("listLlistar"); // NOI18N
@@ -77,26 +101,49 @@ public class AppMercatUB extends javax.swing.JFrame {
             }
         });
 
+        menuArxiu.setText("Arxiu");
+
+        MenuItemGuardar.setText("Guardar dades");
+        MenuItemGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemGuardarActionPerformed(evt);
+            }
+        });
+        menuArxiu.add(MenuItemGuardar);
+
+        MenuItemCarregar.setText("Carregar dades");
+        MenuItemCarregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemCarregarActionPerformed(evt);
+            }
+        });
+        menuArxiu.add(MenuItemCarregar);
+
+        jMenuBar1.add(menuArxiu);
+
+        MenuAjuda.setText("Ajuda");
+        jMenuBar1.add(MenuAjuda);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnGestioComandes, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnGestioComandes, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(231, 231, 231))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAfegirArticle, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAfegirClient, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnLlistarClients, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnLlistarArticles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+                            .addComponent(btnAfegirClient, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAfegirArticle, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(48, 48, 48)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnLlistarArticles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLlistarClients, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -105,16 +152,17 @@ public class AppMercatUB extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnAfegirClient, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                            .addComponent(btnLlistarClients, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAfegirClient, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnLlistarClients, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnLlistarArticles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAfegirArticle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnAfegirArticle))
+                        .addGap(151, 151, 151)
                         .addComponent(btnGestioComandes, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
 
@@ -149,8 +197,55 @@ public class AppMercatUB extends javax.swing.JFrame {
 
     private void btnAfegirClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfegirClientActionPerformed
         // TODO add your handling code here:
-        AfegirClient.
+        if (afClient == null){
+            afClient = new AfegirClient();
+        }
+        afClient.Show(this);
     }//GEN-LAST:event_btnAfegirClientActionPerformed
+
+    private void btnAfegirArticleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfegirArticleActionPerformed
+        // TODO add your handling code here:
+        if (afArticle == null){
+            afArticle = new AfegirArticle();
+        }
+        afArticle.Show(this);
+    }//GEN-LAST:event_btnAfegirArticleActionPerformed
+
+    private void btnGestioComandesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestioComandesActionPerformed
+        // TODO add your handling code here:
+        if (gesCom == null){
+            gesCom = new GestioComandes();
+        }
+        gesCom.Show(this);
+    }//GEN-LAST:event_btnGestioComandesActionPerformed
+
+    private void MenuItemGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemGuardarActionPerformed
+        // TODO add your handling code here:
+        try{
+            File fitxer;
+            JFileChooser seleccio = new JFileChooser();
+            int resultat = seleccio.showOpenDialog(this);
+            if (resultat == JFileChooser.APPROVE_OPTION) {
+                fitxer=seleccio.getSelectedFile();
+                ad.guardaDades(fitxer.toString());
+            }
+        }catch (Exception e){ 
+        }
+    }//GEN-LAST:event_MenuItemGuardarActionPerformed
+
+    private void MenuItemCarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemCarregarActionPerformed
+        // TODO add your handling code here:
+        try{
+            File fitxer;
+            JFileChooser seleccio = new JFileChooser();
+            int resultat = seleccio.showOpenDialog(this);
+            if (resultat == JFileChooser.APPROVE_OPTION) {
+                fitxer=seleccio.getSelectedFile();
+                ad.carregaDades(fitxer.toString());
+            }
+        }catch (Exception e){ 
+        }
+    }//GEN-LAST:event_MenuItemCarregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,12 +283,18 @@ public class AppMercatUB extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu MenuAjuda;
+    private javax.swing.JMenuItem MenuItemCarregar;
+    private javax.swing.JMenuItem MenuItemGuardar;
     private javax.swing.JButton btnAfegirArticle;
     private javax.swing.JButton btnAfegirClient;
     private javax.swing.JButton btnGestioComandes;
     private javax.swing.JButton btnLlistarArticles;
     private javax.swing.JButton btnLlistarClients;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> listLlistar;
+    private javax.swing.JMenu menuArxiu;
     // End of variables declaration//GEN-END:variables
 }

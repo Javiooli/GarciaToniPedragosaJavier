@@ -1,4 +1,4 @@
-package prog2.model;
+package model;
 
 import prog2.vista.MercatException;
 

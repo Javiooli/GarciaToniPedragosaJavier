@@ -1,5 +1,8 @@
 package p3gui.vista;
 
+import javax.swing.JFrame;
+import prog2.adaptador.Adaptador;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,7 +14,9 @@ package p3gui.vista;
  * @author garci
  */
 public class AfegirClient extends javax.swing.JFrame {
-
+    Adaptador ad;
+    AppMercatUB parent;
+    boolean allFilled = false;
     /**
      * Creates new form AfegirClient
      */
@@ -28,21 +33,175 @@ public class AfegirClient extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtNom = new javax.swing.JTextField();
+        txtAdreça = new javax.swing.JTextField();
+        checkIsPremium = new javax.swing.JCheckBox();
+        btnAcceptar = new javax.swing.JToggleButton();
+        btnCancelar = new javax.swing.JToggleButton();
+        lblEmail = new javax.swing.JLabel();
+        lblNom = new javax.swing.JLabel();
+        lblAdreça = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Afegir Client Nou");
+
+        txtNom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomActionPerformed(evt);
+            }
+        });
+        txtNom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNomKeyPressed(evt);
+            }
+        });
+
+        txtAdreça.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAdreçaActionPerformed(evt);
+            }
+        });
+        txtAdreça.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtAdreçaKeyPressed(evt);
+            }
+        });
+
+        checkIsPremium.setText("Client Premium");
+
+        btnAcceptar.setText("Acceptar");
+        btnAcceptar.setEnabled(false);
+        btnAcceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptarActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        lblEmail.setText("Email");
+
+        lblNom.setText("Nom del client");
+
+        lblAdreça.setText("Adreça");
+
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEmailKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(260, 260, 260)
+                        .addComponent(btnAcceptar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblAdreça)
+                            .addComponent(lblEmail)
+                            .addComponent(lblNom)
+                            .addComponent(txtNom)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                            .addComponent(btnCancelar)
+                            .addComponent(txtAdreça)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(checkIsPremium)))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(lblEmail)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(lblNom)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblAdreça)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtAdreça, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(checkIsPremium)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnAcceptar))
+                .addGap(37, 37, 37))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        parent.setVisible(true);
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnAcceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptarActionPerformed
+        // TODO add your handling code here:
+        try{ad.afegirClient(txtEmail.getText(), txtNom.getText(), txtAdreça.getText(), 
+                checkIsPremium.isSelected());
+                btnAcceptar.setEnabled(false);
+                txtEmail.setText("");
+                txtNom.setText("");
+                txtAdreça.setText("");
+                checkIsPremium.setSelected(false);
+            this.setVisible(false);
+            parent.setVisible(true);
+        } catch (Exception e){
+
+        }
+    }//GEN-LAST:event_btnAcceptarActionPerformed
+    //No me deja borrar estos metodos jajaj
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
+
+    private void txtNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomActionPerformed
+    }//GEN-LAST:event_txtNomActionPerformed
+
+    private void txtAdreçaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdreçaActionPerformed
+    }//GEN-LAST:event_txtAdreçaActionPerformed
+
+    private void txtAdreçaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAdreçaKeyPressed
+        allFilled = !txtEmail.getText().equals("") && !txtNom.getText().equals("") 
+                && !txtAdreça.getText().equals("");
+        btnAcceptar.setEnabled(allFilled);
+    }//GEN-LAST:event_txtAdreçaKeyPressed
+
+    private void txtNomKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomKeyPressed
+        allFilled = !txtEmail.getText().equals("") && !txtNom.getText().equals("") 
+                && !txtAdreça.getText().equals("");
+        btnAcceptar.setEnabled(allFilled);
+    }//GEN-LAST:event_txtNomKeyPressed
+
+    private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
+        allFilled = !txtEmail.getText().equals("") && !txtNom.getText().equals("") 
+                && !txtAdreça.getText().equals("");
+        btnAcceptar.setEnabled(allFilled);
+    }//GEN-LAST:event_txtEmailKeyPressed
 
     /**
      * @param args the command line arguments
@@ -80,5 +239,21 @@ public class AfegirClient extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnAcceptar;
+    private javax.swing.JToggleButton btnCancelar;
+    private javax.swing.JCheckBox checkIsPremium;
+    private javax.swing.JLabel lblAdreça;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblNom;
+    private javax.swing.JTextField txtAdreça;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtNom;
     // End of variables declaration//GEN-END:variables
+
+    void Show(AppMercatUB aThis) {
+        parent=aThis;
+        ad = aThis.ad;
+        this.setVisible(true);
+        aThis.setVisible(false);
+    }
 }

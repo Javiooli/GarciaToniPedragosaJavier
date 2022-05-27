@@ -1,5 +1,7 @@
 package p3gui.vista;
 
+import prog2.adaptador.Adaptador;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,7 +13,10 @@ package p3gui.vista;
  * @author garci
  */
 public class AfegirArticle extends javax.swing.JFrame {
-
+    
+    AppMercatUB parent;
+    Adaptador ad;
+    boolean allFilled;
     /**
      * Creates new form AfegirArticle
      */
@@ -28,21 +33,178 @@ public class AfegirArticle extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtId = new javax.swing.JTextField();
+        txtNom = new javax.swing.JTextField();
+        txtPreu = new javax.swing.JTextField();
+        checkIsUrgent = new javax.swing.JCheckBox();
+        btnAcceptar = new javax.swing.JToggleButton();
+        btnCancelar = new javax.swing.JToggleButton();
+        lblId = new javax.swing.JLabel();
+        lblNom = new javax.swing.JLabel();
+        lblPreu = new javax.swing.JLabel();
+        txtTemps = new javax.swing.JTextField();
+        lblTemps = new javax.swing.JLabel();
+        lblMinuts = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Afegir Article Nou");
+
+        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtIdKeyPressed(evt);
+            }
+        });
+
+        txtNom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNomKeyPressed(evt);
+            }
+        });
+
+        txtPreu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPreuKeyPressed(evt);
+            }
+        });
+
+        checkIsUrgent.setText("Admet enviament urgent");
+
+        btnAcceptar.setText("Acceptar");
+        btnAcceptar.setEnabled(false);
+        btnAcceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptarActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        lblId.setText("Identificador");
+
+        lblNom.setText("Nom del article");
+
+        lblPreu.setText("Preu");
+
+        txtTemps.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTempsKeyPressed(evt);
+            }
+        });
+
+        lblTemps.setText("Temps fins enviament");
+
+        lblMinuts.setText("minuts");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblTemps)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(txtTemps, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblMinuts)))
+                            .addComponent(btnAcceptar)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPreu, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPreu)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblId)
+                                .addComponent(lblNom)
+                                .addComponent(txtNom)
+                                .addComponent(txtId, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))
+                            .addComponent(btnCancelar)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addComponent(checkIsUrgent)))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(lblId)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(lblNom)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTemps)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtTemps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblMinuts)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblPreu)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPreu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(checkIsUrgent)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnAcceptar))
+                .addGap(37, 37, 37))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        parent.setVisible(true);
+        
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnAcceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptarActionPerformed
+        // TODO add your handling code here:        
+    }//GEN-LAST:event_btnAcceptarActionPerformed
+
+    private void txtIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyPressed
+        // TODO add your handling code here:
+        allFilled = !txtId.getText().equals("") && !txtNom.getText().equals("")
+                    && !txtPreu.getText().equals("") && !txtTemps.getText().equals("");
+        btnAcceptar.setEnabled(allFilled);
+    }//GEN-LAST:event_txtIdKeyPressed
+
+    private void txtNomKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomKeyPressed
+        // TODO add your handling code here:
+        allFilled = !txtId.getText().equals("") && !txtNom.getText().equals("")
+                    && !txtPreu.getText().equals("") && !txtTemps.getText().equals("");
+        btnAcceptar.setEnabled(allFilled);
+    }//GEN-LAST:event_txtNomKeyPressed
+
+    private void txtPreuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPreuKeyPressed
+        // TODO add your handling code here:
+        allFilled = !txtId.getText().equals("") && !txtNom.getText().equals("")
+                    && !txtPreu.getText().equals("") && !txtTemps.getText().equals("");
+        btnAcceptar.setEnabled(allFilled);
+    }//GEN-LAST:event_txtPreuKeyPressed
+
+    private void txtTempsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTempsKeyPressed
+        // TODO add your handling code here:
+        allFilled = !txtId.getText().equals("") && !txtNom.getText().equals("")
+                    && !txtPreu.getText().equals("") && !txtTemps.getText().equals("");
+        btnAcceptar.setEnabled(allFilled);
+    }//GEN-LAST:event_txtTempsKeyPressed
 
     /**
      * @param args the command line arguments
@@ -80,5 +242,26 @@ public class AfegirArticle extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnAcceptar;
+    private javax.swing.JToggleButton btnCancelar;
+    private javax.swing.JCheckBox checkIsUrgent;
+    private javax.swing.JLabel lblId;
+    private javax.swing.JLabel lblMinuts;
+    private javax.swing.JLabel lblNom;
+    private javax.swing.JLabel lblPreu;
+    private javax.swing.JLabel lblTemps;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtNom;
+    private javax.swing.JTextField txtPreu;
+    private javax.swing.JTextField txtTemps;
     // End of variables declaration//GEN-END:variables
+    
+    void Show(AppMercatUB aThis) {
+        parent=aThis;
+        ad = aThis.ad;
+        this.setVisible(true);
+        aThis.setVisible(false);
+    }
+
+
 }

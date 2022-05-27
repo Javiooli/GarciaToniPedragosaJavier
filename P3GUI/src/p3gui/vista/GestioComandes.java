@@ -1,5 +1,8 @@
 package p3gui.vista;
 
+import javax.swing.DefaultListModel;
+import prog2.adaptador.Adaptador;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,6 +15,10 @@ package p3gui.vista;
  */
 public class GestioComandes extends javax.swing.JFrame {
 
+    Adaptador ad;
+    AppMercatUB parent;
+    AfegirComanda afCom;
+    boolean urgent = false;
     /**
      * Creates new form GestioComandes
      */
@@ -28,21 +35,137 @@ public class GestioComandes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnAfegir = new javax.swing.JToggleButton();
+        btnEsborra = new javax.swing.JToggleButton();
+        btnToggle = new javax.swing.JToggleButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listComandes = new javax.swing.JList<>();
+        btnTornar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gestionar Comandes");
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
+
+        btnAfegir.setText("Afegir Comanda");
+        btnAfegir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAfegirActionPerformed(evt);
+            }
+        });
+
+        btnEsborra.setText("Esborrar Comanda");
+        btnEsborra.setEnabled(false);
+        btnEsborra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEsborraActionPerformed(evt);
+            }
+        });
+
+        btnToggle.setText("Veure Urgents");
+        btnToggle.setEnabled(false);
+
+        listComandes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                listComandesMouseReleased(evt);
+            }
+        });
+        jScrollPane1.setViewportView(listComandes);
+
+        btnTornar.setText("Tornar");
+        btnTornar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTornarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(btnAfegir)
+                        .addGap(113, 113, 113))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnToggle)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(btnTornar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnEsborra)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(108, Short.MAX_VALUE)
+                .addComponent(btnAfegir)
+                .addGap(87, 87, 87)
+                .addComponent(btnToggle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEsborra)
+                    .addComponent(btnTornar))
+                .addGap(27, 27, 27))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnTornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTornarActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        parent.setVisible(true);
+    }//GEN-LAST:event_btnTornarActionPerformed
+
+    private void btnAfegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfegirActionPerformed
+        // TODO add your handling code here:
+        if (afCom == null){
+            afCom = new AfegirComanda();
+        }
+        afCom.Show(this);
+    }//GEN-LAST:event_btnAfegirActionPerformed
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        // TODO add your handling code here:
+        DefaultListModel<String> llista = new DefaultListModel<>();
+        try{
+            for (String Val : ad.printLlistaComandes(urgent)){
+                llista.addElement(Val);            
+            }
+            listComandes.setModel(llista);
+            
+        }catch (Exception e){
+            
+        }
+        if (listComandes.getLastVisibleIndex()==-1){}
+    }//GEN-LAST:event_formFocusGained
+
+    private void listComandesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listComandesMouseReleased
+        // TODO add your handling code here:
+        if (listComandes.getSelectedIndex()!=-1) btnEsborra.setEnabled(true);
+    }//GEN-LAST:event_listComandesMouseReleased
+
+    private void btnEsborraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsborraActionPerformed
+        // TODO add your handling code here:
+        try{ad.esborrarComanda(listComandes.getSelectedIndex());}
+        catch (Exception e){
+            
+        }
+    }//GEN-LAST:event_btnEsborraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -80,5 +203,19 @@ public class GestioComandes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnAfegir;
+    private javax.swing.JToggleButton btnEsborra;
+    private javax.swing.JToggleButton btnToggle;
+    private javax.swing.JButton btnTornar;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> listComandes;
     // End of variables declaration//GEN-END:variables
+
+    void Show(AppMercatUB aThis) {
+        parent=aThis;
+        ad = aThis.ad;
+        this.setVisible(true);
+        aThis.setVisible(false);
+    }
+
 }
