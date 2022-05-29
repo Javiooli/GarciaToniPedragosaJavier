@@ -1,13 +1,13 @@
 package prog2.model;
 
 import java.util.ArrayList;
-
+import java.io.Serializable;
 import prog2.model.abstracts.Client;
 import prog2.model.abstracts.Comanda;
 import prog2.model.abstracts.interfaces.InDades;
 import prog2.vista.MercatException;
 
-public class Dades implements InDades {
+public class Dades implements InDades, Serializable{
 
     private LlistaArticles articles;
     private LlistaClients clients;
@@ -53,7 +53,7 @@ public class Dades implements InDades {
     }
 
     @Override
-    public ArrayList<Comanda> recuperaComandes() {
+    public ArrayList<Comanda> recuperaComandes(){
         return comandes.getArrayList();
     }
 

@@ -1,6 +1,8 @@
 package prog2.model.abstracts;
 
-public abstract class Client {
+import java.io.Serializable;
+
+public abstract class Client implements Serializable{
     
     private String email;
     private String nom;

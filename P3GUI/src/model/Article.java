@@ -1,8 +1,9 @@
 package model;
 
 import vista.MercatException;
+import java.io.Serializable;
 
-public class Article {
+public class Article implements Serializable {
     
     private String id;
     private String nom;

@@ -254,16 +254,15 @@ public class GestioComandes extends javax.swing.JFrame {
                 llista.addElement(Val);            
             }
             listComandes.setModel(llista);
+            btnToggle.setEnabled(!ad.printLlistaComandes(false).isEmpty());     
             
         }catch (Exception e){
         }
         if (listComandes.getLastVisibleIndex()!=-1){
             btnEsborra.setEnabled(true);
-            btnToggle.setEnabled(true);
         }
         else{
-            btnEsborra.setEnabled(false);
-            btnToggle.setEnabled(false);            
+            btnEsborra.setEnabled(false);       
         }
     }
 

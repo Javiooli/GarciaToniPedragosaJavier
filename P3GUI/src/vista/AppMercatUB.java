@@ -122,6 +122,16 @@ public class AppMercatUB extends javax.swing.JFrame {
         jMenuBar1.add(menuArxiu);
 
         MenuAjuda.setText("Ajuda");
+        MenuAjuda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuAjudaMouseClicked(evt);
+            }
+        });
+        MenuAjuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuAjudaActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(MenuAjuda);
 
         setJMenuBar(jMenuBar1);
@@ -224,11 +234,14 @@ public class AppMercatUB extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             File fitxer;
-            JFileChooser seleccio = new JFileChooser();
+            JFileChooser seleccio = new JFileChooser(System.getProperty("user.dir"));
             int resultat = seleccio.showOpenDialog(this);
             if (resultat == JFileChooser.APPROVE_OPTION) {
-                fitxer=seleccio.getSelectedFile();
-                ad.guardaDades(fitxer.toString());
+                if(JOptionPane.OK_OPTION==JOptionPane.showConfirmDialog(null, "Vols guardar les dades a l'arxiu \n" + 
+                        seleccio.getSelectedFile().toString()+" ?", "Confirmacio guardar", JOptionPane.OK_CANCEL_OPTION)){
+                    fitxer=seleccio.getSelectedFile();
+                    ad.guardaDades(fitxer.toString());
+                }
             }
         }catch (Exception e){ 
             JOptionPane.showMessageDialog(null, e);
@@ -239,16 +252,30 @@ public class AppMercatUB extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             File fitxer;
-            JFileChooser seleccio = new JFileChooser();
+            JFileChooser seleccio = new JFileChooser(System.getProperty("user.dir"));
             int resultat = seleccio.showOpenDialog(this);
             if (resultat == JFileChooser.APPROVE_OPTION) {
-                fitxer=seleccio.getSelectedFile();
-                ad.carregaDades(fitxer.toString());
+                if(JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(null, "Vols carregar les dades de l'arxiu \n" +
+                        seleccio.getSelectedFile().toString(), "Confirmació carregar", JOptionPane.OK_CANCEL_OPTION)){
+                    fitxer=seleccio.getSelectedFile();
+                    ad.carregaDades(fitxer.toString());
+                }
             }
         }catch (Exception e){ 
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_MenuItemCarregarActionPerformed
+
+    private void MenuAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuAjudaActionPerformed
+        // TODO add your handling code here: 
+    }//GEN-LAST:event_MenuAjudaActionPerformed
+
+    private void MenuAjudaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAjudaMouseClicked
+        // TODO add your handling code here:       
+            JOptionPane.showMessageDialog(null, "Per Insertar un nou client i Article cal clicar a afegir client o article i omplir tots els camps\n"
+                    + "per a que s'habiliti el boto d'afegir.\n\nPer a gestionar comandes cal clicar el botó Gestió comandes i s'obrirà\n"
+                    + "una nova finestra on es podran veure les comandes actives,\nesborrar comandes existents seleccionant-les\na la llista i s'hi podran afegir de noves.");
+    }//GEN-LAST:event_MenuAjudaMouseClicked
 
     /**
      * @param args the command line arguments

@@ -192,6 +192,7 @@ public class AfegirComanda extends javax.swing.JFrame {
     private void cbArticleFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbArticleFocusGained
         // TODO add your handling code here:
         // Relleno el cbArticles con los valores de la lista de Articles.
+        cbArticle.removeAllItems();
         try{
             for (String Val : ad.printLlistaArticles()){
                 cbArticle.addItem(Val);
@@ -203,6 +204,7 @@ public class AfegirComanda extends javax.swing.JFrame {
     private void cbClientFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbClientFocusGained
         // TODO add your handling code here:
         //Relleno el cbClients con los valores de la lista Clients.
+        cbClient.removeAllItems();
         try{
             for (String Val : ad.printLlistaClients()){
                 cbClient.addItem(Val);

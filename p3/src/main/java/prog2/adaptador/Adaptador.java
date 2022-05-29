@@ -56,28 +56,36 @@ public class Adaptador {
 
     public ArrayList<String> printLlistaArticles() throws MercatException{
         ArrayList<String> result = new ArrayList<>();
-        for (Article a: dades.recuperaArticles()){
-            result.add(a.toString());
+        if(dades.recuperaArticles().isEmpty()) throw new MercatException("La llista d'articles està buida.");
+        else{
+            for (Article a: dades.recuperaArticles()){
+                result.add(a.toString());
+            }
+            return result;
         }
-        return result;
     }
 
     public ArrayList<String> printLlistaClients() throws MercatException{
         ArrayList<String> result = new ArrayList<>();
-        for (Client c: dades.recuperaClients()){
-            result.add(c.toString());
+        if (dades.recuperaClients().isEmpty()) throw new MercatException("La llista de clients està buida.");
+        else{
+            for (Client c: dades.recuperaClients()){
+                result.add(c.toString());
+            }
+            return result;
         }
-        return result;
     }
 
     public ArrayList<String> printLlistaComandes(boolean urgent) throws MercatException{
         ArrayList<String> result = new ArrayList<>();
         if (urgent){
+            if(dades.recuperaComandesUrgents().isEmpty()) throw new MercatException("La llista no contè comandes urgents.");
             for (Comanda c: dades.recuperaComandesUrgents()){
                 result.add(c.toString());
             }
         }
-        else {
+        else {            
+            if(dades.recuperaComandes().isEmpty()) throw new MercatException("La llista està buida.");
             for (Comanda c: dades.recuperaComandes()){
                 result.add(c.toString());
             }

@@ -2,10 +2,11 @@ package model.abstracts;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.io.Serializable;
 
 import model.Article;
 
-public abstract class Comanda {
+public abstract class Comanda implements Serializable{
     protected Article article;
     protected Client client;
     protected int quantitat;

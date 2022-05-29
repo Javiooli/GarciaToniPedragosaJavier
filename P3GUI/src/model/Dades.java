@@ -1,14 +1,13 @@
 package model;
 
 import java.util.ArrayList;
-import model.Article;
-
+import java.io.Serializable;
 import model.abstracts.Client;
 import model.abstracts.Comanda;
 import model.abstracts.interfaces.InDades;
 import vista.MercatException;
 
-public class Dades implements InDades {
+public class Dades implements InDades, Serializable{
 
     private LlistaArticles articles;
     private LlistaClients clients;
