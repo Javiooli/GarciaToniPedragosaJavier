@@ -1,9 +1,9 @@
-package prog2.model.abstracts;
+package model.abstracts;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import prog2.model.Article;
+import model.Article;
 
 public abstract class Comanda {
     protected Article article;

@@ -1,8 +1,8 @@
-package prog2.model.abstracts;
+package model.abstracts;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import prog2.vista.MercatException;
+import vista.MercatException;
 
 public class Llista<T> implements Serializable {
       protected ArrayList<T> llista;
@@ -24,12 +24,15 @@ public class Llista<T> implements Serializable {
             llista.add(t);
       }
 
-      public void esborrar(T t) {
-            ArrayList<T> llistaNova = new ArrayList<T>();
-            for (T obj : llista) {
-                  if (!t.equals(obj)) llistaNova.add(obj);
+      public void esborrar(T t) throws MercatException {
+            if (isEmpty()) throw new MercatException("La llista està buida.");
+            else{
+                ArrayList<T> llistaNova = new ArrayList<T>();
+                for (T obj : llista) {
+                      if (!t.equals(obj)) llistaNova.add(obj);
+                }
+                this.llista = llistaNova;
             }
-            this.llista = llistaNova;
       }
 
       public T getAt(int position) {

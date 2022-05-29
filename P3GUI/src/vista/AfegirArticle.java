@@ -1,6 +1,7 @@
-package p3gui.vista;
+package vista;
 
-import prog2.adaptador.Adaptador;
+import adaptador.Adaptador;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -53,17 +54,26 @@ public class AfegirArticle extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtIdKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIdKeyReleased(evt);
+            }
         });
 
         txtNom.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNomKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNomKeyReleased(evt);
+            }
         });
 
         txtPreu.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtPreuKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPreuKeyReleased(evt);
             }
         });
 
@@ -93,6 +103,9 @@ public class AfegirArticle extends javax.swing.JFrame {
         txtTemps.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtTempsKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTempsKeyReleased(evt);
             }
         });
 
@@ -187,7 +200,7 @@ public class AfegirArticle extends javax.swing.JFrame {
             this.setVisible(false);
             parent.setVisible(true);
         }catch (Exception e){
-            
+            JOptionPane.showMessageDialog(null, e);            
         }
     }//GEN-LAST:event_btnAcceptarActionPerformed
 
@@ -218,6 +231,34 @@ public class AfegirArticle extends javax.swing.JFrame {
                     && !txtPreu.getText().equals("") && !txtTemps.getText().equals("");
         btnAcceptar.setEnabled(allFilled);
     }//GEN-LAST:event_txtTempsKeyPressed
+
+    private void txtIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyReleased
+        // TODO add your handling code here:
+        allFilled = !txtId.getText().equals("") && !txtNom.getText().equals("")
+                    && !txtPreu.getText().equals("") && !txtTemps.getText().equals("");
+        btnAcceptar.setEnabled(allFilled);
+    }//GEN-LAST:event_txtIdKeyReleased
+
+    private void txtNomKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomKeyReleased
+        // TODO add your handling code here:
+        allFilled = !txtId.getText().equals("") && !txtNom.getText().equals("")
+                    && !txtPreu.getText().equals("") && !txtTemps.getText().equals("");
+        btnAcceptar.setEnabled(allFilled);
+    }//GEN-LAST:event_txtNomKeyReleased
+
+    private void txtPreuKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPreuKeyReleased
+        // TODO add your handling code here:
+        allFilled = !txtId.getText().equals("") && !txtNom.getText().equals("")
+                    && !txtPreu.getText().equals("") && !txtTemps.getText().equals("");
+        btnAcceptar.setEnabled(allFilled);
+    }//GEN-LAST:event_txtPreuKeyReleased
+
+    private void txtTempsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTempsKeyReleased
+        // TODO add your handling code here:
+        allFilled = !txtId.getText().equals("") && !txtNom.getText().equals("")
+                    && !txtPreu.getText().equals("") && !txtTemps.getText().equals("");
+        btnAcceptar.setEnabled(allFilled);
+    }//GEN-LAST:event_txtTempsKeyReleased
 
     /**
      * @param args the command line arguments

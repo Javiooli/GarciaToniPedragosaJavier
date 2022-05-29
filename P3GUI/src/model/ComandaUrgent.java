@@ -1,7 +1,7 @@
-package prog2.model;
+package model;
 
-import prog2.model.abstracts.Client;
-import prog2.model.abstracts.Comanda;
+import model.abstracts.Client;
+import model.abstracts.Comanda;
 import java.util.Date;
 
 public class ComandaUrgent extends Comanda {

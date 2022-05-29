@@ -1,4 +1,4 @@
-package prog2.model.abstracts;
+package model.abstracts;
 
 public abstract class Client {
     

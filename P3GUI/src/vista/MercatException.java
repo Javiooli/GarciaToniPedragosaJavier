@@ -1,4 +1,4 @@
-package prog2.vista;
+package vista;
 
 public class MercatException extends Exception {
     

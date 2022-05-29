@@ -1,10 +1,7 @@
-package p3gui.vista;
+package vista;
 
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultListModel;
-import prog2.adaptador.Adaptador;
+import adaptador.Adaptador;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -47,21 +44,6 @@ public class AfegirComanda extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Afegir Comanda Nova");
-        addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                formFocusGained(evt);
-            }
-        });
-        addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                formPropertyChange(evt);
-            }
-        });
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
-            }
-        });
 
         txtQtty.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -92,7 +74,6 @@ public class AfegirComanda extends javax.swing.JFrame {
             }
         });
 
-        cbClient.setSelectedIndex(-1);
         cbClient.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 cbClientFocusGained(evt);
@@ -101,11 +82,6 @@ public class AfegirComanda extends javax.swing.JFrame {
         cbClient.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 cbClientMouseReleased(evt);
-            }
-        });
-        cbClient.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbClientActionPerformed(evt);
             }
         });
 
@@ -173,10 +149,6 @@ public class AfegirComanda extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbClientActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbClientActionPerformed
-
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
@@ -185,11 +157,16 @@ public class AfegirComanda extends javax.swing.JFrame {
 
     private void btnAfegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfegirActionPerformed
         // TODO add your handling code here:
+        try{ 
+            ad.afegirComanda(cbArticle.getSelectedIndex(), cbClient.getSelectedIndex(), Integer.parseInt(txtQtty.getText()), checkIsUrgent.isSelected());
+            this.setVisible(false);
+            parent.setVisible(true);
+            parent.llistarComandes();
+        }
+           catch (Exception e){
+           JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_btnAfegirActionPerformed
-
-    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
-        // TODO add your handling code here:        
-    }//GEN-LAST:event_formFocusGained
 
     private void cbClientMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbClientMouseReleased
         // TODO add your handling code here:
@@ -211,14 +188,6 @@ public class AfegirComanda extends javax.swing.JFrame {
                 && !txtQtty.getText().equals("");
         btnAfegir.setEnabled(allFilled);
     }//GEN-LAST:event_txtQttyKeyReleased
-
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formWindowActivated
-
-    private void formPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_formPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formPropertyChange
 
     private void cbArticleFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbArticleFocusGained
         // TODO add your handling code here:
@@ -292,7 +261,7 @@ public class AfegirComanda extends javax.swing.JFrame {
 
     void Show(GestioComandes aThis) {
         parent=aThis;
-        ad = aThis.ad;
+        ad = parent.ad;
         this.setVisible(true);
         aThis.setVisible(false);
     }

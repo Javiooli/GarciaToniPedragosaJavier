@@ -1,9 +1,9 @@
-package prog2.model;
+package model;
 import java.io.Serializable;
 
-import prog2.model.abstracts.Client;
-import prog2.model.abstracts.Llista;
-import prog2.vista.MercatException;
+import model.abstracts.Client;
+import model.abstracts.Llista;
+import vista.MercatException;
 
 public class LlistaClients extends Llista<Client> implements Serializable {
     @Override

@@ -1,7 +1,8 @@
-package p3gui.vista;
+package vista;
 
 import javax.swing.DefaultListModel;
-import prog2.adaptador.Adaptador;
+import javax.swing.JOptionPane;
+import adaptador.Adaptador;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -67,6 +68,11 @@ public class GestioComandes extends javax.swing.JFrame {
 
         btnToggle.setText("Veure Urgents");
         btnToggle.setEnabled(false);
+        btnToggle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnToggleActionPerformed(evt);
+            }
+        });
 
         listComandes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -149,9 +155,11 @@ public class GestioComandes extends javax.swing.JFrame {
             listComandes.setModel(llista);
             
         }catch (Exception e){
-            
+            JOptionPane.showMessageDialog(null, e);
         }
-        if (listComandes.getLastVisibleIndex()==-1){}
+        if (listComandes.getLastVisibleIndex()!=-1){
+        btnEsborra.setEnabled(true);
+        btnToggle.setEnabled(true);}
     }//GEN-LAST:event_formFocusGained
 
     private void listComandesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listComandesMouseReleased
@@ -161,11 +169,23 @@ public class GestioComandes extends javax.swing.JFrame {
 
     private void btnEsborraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsborraActionPerformed
         // TODO add your handling code here:
-        try{ad.esborrarComanda(listComandes.getSelectedIndex());}
-        catch (Exception e){
-            
+        if (listComandes.getSelectedIndex()==-1) 
+            JOptionPane.showMessageDialog(null, "Afegeix una comanda o tria-la a la llista de la dreta.");
+        else{
+            try{
+                ad.esborrarComanda(listComandes.getSelectedIndex());
+                this.llistarComandes();
+            }
+            catch (Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
         }
     }//GEN-LAST:event_btnEsborraActionPerformed
+
+    private void btnToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToggleActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnToggleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,6 +236,26 @@ public class GestioComandes extends javax.swing.JFrame {
         ad = aThis.ad;
         this.setVisible(true);
         aThis.setVisible(false);
+    }
+    void llistarComandes(){
+        DefaultListModel<String> llista = new DefaultListModel<>();
+        listComandes.setModel(llista);
+        try{
+            for (String Val : ad.printLlistaComandes(urgent)){
+                llista.addElement(Val);            
+            }
+            listComandes.setModel(llista);
+            
+        }catch (Exception e){
+        }
+        if (listComandes.getLastVisibleIndex()!=-1){
+            btnEsborra.setEnabled(true);
+            btnToggle.setEnabled(true);
+        }
+        else{
+            btnEsborra.setEnabled(false);
+            btnToggle.setEnabled(false);            
+        }
     }
 
 }

@@ -1,6 +1,6 @@
 package model;
 
-import prog2.vista.MercatException;
+import vista.MercatException;
 
 public class Article {
     

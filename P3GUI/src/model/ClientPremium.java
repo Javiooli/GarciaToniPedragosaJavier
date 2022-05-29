@@ -1,6 +1,6 @@
-package prog2.model;
+package model;
 
-import prog2.model.abstracts.Client;
+import model.abstracts.Client;
 
 public class ClientPremium extends Client {
     

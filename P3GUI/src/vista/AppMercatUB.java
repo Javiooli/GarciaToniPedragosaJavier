@@ -1,4 +1,4 @@
-package p3gui.vista;
+package vista;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -8,8 +8,8 @@ package p3gui.vista;
 import java.io.File;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
-import javax.swing.ListModel;
-import prog2.adaptador.Adaptador;
+import adaptador.Adaptador;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -177,7 +177,7 @@ public class AppMercatUB extends javax.swing.JFrame {
                 llista.addElement(Val);
             }
         }catch (Exception e){
-            
+            JOptionPane.showMessageDialog(null, e);            
         }
         listLlistar.setModel(llista);
     }//GEN-LAST:event_btnLlistarClientsActionPerformed
@@ -190,7 +190,7 @@ public class AppMercatUB extends javax.swing.JFrame {
                 llista.addElement(Val);
             }
         }catch (Exception e){
-            
+            JOptionPane.showMessageDialog(null, e);            
         }
         listLlistar.setModel(llista);
     }//GEN-LAST:event_btnLlistarArticlesActionPerformed
@@ -217,6 +217,7 @@ public class AppMercatUB extends javax.swing.JFrame {
             gesCom = new GestioComandes();
         }
         gesCom.Show(this);
+        gesCom.llistarComandes();
     }//GEN-LAST:event_btnGestioComandesActionPerformed
 
     private void MenuItemGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemGuardarActionPerformed
@@ -230,6 +231,7 @@ public class AppMercatUB extends javax.swing.JFrame {
                 ad.guardaDades(fitxer.toString());
             }
         }catch (Exception e){ 
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_MenuItemGuardarActionPerformed
 
@@ -244,6 +246,7 @@ public class AppMercatUB extends javax.swing.JFrame {
                 ad.carregaDades(fitxer.toString());
             }
         }catch (Exception e){ 
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_MenuItemCarregarActionPerformed
 

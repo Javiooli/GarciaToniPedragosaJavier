@@ -1,7 +1,7 @@
-package p3gui.vista;
+package vista;
 
-import javax.swing.JFrame;
-import prog2.adaptador.Adaptador;
+import adaptador.Adaptador;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -55,6 +55,9 @@ public class AfegirClient extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNomKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNomKeyReleased(evt);
+            }
         });
 
         txtAdreça.addActionListener(new java.awt.event.ActionListener() {
@@ -65,6 +68,9 @@ public class AfegirClient extends javax.swing.JFrame {
         txtAdreça.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtAdreçaKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtAdreçaKeyReleased(evt);
             }
         });
 
@@ -99,6 +105,9 @@ public class AfegirClient extends javax.swing.JFrame {
         txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtEmailKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEmailKeyReleased(evt);
             }
         });
 
@@ -171,7 +180,7 @@ public class AfegirClient extends javax.swing.JFrame {
             this.setVisible(false);
             parent.setVisible(true);
         } catch (Exception e){
-
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_btnAcceptarActionPerformed
     //No me deja borrar estos metodos jajaj
@@ -202,6 +211,27 @@ public class AfegirClient extends javax.swing.JFrame {
                 && !txtAdreça.getText().equals("");
         btnAcceptar.setEnabled(allFilled);
     }//GEN-LAST:event_txtEmailKeyPressed
+
+    private void txtEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyReleased
+        // TODO add your handling code here:                                            
+        allFilled = !txtEmail.getText().equals("") && !txtNom.getText().equals("") 
+                && !txtAdreça.getText().equals("");
+        btnAcceptar.setEnabled(allFilled);
+    }//GEN-LAST:event_txtEmailKeyReleased
+
+    private void txtNomKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomKeyReleased
+        // TODO add your handling code here:                                            
+        allFilled = !txtEmail.getText().equals("") && !txtNom.getText().equals("") 
+                && !txtAdreça.getText().equals("");
+        btnAcceptar.setEnabled(allFilled);
+    }//GEN-LAST:event_txtNomKeyReleased
+
+    private void txtAdreçaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAdreçaKeyReleased
+        // TODO add your handling code here:                                            
+        allFilled = !txtEmail.getText().equals("") && !txtNom.getText().equals("") 
+                && !txtAdreça.getText().equals("");
+        btnAcceptar.setEnabled(allFilled);
+    }//GEN-LAST:event_txtAdreçaKeyReleased
 
     /**
      * @param args the command line arguments

@@ -1,10 +1,10 @@
-package prog2.model;
+package model;
 
 import java.io.Serializable;
 
-import prog2.model.abstracts.Comanda;
-import prog2.model.abstracts.Llista;
-import prog2.vista.MercatException;
+import model.abstracts.Comanda;
+import model.abstracts.Llista;
+import vista.MercatException;
 
 public class LlistaComandes extends Llista<Comanda> implements Serializable {
     @Override

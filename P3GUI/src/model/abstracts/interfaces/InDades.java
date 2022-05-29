@@ -1,11 +1,11 @@
-package prog2.model.abstracts.interfaces;
+package model.abstracts.interfaces;
 
 import java.util.ArrayList;
 
-import prog2.model.Article;
-import prog2.model.abstracts.Client;
-import prog2.model.abstracts.Comanda;
-import prog2.vista.MercatException;
+import model.Article;
+import model.abstracts.Client;
+import model.abstracts.Comanda;
+import vista.MercatException;
 
 /**
  *

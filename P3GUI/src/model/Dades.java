@@ -1,11 +1,12 @@
-package prog2.model;
+package model;
 
 import java.util.ArrayList;
+import model.Article;
 
-import prog2.model.abstracts.Client;
-import prog2.model.abstracts.Comanda;
-import prog2.model.abstracts.interfaces.InDades;
-import prog2.vista.MercatException;
+import model.abstracts.Client;
+import model.abstracts.Comanda;
+import model.abstracts.interfaces.InDades;
+import vista.MercatException;
 
 public class Dades implements InDades {
 
@@ -53,7 +54,7 @@ public class Dades implements InDades {
     }
 
     @Override
-    public ArrayList<Comanda> recuperaComandes() {
+    public ArrayList<Comanda> recuperaComandes(){
         return comandes.getArrayList();
     }
 
