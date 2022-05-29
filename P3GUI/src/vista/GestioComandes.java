@@ -184,6 +184,15 @@ public class GestioComandes extends javax.swing.JFrame {
 
     private void btnToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToggleActionPerformed
         // TODO add your handling code here:
+        urgent=!urgent;
+        if(urgent){
+            this.llistarComandes();
+            btnToggle.setText("Veure totes");
+        }
+        else{
+            this.llistarComandes();
+            btnToggle.setText("Veure urgents");            
+        }
         
     }//GEN-LAST:event_btnToggleActionPerformed
 
