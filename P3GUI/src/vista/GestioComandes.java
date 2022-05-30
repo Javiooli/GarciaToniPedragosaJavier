@@ -45,11 +45,6 @@ public class GestioComandes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestionar Comandes");
-        addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                formFocusGained(evt);
-            }
-        });
 
         btnAfegir.setText("Afegir Comanda");
         btnAfegir.addActionListener(new java.awt.event.ActionListener() {
@@ -144,23 +139,6 @@ public class GestioComandes extends javax.swing.JFrame {
         }
         afCom.Show(this);
     }//GEN-LAST:event_btnAfegirActionPerformed
-
-    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
-        // TODO add your handling code here:
-        DefaultListModel<String> llista = new DefaultListModel<>();
-        try{
-            for (String Val : ad.printLlistaComandes(urgent)){
-                llista.addElement(Val);            
-            }
-            listComandes.setModel(llista);
-            
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-        if (listComandes.getLastVisibleIndex()!=-1){
-        btnEsborra.setEnabled(true);
-        btnToggle.setEnabled(true);}
-    }//GEN-LAST:event_formFocusGained
 
     private void listComandesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listComandesMouseReleased
         // TODO add your handling code here:
@@ -258,12 +236,7 @@ public class GestioComandes extends javax.swing.JFrame {
             
         }catch (Exception e){
         }
-        if (listComandes.getLastVisibleIndex()!=-1){
-            btnEsborra.setEnabled(true);
-        }
-        else{
-            btnEsborra.setEnabled(false);       
-        }
+        btnEsborra.setEnabled(false);
     }
 
 }
