@@ -24,14 +24,10 @@ public class Llista<T> implements Serializable {
             llista.add(t);
       }
 
-      public void esborrar(T t) throws MercatException {
+      public void esborrar(int position) throws MercatException {
             if (isEmpty()) throw new MercatException("La llista està buida.");
             else{
-                ArrayList<T> llistaNova = new ArrayList<T>();
-                for (T obj : llista) {
-                      if (!t.equals(obj)) llistaNova.add(obj);
-                }
-                this.llista = llistaNova;
+                llista.remove(position);
             }
       }
 

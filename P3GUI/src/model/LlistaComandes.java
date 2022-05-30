@@ -39,4 +39,12 @@ public class LlistaComandes extends Llista<Comanda> implements Serializable {
         }
         return result;
     }
+    
+    @Override
+    public void esborrar (int position) throws MercatException{
+        if (llista.get(position).comandaEnviada()) throw new MercatException ("Aquesta comanda ja ha estat enviada.");
+        else{
+            llista.remove(position);
+        }
+    }
 }
