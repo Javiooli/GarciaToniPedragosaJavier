@@ -49,7 +49,7 @@ public class Dades implements InDades, Serializable{
 
     @Override
     public void esborrarComanda(int position) throws MercatException {
-        comandes.esborrar(comandes.getAt(position));
+        comandes.esborrar(position);
     }
 
     @Override
