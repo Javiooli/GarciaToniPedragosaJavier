@@ -11,6 +11,7 @@ public class LlistaComandes extends Llista<Comanda> implements Serializable {
     public void afegir(Comanda comanda) throws MercatException {
         if (comanda.tipusComanda().equalsIgnoreCase("Urgent") && !comanda.getArticle().isUrgent())
             throw new MercatException("Aquest article no admet enviament urgent.");
+        if (comanda.getQuantitat()<=0) throw new MercatException("No es pot afegir una comanda una quantitat menor a 1.");
             
         llista.add(comanda);
     }

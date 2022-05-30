@@ -128,7 +128,9 @@ public class MercatUB {
                 case M_Opcio_5_CarregaDades:
                 System.out.println("Escriu l'adreça de l'arxiu del que vols recuperar les dades:");
                 temp = sc.nextLine();
-                if (temp.equalsIgnoreCase("Y")){
+                System.out.println("Segur que vols carregar el fitxer? aixo substituira les dades que hi ha al programa. (Y/N)");
+                String confirm =sc.nextLine();
+                if (confirm.equalsIgnoreCase("Y")){
                     carregarDades(temp);
                 }
                     break;
