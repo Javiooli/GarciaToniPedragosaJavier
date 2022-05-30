@@ -34,13 +34,13 @@ public class AfegirClient extends javax.swing.JFrame {
     private void initComponents() {
 
         txtNom = new javax.swing.JTextField();
-        txtAdreça = new javax.swing.JTextField();
+        txtAdreca = new javax.swing.JTextField();
         checkIsPremium = new javax.swing.JCheckBox();
         btnAcceptar = new javax.swing.JToggleButton();
         btnCancelar = new javax.swing.JToggleButton();
         lblEmail = new javax.swing.JLabel();
         lblNom = new javax.swing.JLabel();
-        lblAdreça = new javax.swing.JLabel();
+        lblAdreca = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,17 +60,17 @@ public class AfegirClient extends javax.swing.JFrame {
             }
         });
 
-        txtAdreça.addActionListener(new java.awt.event.ActionListener() {
+        txtAdreca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAdreçaActionPerformed(evt);
+                txtAdrecaActionPerformed(evt);
             }
         });
-        txtAdreça.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtAdreca.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtAdreçaKeyPressed(evt);
+                txtAdrecaKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtAdreçaKeyReleased(evt);
+                txtAdrecaKeyReleased(evt);
             }
         });
 
@@ -95,7 +95,7 @@ public class AfegirClient extends javax.swing.JFrame {
 
         lblNom.setText("Nom del client");
 
-        lblAdreça.setText("Adreça");
+        lblAdreca.setText("Adreça");
 
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,13 +123,13 @@ public class AfegirClient extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(71, 71, 71)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblAdreça)
+                            .addComponent(lblAdreca)
                             .addComponent(lblEmail)
                             .addComponent(lblNom)
                             .addComponent(txtNom)
                             .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
                             .addComponent(btnCancelar)
-                            .addComponent(txtAdreça)))
+                            .addComponent(txtAdreca)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(143, 143, 143)
                         .addComponent(checkIsPremium)))
@@ -147,9 +147,9 @@ public class AfegirClient extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblAdreça)
+                .addComponent(lblAdreca)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtAdreça, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtAdreca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(checkIsPremium)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
@@ -162,20 +162,28 @@ public class AfegirClient extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    /** 
+     * @param e
+     */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
         parent.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    
+    /** 
+     * @param e
+     */
     private void btnAcceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptarActionPerformed
         // TODO add your handling code here:
-        try{ad.afegirClient(txtEmail.getText(), txtNom.getText(), txtAdreça.getText(), 
+        try{ad.afegirClient(txtEmail.getText(), txtNom.getText(), txtAdreca.getText(), 
                 checkIsPremium.isSelected());
                 btnAcceptar.setEnabled(false);
                 txtEmail.setText("");
                 txtNom.setText("");
-                txtAdreça.setText("");
+                txtAdreca.setText("");
                 checkIsPremium.setSelected(false);
             this.setVisible(false);
             parent.setVisible(true);
@@ -183,53 +191,89 @@ public class AfegirClient extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_btnAcceptarActionPerformed
+    
+    /** 
+     * @param args[]
+     */
     //No me deja borrar estos metodos jajaj
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
 
+    
+    /** 
+     * @param args[]
+     */
     private void txtNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomActionPerformed
     }//GEN-LAST:event_txtNomActionPerformed
 
-    private void txtAdreçaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdreçaActionPerformed
+    
+    /** 
+     * @param args[]
+     */
+    private void txtAdrecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdreçaActionPerformed
     }//GEN-LAST:event_txtAdreçaActionPerformed
 
-    private void txtAdreçaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAdreçaKeyPressed
+    
+    /** 
+     * @param args[]
+     */
+    private void txtAdrecaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAdreçaKeyPressed
         allFilled = !txtEmail.getText().equals("") && !txtNom.getText().equals("") 
-                && !txtAdreça.getText().equals("");
+                && !txtAdreca.getText().equals("");
         btnAcceptar.setEnabled(allFilled);
     }//GEN-LAST:event_txtAdreçaKeyPressed
 
+    
+    /** 
+     * @param args[]
+     */
     private void txtNomKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomKeyPressed
         allFilled = !txtEmail.getText().equals("") && !txtNom.getText().equals("") 
-                && !txtAdreça.getText().equals("");
+                && !txtAdreca.getText().equals("");
         btnAcceptar.setEnabled(allFilled);
     }//GEN-LAST:event_txtNomKeyPressed
 
+    
+    /** 
+     * @param args[]
+     */
     private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
         allFilled = !txtEmail.getText().equals("") && !txtNom.getText().equals("") 
-                && !txtAdreça.getText().equals("");
+                && !txtAdreca.getText().equals("");
         btnAcceptar.setEnabled(allFilled);
     }//GEN-LAST:event_txtEmailKeyPressed
 
+    
+    /** 
+     * @param args[]
+     */
     private void txtEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyReleased
         // TODO add your handling code here:                                            
         allFilled = !txtEmail.getText().equals("") && !txtNom.getText().equals("") 
-                && !txtAdreça.getText().equals("");
+                && !txtAdreca.getText().equals("");
         btnAcceptar.setEnabled(allFilled);
     }//GEN-LAST:event_txtEmailKeyReleased
 
+    
+    /** 
+     * @param args[]
+     */
     private void txtNomKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomKeyReleased
         // TODO add your handling code here:                                            
         allFilled = !txtEmail.getText().equals("") && !txtNom.getText().equals("") 
-                && !txtAdreça.getText().equals("");
+                && !txtAdreca.getText().equals("");
         btnAcceptar.setEnabled(allFilled);
     }//GEN-LAST:event_txtNomKeyReleased
 
-    private void txtAdreçaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAdreçaKeyReleased
+    
+    /** 
+     * @param args[]
+     */
+    private void txtAdrecaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAdreçaKeyReleased
         // TODO add your handling code here:                                            
         allFilled = !txtEmail.getText().equals("") && !txtNom.getText().equals("") 
-                && !txtAdreça.getText().equals("");
+                && !txtAdreca.getText().equals("");
         btnAcceptar.setEnabled(allFilled);
     }//GEN-LAST:event_txtAdreçaKeyReleased
 
@@ -272,12 +316,16 @@ public class AfegirClient extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnAcceptar;
     private javax.swing.JToggleButton btnCancelar;
     private javax.swing.JCheckBox checkIsPremium;
-    private javax.swing.JLabel lblAdreça;
+    private javax.swing.JLabel lblAdreca;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblNom;
-    private javax.swing.JTextField txtAdreça;
+    private javax.swing.JTextField txtAdreca;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNom;
+    
+    /** 
+     * @param aThis
+     */
     // End of variables declaration//GEN-END:variables
 
     void Show(AppMercatUB aThis) {
