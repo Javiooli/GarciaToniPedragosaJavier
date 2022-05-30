@@ -9,7 +9,7 @@ public class LlistaArticles extends Llista<Article> implements Serializable {
     @Override
     public void afegir(Article article) throws MercatException {
         for (Article art : llista) {
-            if (art.getID() == article.getID()) throw new MercatException("Ja existeix un article amb el mateix identificador.");
+            if (art.getID().equals(article.getID())) throw new MercatException("Ja existeix un article amb el mateix identificador.");
         }
         llista.add(article);
     }
